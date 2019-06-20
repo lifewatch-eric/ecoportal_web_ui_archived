@@ -1,0 +1,220 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf250
+{\fonttbl\f0\fnil\fcharset0 Cambria;\f1\fnil\fcharset0 Calibri;\f2\fnil\fcharset0 LucidaGrande;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc3\levelnfcn3\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{upper-alpha\}.}{\leveltext\leveltemplateid102\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid201\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{lower-alpha\}.}{\leveltext\leveltemplateid202\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid301\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{lower-alpha\}.}{\leveltext\leveltemplateid302\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+{\info
+{\title Deploying BioPortal Ruby On Rails GUI}
+{\author Dorf, Michael}
+{\*\company  }}\margl1440\margr1440\vieww19380\viewh18920\viewkind1\viewscale150
+\deftab720
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60\qc
+
+\f0\b\fs32 \cf0 Deploying BioPortal Ruby On Rails UI\
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60
+
+\i\fs28 \cf0 Table of Contents\
+\pard\tqr\tx9350\pardeftab720\ri0\sl276\slmult1\sa200
+{\field{\*\fldinst{HYPERLINK "%5Cl%20%22_Toc207622116%22"}}{\fldrslt 
+\f1\i0\b0\fs22 \cf2 \ul \ulc2 System Requirements\cf0 \ulnone 	2}}
+\f1\i0\b0\fs22 \
+\pard\tqr\tx9350\pardeftab720\ri0\sl276\slmult1\sa200
+{\field{\*\fldinst{HYPERLINK "%5Cl%20%22_Toc207622117%22"}}{\fldrslt \cf2 \ul \ulc2 Source Structure\cf0 \ulnone 	2}}\
+\pard\tqr\tx9350\pardeftab720\ri0\sl276\slmult1\sa200
+{\field{\*\fldinst{HYPERLINK "%5Cl%20%22_Toc207622118%22"}}{\fldrslt \cf2 \ul \ulc2 Installation and Configuration\cf0 \ulnone 	3}}\
+\pard\tqr\tx9350\pardeftab720\ri0\sl276\slmult1\sa200
+{\field{\*\fldinst{HYPERLINK "%5Cl%20%22_Toc207622119%22"}}{\fldrslt \cf2 \ul \ulc2 Deploy BioPortal Ruby on Rails UI\cf0 \ulnone 	4}}\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 \
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60
+
+\f0\i\b\fs28 \cf0 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200
+
+\f1\i0\b0\fs22 \cf0 \
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60
+
+\f0\i\b\fs28 \cf0 \
+\pard\pardeftab720\ri0\sl276\slmult1\sa200
+
+\f1\i0\b0\fs22 \cf0 \
+\
+\
+\
+\
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60
+
+\f0\i\b\fs28 \cf0 System Requirements\
+\pard\pardeftab720\li720\fi-360\ri0\sl276\slmult1\sa200
+\ls1\ilvl0
+\f1\i0\b0\fs22 \cf0 1.	Ruby Programming Language (1.8.5 or greater) -- Ruby Enterprise Edition recommended\
+2.	RubyGems\
+3.	Memcache \
+4.	Libxml2\
+5.	Apache With Phusion Passenger (aka mod_rails, mod_rack)\
+6.	MySQL 5.0 Database Server\
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60
+
+\f0\i\b\fs28 \cf0 Source Structure\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw10\brdrcf0 \trbrdrl\brdrs\brdrw10\brdrcf0 \trbrdrr\brdrs\brdrw10\brdrcf0 
+\clvertalc \clshdrawnil \clwWidth4645\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4571\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+
+\f1\i0\b0\fs22 \cf0 /config/database.yml\cell 
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 File that contains database connection properties.\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrs\brdrw10\brdrcf0 \trbrdrr\brdrs\brdrw10\brdrcf0 
+\clvertalc \clshdrawnil \clwWidth4645\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4571\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 /config/bioportal_config.rb.sample\cell 
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200\ql\qnatural
+\cf0 File containing environment variables such as mail server location, REST service location, and other BioPortal-specific options. Remove \'91.sample\'92 and customize.\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrs\brdrw10\brdrcf0 \trbrdrr\brdrs\brdrw10\brdrcf0 
+\clvertalc \clshdrawnil \clwWidth4645\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4571\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 /config/environment.rb\cell 
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 Rails-specific environment settings.\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrs\brdrw10\brdrcf0 \trbrdrr\brdrs\brdrw10\brdrcf0 
+\clvertalc \clshdrawnil \clwWidth4645\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4571\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 /config/environments/production.rb,\
+/config/environments/development.rb\cell 
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 Files that contain environment variables that are specific to a environment (e.g. memcache settings)\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrs\brdrw10\brdrcf0 \trbrdrr\brdrs\brdrw10\brdrcf0 
+\clvertalc \clshdrawnil \clwWidth4645\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4571\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 /app\cell 
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 The folder containing all the core logic to the ruby on rails application\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrs\brdrw10\brdrcf0 \trbrdrr\brdrs\brdrw10\brdrcf0 
+\clvertalc \clshdrawnil \clwWidth4645\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4571\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 /db\cell 
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 The folder containing database migrations\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrs\brdrw10\brdrcf0 \trbrdrr\brdrs\brdrw10\brdrcf0 
+\clvertalc \clshdrawnil \clwWidth4645\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4571\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 /lib\cell 
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 The folder containing libraries used for talking to services\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrs\brdrw10\brdrcf0 \trbrdrr\brdrs\brdrw10\brdrcf0 
+\clvertalc \clshdrawnil \clwWidth4645\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4571\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 /public\cell 
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 The folder containing public files such as stylesheets and images\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrs\brdrw10\brdrcf0 \trbrdrb\brdrs\brdrw10\brdrcf0 \trbrdrr\brdrs\brdrw10\brdrcf0 
+\clvertalc \clshdrawnil \clwWidth4645\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4571\clftsWidth3 \clbrdrt\brdrs\brdrw10\brdrcf0 \clbrdrl\brdrs\brdrw10\brdrcf0 \clbrdrb\brdrs\brdrw10\brdrcf0 \clbrdrr\brdrs\brdrw10\brdrcf0 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 /vendor\cell 
+\pard\intbl\itap1\pardeftab720\ri0\sl276\slmult1\sa200
+\cf0 The folder containing ruby plugins\cell \lastrow\row
+\pard\pardeftab720\li360\ri0\sl276\slmult1\sa200
+\cf0 \
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60
+
+\f0\i\b\fs28 \cf0 \page Obtaining Source Code\
+\pard\pardeftab720\li360\ri0\sl276\slmult1\sa200
+
+\f1\i0\b0\fs22 \cf0 To get the most recent source code, you must issue the following command:
+\f2 \uc0\u8232 
+\f1 svn checkout https://bmir-gforge.stanford.edu/svn/bioportalui/trunk\
+To get the most recent production-ready tag, look in the tag folder in the code repository, find the highest tag number, then issue the following command:
+\f2 \uc0\u8232 
+\f1 svn checkout https://bmir-gforge.stanford.edu/svn/bioportalui/tag/
+\i tag_number\
+
+\i0 To get the entire code repository, including all tags, branches, and the trunk, run the following:
+\f2 \uc0\u8232 
+\f1 svn checkout https://bmir-gforge.stanford.edu/svn/bioportalui\
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60
+
+\f0\i\b\fs28 \cf0 Installation and Configuration\
+\pard\pardeftab720\li720\fi-360\ri0\sl276\slmult1\sa200
+\ls2\ilvl0
+\f1\i0\b0\fs22 \cf0 1.	Install the Ruby Core Library (version 1.8.5 or higher)\
+2.	Install libxml2 and libxml2-dev (Linux packages: http://xmlsoft.org)\
+3.	Install Ruby Gems:\
+\pard\pardeftab720\li1440\fi-360\ri0\sl276\slmult1\sa200
+\ls2\ilvl1\cf0 actionmailer (2.3.5)\
+actionpack (2.3.5)\
+activerecord (2.3.5)\
+activeresource (2.3.5)\
+activesupport (2.3.5)\
+fastthread (1.0.7)\
+libxml-ruby (1.1.3)\
+memcache-client (1.7.8)\
+mime-types (1.16)\
+mysql (2.8.1)\
+passenger (2.2.9)\
+rack (1.0.1)\
+rails (2.3.5)\
+rake (0.8.7)\
+rest-client (1.3.0)\
+SystemTimer (1.1.3)\
+xray (1.1)\
+\pard\pardeftab720\li720\fi-360\ri0\sl276\slmult1\sa200
+\ls2\ilvl1\cf0 5.	Install Apache web server\
+5.	Install Memcache\
+6.	Install and configure MySQL 5 database.  \
+\pard\pardeftab720\li1440\fi-360\ri0\sl276\slmult1\sa200
+\ls2\ilvl1\cf0 A.	Create a database to contain metadata\
+B.	Point the config/database.yml file to the newly created database.\
+C.	Run the following command in the main ruby code directory: rake db:migrate\
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60
+
+\f0\i\b\fs28 \cf0 Deploy BioPortal UI\
+\pard\pardeftab720\li720\fi-360\ri0\sl276\slmult1\sa200
+\ls3\ilvl1
+\f1\i0\b0\fs22 \cf0 1.	Configure Phusion Passenger to run from the appropriate directory with your desired settings.\
+2.	Modify the /config/environments/production.rb file to point to the correct location of your memcache server.\
+3.	Modify the /config/database.yml file to contain the proper connection settings for your MySQL installation.\
+4.	Rename /config/bioportal_config.rb.sample to /config/bioportal_config.rb and modify the options as described.\
+\pard\pardeftab720\ri0\sl276\slmult1\sb240\sa60
+
+\f0\i\b\fs28 \cf0 Accessing BioPortal UI\
+\pard\pardeftab720\li720\fi-360\ri0\sl276\slmult1\sa200
+\ls4\ilvl1
+\f1\i0\b0\fs22 \cf0 1.	Start Apache.\
+2.	Logs are generated in /log/
+\i environment_name
+\i0 .log where 
+\i environment_name
+\i0  matches production, development, test, etc. from the /config/environments directory. Note: 
+\i this is most likely production
+\i0 .\
+}

@@ -1,0 +1,68 @@
+-# called from mappings_controller in several ways:
+-# 1. mappings_controller::get_concept_table via /app/views/mappings/_concept_mappings.html.haml
+-# 2. directly from mappings_controller::get_concept_table
+-#NOTES on control over mapping deletion:
+-#deleteMappings() is a callback that is called by "#delete_mappings_button" created below.
+-#The appearance of that button is controlled by updateMappingDeletePermissions(), which
+-#relies on @delete_mapping_permission in /app/views/mappings/_mapping_table.html.haml; which,
+-#in turn, is set by /app/controllers/application_controller.check_delete_mapping_permission()
+-#
+-# The delete mappings button display is controlled by JS on page ready (see bp_mappings.js)
+-# check_box_tag(name, value = "1", checked = false, options = {})
+= check_box_tag "delete_mappings_permission", @delete_mapping_permission, @delete_mapping_permission, :style => "display: none;"
+
+%table#concept_mappings_table.zebra{:width => "100%"}
+  %thead
+    %tr
+      %th{:class => 'delete_mappings_column'} Delete
+      %th Mapping To
+      %th Ontology
+      %th Source
+      -#%th Linked Data
+  - if @mappings.length < 1
+    %tr
+      %td{:class => 'delete_mappings_column', :style => "display: none;"}
+      %td{:colspan => "3"} There are currently no mappings for this class.
+
+  - @mappings.each do |map|
+    - map.classes.each do |cls|
+      - if cls.id == @concept.id
+        - # process is likely 'same_uris'
+        - next if cls.links['ontology'] == @concept.links['ontology']
+      -# this is a different class or the same class in another ontology (for same_uri mappings).
+      - ont = cls.explore.ontology
+      - next if ont.errors && ont.errors.collect {|e| e.include? "Access denied" }.any?
+      - begin
+        - ont_acronym = ont.acronym
+        - ont_name = ont.name
+        - ont_link = "/ontologies/#{ont_acronym}"
+        - ont_access = true
+      - rescue
+        - ont_access = false
+        -# Work around ontologies with access restrictions
+        -# ont_acronym = cls.links['ontology'].split('/').last
+        -# ont_name = ont_acronym  # no way to get the name here?
+        -# ont_link = ''  # no link to restricted ontologies
+      - if ont_access && ont_acronym
+        - map_id = map.id.to_s.split("/").last
+        %tr.human{:id => map_id}
+          %td{:class => 'delete_mappings_column', :style => "padding: 6px 12px;"}
+            - if map.id && !map.id.empty? && session[:user] && (session[:user].id.to_i == map.creator || session[:user].admin?)
+              = check_box_tag :delete_mapping_checkbox, map.id
+          %td
+            -# Note: get_link_for_cls_ajax is in application_helper.rb, it calls auto_link when necessary.
+            = raw(get_link_for_cls_ajax(cls.id, ont_acronym))
+          %td
+            %a{:href => ont_link}= ont_name
+          %td
+            #{map.source} #{(map.process || {})[:source_name]}
+
+:javascript
+  jQuery(document).ready(function(){
+    // Ajax globals and functions are in  "/javascripts/bp_ajax_controller.js"
+    // Note: bind any 'responsive elements' to the ajax_proces_halt() function, e.g.
+    // jQuery("#facebox a.close").click(function(event){ ajax_process_halt(); });
+    // Initiate ajax calls to resolve class ID to prefLabel.
+    ajax_process_init();  // see bp_ajax_controller.js
+  })
+

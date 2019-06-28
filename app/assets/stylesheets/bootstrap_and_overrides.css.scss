@@ -4,6 +4,14 @@
 /* Sticky footer styles from Bootstrap: 
    http://getbootstrap.com/examples/sticky-footer/sticky-footer.css
 -------------------------------------------------- */
+a {
+  color:#009399;
+}
+
+a:hover, a:focus {
+  color:#007175;
+}
+
 html {
   position: relative;
   min-height: 100%;
@@ -18,15 +26,15 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 320px;
-  color: #757575;
-  background-color: #ccc;
+  color: #666666;
+  background-color: #f2f2f2;
   padding: 30px 0;
 }
 
 /* Top navigation bar
 -------------------------------------------------- */
 .navbar-inverse {
-  background-color: #234979;
+  background-color: #009399;
   border: 0;
   box-shadow: 0 3px 5px #999;
 }
@@ -42,11 +50,21 @@ body {
   padding-top: 0;
 }
 
-.navbar-inverse .navbar-nav > .open > a, 
-.navbar-inverse .navbar-nav > .open > a:hover, 
-.navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #4D82C5;
+
+.navbar-inverse .navbar-nav>.open>a, 
+.navbar-inverse .navbar-nav>.open>a:hover, 
+.navbar-inverse .navbar-nav>.open>a:focus {
+  background-color: #007175;
 }
+
+.navbar .navbar>li>a{
+  color:#f2f2f2;
+}
+
+.navbar:hover .navbar>li>a:hover{  
+  color:#fff;
+}
+
 
 /* Footer 
 -------------------------------------------------- */
@@ -76,7 +94,26 @@ body {
 /* Customized styles for appliance mode
 -------------------------------------------------- */
 .footer-appliance {
-  height: 60px;
+  height: 360px;
   background-color: #f5f5f5;
   padding: 20px 0;
 }
+
+/* Buttons 
+-------------------------------------------------- */
+.btn-primary {
+  color: #fff;
+  background-color: #009399;
+  border-color: #018388;
+}
+
+.btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:active.focus, .btn-primary.active:hover, .btn-primary.active:focus, 
+.btn-primary.active.focus, .open>.btn-primary.dropdown-toggle:hover, .open>.btn-primary.dropdown-toggle:focus, 
+.open>.btn-primary.dropdown-toggle.focus, .btn-primary:focus, .btn-primary.focus, .btn-primary:hover,
+.btn-primary:active {
+  color: #fff;
+  background-color: #007175;
+  border-color: #014f52;
+}
+
+

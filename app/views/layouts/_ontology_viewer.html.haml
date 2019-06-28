@@ -23,9 +23,9 @@
 
 :javascript
   // Set the background color for this page only
-  jQuery("html").css("background", "#234979");
-  jQuery(document.body).css("background", "#234979");
-  jQuery("#bd").css("background", "#234979");
+  // jQuery("html").css("background", "#234979");         //eco-comment
+  // jQuery(document.body).css("background", "#234979");  //eco-comment
+  // jQuery("#bd").css("background", "#234979");          //eco-comment
 
   // Javascript History HTML5 API
   if ( typeof JSON === 'undefined' ) {
@@ -66,31 +66,32 @@
         = submit_tag("Create Mapping", class: "btn btn-default", id: "create_mapping_button")
         %button{type: "button", class: "btn btn-default", "data-dismiss": "modal"} Close
 
-%div{:style => "padding: 1em 2em 0; background: #234979;"}
-  %div
-    %span{:style => "color: white; font-size: xx-large;"}
-      %a#ont_sum_link{:href => "/ontologies/#{@ontology.acronym}"}= @ontology.name
+%div{:style => "padding: 1em 2em 0; background: #ffffff;"}
+  %div{class: "eco-ontology-nav-bar"}
+    %span{:style => "color: #666666; font-size: xx-large;"}
+      %a#eco_ont_sum_link{:href => "/ontologies/#{@ontology.acronym}"}= @ontology.name
 
     :css
-      #nav_ontology {
+      /*#eco_nav_ontology {
+        padding: 1em;
         padding-left: 2em;
         font-family: 'Droid Sans', sans-serif;
       }
-      #nav_ontology a {
-        color: white;
+      #eco_nav_ontology a {
+        color: #666666;
         text-decoration: none;
       }
-      #nav_ontology a:hover {
+      #eco_nav_ontology a:hover {
         text-decoration: underline;
       }
-      #nav_ontology li {
+      #eco_nav_ontology li {
         display: table-cell;
         padding-right: 1em;
-      }
+      }*/
       .ont_sum_link {
         font-family: 'Droid Sans', sans-serif;
       }
-    %div#nav_ontology
+    %div#eco_nav_ontology
       %ul
         %li#summary_link.summary_link.nav_link
           %a{"data-bp_ont_page" => "summary", :href => "/ontologies/#{@ontology.acronym}?p=summary"} Summary
@@ -160,7 +161,8 @@
       - else
         = loading_spinner(true)
 - if Rails.env.appliance?
-  = render partial: "footer_appliance"
+  -# = render partial: "footer_appliance"
+  = render partial: "eco_application/eco_footer"
   = javascript_include_tag "application"
   = render partial: "ga_tracking"
 - else

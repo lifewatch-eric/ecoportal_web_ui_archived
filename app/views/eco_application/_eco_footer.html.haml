@@ -1,0 +1,65 @@
+-# TODO: Refactor our layouts so that we don't open HTML tags in one file and
+-# close them in another. This is confusing / difficult to read.
+</div>
+
+%footer.footer.eco-footer-appliance
+ .container
+  .row
+   .col-sm-10.col-sm-offset-1
+    .row
+     .col-sm-3
+      %h4 PRODUCTS
+      %ul.list-unstyled
+       %li
+        %a{href: "#", target: "_blank"} EcoPortal REST API
+     .col-sm-3.footer-support
+      %h4 SUPPORT
+      %ul.list-unstyled
+       %li
+        %a.pop_window{href: "/feedback?location=http%253A%252F%252Fecoportal.lifewatchitaly.eu%252F"} Contact Us
+       %li
+        = link_to("Help", help_path())
+      -#  %li
+      -#   %a{href: "#", target: "_blank"} Documentation
+      -#  %li
+      -#   %a{href: "#", target: "_blank"} EcoPortal Wiki
+     .col-sm-3
+      %h4 ABOUT
+      %ul.list-unstyled
+       %li
+        -# %a{href: "#", target: "_blank"} About Us
+        = link_to("About Us", "/static_pages/aboutus")
+       %li
+        -# %a{href: "#", target: "_blank"} Team
+        = link_to("Team", "/static_pages/team")
+       %li
+        %a{href: "/projects"} Projects
+     .col-sm-3
+      %h4 CONNECT
+      %ul.list-inline.social-icons
+       %li
+        %a{href: "https://www.facebook.com/LifeWatch-ERIC-245225669516847", target: "_blank"}
+         %i.fa.fa-facebook.fa-3x
+       %li
+        %a{href: "https://twitter.com/lifewatcheric", target: "_blank"}
+         %i.fa.fa-twitter.fa-3x
+       %li
+        %a{href: "https://github.com/lifewatch-eric", target: "_blank"}
+         %i.fa.fa-github.fa-3x
+    .row.col-sm-12{style: "padding-top: 10px;"}
+     = link_to(image_tag('logos/lifewatch-logo.png', alt: "LifeWatch logo"), 'https://www.lifewatch.eu/', target: '_blank')
+     -# = image_tag("logos/lifewatch-logo.png", style: "vertical-align: middle;margin-left:-8px;")    
+    .row.col-sm-12{style: "padding-top: 5px;"}
+     %p Copyright © 2019, LifeWatch. All rights reserved.
+    .row.col-sm-12
+     %ul.list-inline
+      %li
+       %a{href: "#", target: "_blank"} CITE US
+      %i.fa.fa-ellipsis-v{"aria-hidden" => "true"}
+      %li
+       %a{href: "#", target: "_blank"} PRIVACY POLICY
+      %i.fa.fa-ellipsis-v{"aria-hidden" => "true"}
+      %li
+       %a{href: "#", target: "_blank"} TERMS
+    .row.col-sm-12{:style => "padding:2em;text-align:center;clear:both;"}
+     %a{:href => "http://bioportal.bioontology.org/", :title => "Powered by NCBO BioPortal", target: "_blank"} Powered by NCBO BioPortal

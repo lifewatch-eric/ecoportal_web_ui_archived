@@ -15,6 +15,7 @@ class AjaxProxyController < ApplicationController
   end
 
   def jsonp
+    LOGGER.debug("jsonp: params[:path]=#{params[:path]}")
     if params[:apikey].nil? || params[:apikey].empty?
       render_json '{ "error": "Must supply apikey" }'
       return

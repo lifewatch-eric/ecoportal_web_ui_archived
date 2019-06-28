@@ -24,14 +24,14 @@
       jQuery(document).data().bp.ont_viewer = {};
       jQuery(document).data().bp.ont_chart = {};
 
-  %body{:class => "#{controller_name} #{action_name}"}
-    = render partial: "layouts/topnav"
+  %body{:class => "#{controller_name} #{action_name} eco-body"}
+    = render partial: "eco_application/eco_topnav"
     
     %div.container-fluid
       = render partial: "layouts/notices"
       = yield
 
-    = render partial: "footer_appliance"
+    = render partial: "eco_application/eco_footer"
 
     -# BioPortal-specific JavaScript
     = javascript_include_tag "application"

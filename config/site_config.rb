@@ -3,7 +3,7 @@
 #$REST_HOSTNAME = 'data.ontoportal.example.org'
 #$REST_PORT = '8080'
 #REST_URL_PREFIX = 'http://data.ontoportal.example.org'
-#$UI_HOSTNAME = 'ontoportal.example.org'
+$UI_HOSTNAME = 'ecoportal.lifewatchitaly.eu/'
 
 # Organization info
 #$ORG = "NCBO"
@@ -14,7 +14,7 @@
 
 # Unique string representing the UI's id for use with the BioPortal Core
 # This api key is automatically generated on first boot and updated here
-$API_KEY = "13eebd8a-45c7-469c-8792-1d712d7d3d82"
+$API_KEY = "change me with API_KEY value in /srv/rails/bioportal_web_ui/releases/20180221185137/config/site_config.rb (in virtual appliance)"
 
 # REST core service address
 #$REST_URL = "http://#{$REST_HOSTNAME}:#{$REST_PORT}"

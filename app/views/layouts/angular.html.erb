@@ -43,7 +43,8 @@
     jQuery(document).data().bp.ont_viewer = {};
     jQuery(document).data().bp.ont_chart = {};
   </script>
-  <%=render partial: 'layouts/topnav'%>
+  <!-- <%=render partial: 'layouts/topnav'%>-->
+  <%=render partial: 'eco_application/eco_topnav'%>
   <%=render partial: 'layouts/notices'%>
 
   <!--[if lt IE 7]>
@@ -66,7 +67,8 @@
   <script src="app.js"></script>
 
   <% if appliance_mode %>
-    <%= render partial: "footer_appliance" %>
+    <!--<%= render partial: "footer_appliance" %> -->
+    <%= render partial: "eco_application/eco_footer" %> 
     <%= javascript_include_tag "application" %>
     <%= render partial: "ga_tracking" %>    
   <% else %>

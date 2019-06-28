@@ -37,3 +37,10 @@ nohup.out
 
 
 config/newrelic.yml
+
+_env_config/*
+config_prod/*
+
+TAGS
+
+config/site_config.rb

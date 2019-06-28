@@ -439,7 +439,7 @@ class OntologiesController < ApplicationController
     when 'index'
       'angular'
     else
-      Rails.env.appliance? ? 'appliance' : 'ontology'
+      Rails.env.appliance? ? 'appliance' : 'eco_ontology'
     end
   end
 

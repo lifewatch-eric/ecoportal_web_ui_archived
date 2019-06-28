@@ -1,7 +1,7 @@
 module Sass::Script::Functions
 
-  def body_margin_bottom
-    margin = Rails.env.appliance? ? "60px" : "320px"
+  def body_margin_bottom    
+    margin = Rails.env.appliance? ? "360px" : "320px"
     Sass::Script::String.new(margin)
   end
 

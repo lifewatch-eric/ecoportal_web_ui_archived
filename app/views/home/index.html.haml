@@ -19,13 +19,13 @@
 
 %div{class: "container", style: "padding-top: 15px; padding-bottom: 25px"}
 
-  %div{class: "row"}
-    %div{class: "col-md-12"}
-      %div{class: "page-header text-center"}
-        %h1
-          = t(".welcome").html_safe
-          %small
-            = t(".tagline").html_safe
+  -# %div{class: "row"}
+  -#   %div{class: "col-md-12"}
+  -#     %div{class: "page-header text-center"}
+  -#       %h1
+  -#         = t(".welcome").html_safe
+  -#         %small
+  -#           = t(".tagline").html_safe
 
   %div.search{class: "row"}
     -# Search for a class across ontologies
@@ -47,7 +47,7 @@
     %div{class: "col-md-6"}
       %div{class: "panel panel-default", style: "min-height:134px;"}
         %div{class: "panel-heading"}
-          %h3{class: "panel-title"} Find an ontology
+          %h3{class: "panel-title"} Find a semantic resource (ontology, thesaurus, etc.)
         %div{class: "panel-body"}
           %input#find_ontology_id{:type => "hidden"}
           %div{class: "input-group"}

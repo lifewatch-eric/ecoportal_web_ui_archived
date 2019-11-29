@@ -156,12 +156,13 @@
   float: right !important;
 }
 .badge {
-  border-radius: 5px;
+  /* border-radius: 5px; */
   text-align: center;
   max-width: 60px;
   height: 45px;
   max-height: 45px;
-  border: solid #234979 thin;
+  background:#f2f2f2;
+  /* border: solid #234979 thin; */
 }
 .badge:hover {
   /*box-shadow: 0px 0px 10px 5px rgba(25, 25, 25, .5);*/
@@ -171,10 +172,11 @@
 .badge_title {
   border-radius: 4px 4px 0 0;
   padding: .2em;
-  height: 12px;
+  /* height: 12px; */
+  height: 1.5em;
   font-size: 11px;
-  color: white;
-  background-color: #234979;
+  color: #f2f2f2;
+  background-color: #0f4e8a;
 }
 .badge_count {
   border-radius: 0 0 4px 4px;
@@ -182,8 +184,8 @@
   padding-top: 7px;
   font-size: 1.1em;
   font-weight: bold;
-  color: #234979;
+  color: #0f4e8a;
 }
-.badge:hover .badge_count {
+.badge:hover .eco-badge_count {
   background-color: rgba(220, 235, 255, 0.79);
 }

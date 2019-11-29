@@ -210,8 +210,9 @@ module ApplicationHelper
     attribs = []
     html_attribs.each {|k,v| attribs << "#{k.to_s}='#{v}'"}
     return <<-BLOCK
-          <a target="_blank" href='#{link}' class='pop_window help_link' #{attribs.join(" ")}>
-            <span class="pop_window ui-icon ui-icon-help"></span>
+          <a target="_blank" href='#{link}' class='____eco-bg-white ____pop_window ____help_link' #{attribs.join(" ")}>
+            <!--<span class="pop_window ui-icon ui-icon-help"></span>-->
+            <i aria-hidden="true" class="fa fa-question-circle fa-lg" style="margin-left: .5em"></i>
           </a>
     BLOCK
   end

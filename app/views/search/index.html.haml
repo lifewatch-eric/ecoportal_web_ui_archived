@@ -1,7 +1,7 @@
 - @title = "Search"
 
 %div#search_input
-  %h1 Class Search
+  %h1{:class => "eco-blue-font bold"} Class Search
   %p 
     = t(".intro").html_safe 
     = link_to(help_path(anchor: "Search_Tab"), id: "search-help", aria: {label: "View search help"}) do

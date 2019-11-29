@@ -54,12 +54,15 @@
     .row.col-sm-12
      %ul.list-inline
       %li
-       %a{href: "#", target: "_blank"} CITE US
+       = link_to("CITE US", "/static_pages/citeus")
+      -#  %a{href: "#", target: "_blank"} CITE US
       %i.fa.fa-ellipsis-v{"aria-hidden" => "true"}
       %li
-       %a{href: "#", target: "_blank"} PRIVACY POLICY
+       = link_to("PRIVACY POLICY", "/static_pages/privacy_policy")
+      -#  %a{href: "#", target: "_blank"} PRIVACY POLICY
       %i.fa.fa-ellipsis-v{"aria-hidden" => "true"}
       %li
-       %a{href: "#", target: "_blank"} TERMS
+       = link_to("TERMS", "/static_pages/terms")
+      -#  %a{href: "#", target: "_blank"} TERMS
     .row.col-sm-12{:style => "padding:2em;text-align:center;clear:both;"}
      %a{:href => "http://bioportal.bioontology.org/", :title => "Powered by NCBO BioPortal", target: "_blank"} Powered by NCBO BioPortal

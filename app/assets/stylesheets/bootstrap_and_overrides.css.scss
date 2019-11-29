@@ -4,12 +4,16 @@
 /* Sticky footer styles from Bootstrap: 
    http://getbootstrap.com/examples/sticky-footer/sticky-footer.css
 -------------------------------------------------- */
+body {
+  font-family: "Titillium Web";
+}
+
 a {
-  color:#009399;
+  color:#0f4e8a;
 }
 
 a:hover, a:focus {
-  color:#007175;
+  color:#0d3863;
 }
 
 html {
@@ -34,13 +38,18 @@ body {
 /* Top navigation bar
 -------------------------------------------------- */
 .navbar-inverse {
-  background-color: #009399;
+  background-color: #0f4e8a;
   border: 0;
   box-shadow: 0 3px 5px #999;
 }
 
 .navbar-brand {
   height: 80px;
+}
+
+.img_logo {
+  height: 40px;
+  margin: 6px;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -54,7 +63,7 @@ body {
 .navbar-inverse .navbar-nav>.open>a, 
 .navbar-inverse .navbar-nav>.open>a:hover, 
 .navbar-inverse .navbar-nav>.open>a:focus {
-  background-color: #007175;
+  background-color: #0d3863;
 }
 
 .navbar .navbar>li>a{
@@ -103,8 +112,8 @@ body {
 -------------------------------------------------- */
 .btn-primary {
   color: #fff;
-  background-color: #009399;
-  border-color: #018388;
+  background-color: #0f4e8a;
+  border-color: #0a355f;
 }
 
 .btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:active.focus, .btn-primary.active:hover, .btn-primary.active:focus, 
@@ -112,7 +121,7 @@ body {
 .open>.btn-primary.dropdown-toggle.focus, .btn-primary:focus, .btn-primary.focus, .btn-primary:hover,
 .btn-primary:active {
   color: #fff;
-  background-color: #007175;
+  background-color: #0d3863;
   border-color: #014f52;
 }
 

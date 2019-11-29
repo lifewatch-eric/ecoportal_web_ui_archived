@@ -19,13 +19,13 @@
 
 %div{class: "container", style: "padding-top: 15px; padding-bottom: 25px"}
 
-  -# %div{class: "row"}
-  -#   %div{class: "col-md-12"}
-  -#     %div{class: "page-header text-center"}
-  -#       %h1
-  -#         = t(".welcome").html_safe
-  -#         %small
-  -#           = t(".tagline").html_safe
+  %div{class: "row"}
+    %div{class: "col-md-12"}
+      %div{class: "eco-page-header text-center"}
+        %h1{class:"eco-blue-font bold"}
+          = t(".welcome").html_safe
+          %small{class:"eco-gray-font"}
+            = t(".tagline").html_safe
 
   %div.search{class: "row"}
     -# Search for a class across ontologies

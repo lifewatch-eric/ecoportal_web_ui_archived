@@ -15,7 +15,7 @@ div.tree_error {
 .ncboTree {
   margin:0;
   padding:0;
-  font-family: sans-serif;
+  font-family: 'Titillium Web', sans-serif;
 }
 .ncboTree li {
   list-style: none;
@@ -194,7 +194,7 @@ div.tree_error {
 
 /* Component containers
 ----------------------------------*/
-.ncboAutocomplete .ui-widget { font-family: Arial,sans-serif; font-size: 1em; }
+.ncboAutocomplete .ui-widget { font-family: 'Titillium Web', Arial,sans-serif; font-size: 1em; }
 .ncboAutocomplete .ui-widget .ui-widget { font-size: 1em; }
 .ncboAutocomplete .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Arial,sans-serif; font-size: 1em; }
 .ncboAutocomplete .ui-widget-content { border: 1px solid #B6B6B6; background: #ffffff; color: #4F4F4F; }

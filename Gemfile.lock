@@ -106,7 +106,7 @@ GEM
     execjs (2.7.0)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.18)
+    ffi (1.12.2)
     flamegraph (0.9.5)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)

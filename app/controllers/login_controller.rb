@@ -5,15 +5,15 @@ class LoginController < ApplicationController
 
   def index
     #LOG.add :info, "login_controller: index"
-    LOGGER.debug("login_controller: index")
+    # LOGGER.debug("login_controller: index")
     # Sets the redirect properties
     if params[:redirect]
-      LOGGER.debug("login_controller: index -> params[:redirect]= #{params[:redirect]}")
+      # LOGGER.debug("login_controller: index -> params[:redirect]= #{params[:redirect]}")
       # Get the original, encoded redirect
       uri = URI.parse(request.url)
-      LOGGER.debug("login_controller: index -> request.url= #{request.url}, URI.parse(request.url)=#{uri}")
+      # LOGGER.debug("login_controller: index -> request.url= #{request.url}, URI.parse(request.url)=#{uri}")
       orig_params = Hash[uri.query.split("&").map {|e| e.split("=",2)}].symbolize_keys
-      LOGGER.debug("login_controller: index -> orig_params=#{orig_params.to_json}")
+      # LOGGER.debug("login_controller: index -> orig_params=#{orig_params.to_json}")
       session[:redirect] = orig_params[:redirect]
     else
       session[:redirect] = request.referer
@@ -22,7 +22,7 @@ class LoginController < ApplicationController
 
   # logs in a user
   def create
-    LOGGER.debug("login_controller: create")
+    # LOGGER.debug("login_controller: create")
     @errors = validate(params[:user])
     if @errors.size < 1
       logged_in_user = LinkedData::Client::Models::User.authenticate(params[:user][:username], params[:user][:password])
@@ -47,7 +47,7 @@ class LoginController < ApplicationController
 
   # Login as the provided username (only for admin users)
   def login_as
-    LOGGER.debug("login_controller: login_as")
+    # LOGGER.debug("login_controller: login_as")
     unless session[:user] && session[:user].admin?
       redirect_to "/"
       return
@@ -67,7 +67,7 @@ class LoginController < ApplicationController
 
   # logs out a user
   def destroy
-    LOGGER.debug("login_controller: destroy (logout)")
+    # LOGGER.debug("login_controller: destroy (logout)")
     if session[:admin_user]
       old_user = session[:user]
       session[:user] = session[:admin_user]
@@ -85,7 +85,7 @@ class LoginController < ApplicationController
 
   # Sends a new password to the user
   def send_pass
-    LOGGER.debug("login_controller: send_pass")
+    # LOGGER.debug("login_controller: send_pass")
     username = params[:user][:account_name]
     email = params[:user][:email]
     resp = LinkedData::Client::HTTP.post("/users/create_reset_password_token", {username: username, email: email})
@@ -99,11 +99,11 @@ class LoginController < ApplicationController
   end
 
   def reset_password
-    LOGGER.debug("login_controller: reset_password")
+    # LOGGER.debug("login_controller: reset_password")
     username = params[:un]
     email = params[:em]
     token = params[:tk]
-    LOGGER.debug("login_controller: reset_password -> params=#{params.to_json}")
+    # LOGGER.debug("login_controller: reset_password -> params=#{params.to_json}")
     @user = LinkedData::Client::HTTP.post("/users/reset_password", {username: username, email: email, token: token})
     if @user.is_a?(LinkedData::Client::Models::User)      
       @user.validate_password = true
@@ -118,9 +118,9 @@ class LoginController < ApplicationController
   private
 
   def login(user)
-    LOGGER.debug("login_controller: login")
+    # LOGGER.debug("login_controller: login")
     return unless user
-    LOGGER.debug("login_controller: login -> user=#{user.to_json}")
+    # LOGGER.debug("login_controller: login -> user=#{user.to_json}")
     session[:user] = user
     custom_ontologies_text = session[:user].customOntology && !session[:user].customOntology.empty? ? "The display is now based on your <a href='/account#custom_ontology_set'>Custom Ontology Set</a>." : ""
     notice = "Welcome <b>" + user.username.to_s + "</b>. " + custom_ontologies_text

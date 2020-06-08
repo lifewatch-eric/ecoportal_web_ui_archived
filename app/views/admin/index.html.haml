@@ -13,6 +13,12 @@
   %li
     %a.xl{:href => "#"}
       Ontology Administration
+  %li
+    %a.xl{:href => "#"}
+      DOI Request
+  -# %li
+  -#   %a.xl{:href => "#"}
+  -#     Category Administration
 %div.admin_panes
   %div
     %br
@@ -66,3 +72,26 @@
               %span.ui-button-text{:class => "report_date_generated_button"}
       %p.tab_description{:style => "clear:both;"}
       %table#adminOntologies.zebra{:cellpadding => "0", :cellspacing => "0", :width => "100%"}
+  
+
+
+
+
+  %div
+    %br
+    .doi_requests_list_container
+      %h2 DOI Request Management
+      %p You can remove or reject one or more requests. You must select the requests rows, choose the action, and click on the "Go" button.
+      %br
+      .action_results{id: "doi_requests_action_results"}
+      %table#adminDOIReq.zebra{:cellpadding => "0", :cellspacing => "0", :width => "100%"}
+
+
+
+
+
+  -# %div
+  -#   %br
+  -#   %h2 Category Management
+  -#   %br
+  -#   %table#adminCategory.zebra{:cellpadding => "0", :cellspacing => "0", :width => "100%"}

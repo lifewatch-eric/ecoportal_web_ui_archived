@@ -2,24 +2,17 @@
 - title_text ||= "Add New Submission"
 
 - unless @errors.nil?
-  .enable-lists{:style => "color:red;"}
+  .enable-lists{style: "color:red;"}
     %strong Errors On Form
     %ul
       - for error in @errors
         %li
           = error
-%div{:style => "width:500px"}
-  %span.asterik{:style => "float:right;"} * fields are required
+%div{style: "width:500px"}
+  %span.asterik{style: "float:right;"} * fields are required
   %h1 #{title_text}
   = hidden_field :submission, :ontology, value: @ontology.id
-  %table#new_ontology.form{style: "min-width: 800px;"}
-    %tr
-      %th
-        Description
-        %span.asterik *
-      %td
-        = text_area :submission, :description, rows: 5, value: @submission.description, :required => true
-
+  %table#new_ontology.form{style: "min-width: 800px;margin-left:15px;"}
     %tr
       %th
         Format
@@ -27,48 +20,48 @@
       %td
         - ont_formats = [ "OBO", "OWL", "UMLS", "SKOS" ].sort
         - selected = @submission.hasOntologyLanguage ? @submission.hasOntologyLanguage : "OWL"
-        = select("submission", "hasOntologyLanguage", ont_formats, { :selected => selected, :style => "width: 200px;", :required => true })
+        = select("submission", "hasOntologyLanguage", ont_formats, { selected: selected, style: "width: 200px;", required: true })
         #format_spacing
         %table#format_specific_options
           %tbody#owl_options.format_options
             %tr
               %th
-                Prefered Name Property
+                Preferred Name Property
                 %br/
                 %span.default_owl
                   default:
-                  %a{:href => "http://www.w3.org/2004/02/skos/core#prefLabel", :target => "_blank"} http://www.w3.org/2004/02/skos/core#prefLabel
+                  %a{href: "http://www.w3.org/2004/02/skos/core#prefLabel", target: "_blank"} http://www.w3.org/2004/02/skos/core#prefLabel
               %td
-                = text_field :submission, :prefLabelProperty, :placeholder => 'use default', value: @submission.prefLabelProperty
+                = text_field :submission, :prefLabelProperty, placeholder: 'use default', value: @submission.prefLabelProperty
             %tr
               %th
                 Synonym Property
                 %br/
                 %span.default_owl
                   default:
-                  %a{:href => "http://www.w3.org/2004/02/skos/core#altLabel", :target => "_blank"} http://www.w3.org/2004/02/skos/core#altLabel
+                  %a{href: "http://www.w3.org/2004/02/skos/core#altLabel", target: "_blank"} http://www.w3.org/2004/02/skos/core#altLabel
               %td
-                = text_field :submission, :synonymProperty, :placeholder => 'use default', value: @submission.synonymProperty
+                = text_field :submission, :synonymProperty, placeholder: 'use default', value: @submission.synonymProperty
             %tr
               %th
                 Definition Property
                 %br/
                 %span.default_owl
                   default:
-                  %a{:href => "http://www.w3.org/2004/02/skos/core#definition", :target => "_blank"} http://www.w3.org/2004/02/skos/core#definition
+                  %a{href: "http://www.w3.org/2004/02/skos/core#definition", target: "_blank"} http://www.w3.org/2004/02/skos/core#definition
               %td
-                = text_field :submission, :definitionProperty, :placeholder => 'use default', value: @submission.definitionProperty
+                = text_field :submission, :definitionProperty, placeholder: 'use default', value: @submission.definitionProperty
             %tr
               %th
                 Author Property
                 %br/
                 %span.default_owl
                   default:
-                  %a{:href => "http://purl.org/dc/elements/1.1/creator", :target => "_blank"} http://purl.org/dc/elements/1.1/creator
+                  %a{href: "http://purl.org/dc/elements/1.1/creator", target: "_blank"} http://purl.org/dc/elements/1.1/creator
               %td
-                = text_field :submission, :authorProperty, :placeholder => 'use default', value: @submission.authorProperty
-            %tr{:style => "border-left: none;"}
-              %td{:colspan => "2", :style => "border-left: none; border-right: none; padding: 1.5em 0 .5em;"}
+                = text_field :submission, :authorProperty, placeholder: 'use default', value: @submission.authorProperty
+            %tr{style: "border-left: none;"}
+              %td{colspan: "2", style: "border-left: none; border-right: none; padding: 1.5em 0 .5em;"}
                 %b Determining Obsolete Classes
                 You can use the following two methods to identify obsolete classes in your ontology:
                 %br/
@@ -87,36 +80,31 @@
                 = text_field :submission, :obsoleteProperty, value: @submission.obsoleteProperty
     %tr
       %th
-        Version
-      %td
-        = text_field :submission, :version, value: @submission.version
-    %tr
-      %th
         Status
-        %span.asterik *
+        %span.asterik<> *
       %td
         - selected_status = @submission.status ? @submission.status : "alpha"
         - status_options = ["alpha", "beta", "production", "retired"]
-        = select :submission, :status, status_options, { :selected => selected_status, :required => true }
+        = select :submission, :status, status_options, { selected: selected_status, required: true }
     %tr
       %th
         Release Date
-        %span.asterik *
+        %span.asterik<> *
       %td
         - release_date = @submission.released ? @submission.released : DateTime.now.to_s
         = text_field :submission, :released, id: "datepicker", value: "#{ l(Date.parse(release_date), format: :year_month_day_concise) }", required: true
-        %span{:style => "font-size: 90%; color: grey;"}
+        %span{style: "font-size: 90%; color: grey;"}
     %tr
       %th
         Location
-        %span.asterik *
+        %span.asterik<> *
       %td#location_options
         - if !@masterFileOptions
           - checked = @ontology.summaryOnly
           = radio_button :submission, :isRemote, 3, :onclick=>"$('.hidden_field').hide();", checked: checked
           Metadata Only
           %br/
-          %span{:style => "font-size:11px;"}
+          %span{style: "font-size:11px;"}
             (choose this option if you want users to search and view only the
             %em metadata
             for your ontology, but not its classes and properties)
@@ -126,17 +114,17 @@
           = radio_button :submission, :isRemote, 1, :onclick=>"location_toggle('remote');", checked: checked
           Load from URL
           %br/
-          %span{:style => "font-size:11px;"} (new versions loaded daily)
+          %span{style: "font-size:11px;"} (new versions loaded daily)
           - display = (checked and "" or "display:none;")
           %div.hidden_field#remote{style: display}
-            URL: #{text_field :submission, :pullLocation, :size => 100, value: @submission.pullLocation}
+            URL: #{text_field :submission, :pullLocation, size: 100, value: @submission.pullLocation}
           %hr/
 
           - checked = (!@ontology.summaryOnly) && @submission.pullLocation.nil?
           = radio_button :submission, :isRemote, 0, :onclick=>"location_toggle('upload');", checked: checked
           Upload Local File
           %br/
-          %span{:style => "font-size:11px;"} (choose a file on your local file system to upload)
+          %span{style: "font-size:11px;"} (choose a file on your local file system to upload)
           - display = (checked and "" or "display:none;")
           %div.hidden_field#upload{style: display}
             #{f.file_field :filePath}
@@ -145,51 +133,600 @@
           = radio_button :submission, :isRemote, 0, :onclick=>"location_toggle('upload');", checked: true
           Upload Local File
           %br/
-          %span{:style => "font-size:11px;"} (choose a file on your local file system to upload)
+          %span{style: "font-size:11px;"} (choose a file on your local file system to upload)
           - display = (checked and "" or "display:none;")
           %div#upload{style: display}
             = f.file_field :filePath, required: true
             = f.select("masterFileName", @masterFileOptions, { include_blank: "Select primary file from zip contents", required: true}, {style: "border-color: red;"})
-
-    %tr
-      %th
-        Contact
-        %span.asterik *
-      %td
-        %div#contacts
-          %div#contact_button{style: "float: right; margin-top -1em;"}
-            = button_to 'Add contact', '#', id: 'add_contact_button'
-          - if @submission.contact && @submission.contact.size > 0
-            - @submission.contact.each_with_index do |contact, i|
-              %div.contact
-                Name:&nbsp;
-                = text_field :submission, :"contact[#{i}][name]", value: contact["name"]
-                &nbsp;&nbsp;
-                Email:&nbsp;
-                = text_field :submission, :"contact[#{i}][email]", value: contact["email"]
-          - else
-            %div.contact
-              Name:&nbsp;
-              = text_field :submission, :"contact[0][name]", :required => true
-              %br
-              Email:&nbsp;
-              = text_field :submission, :"contact[0][email]", :required => true
-
     %tr
       %th
         Home Page
       %td
-        = text_field :submission, :homepage, value: @submission.homepage
+        = url_field :submission, :homepage, value: @submission.homepage
     %tr
       %th
         Documentation Page
       %td
-        = text_field :submission, :documentation, value: @submission.documentation
+        = url_field :submission, :documentation, value: @submission.documentation
     %tr
       %th
         Publications Page
+        %span.asterik<> *
       %td
-        = text_field :submission, :publication, value: @submission.publication
-    %tr
-      %td{:align => "right", :colspan => "2"}
-        = submit_tag button_text
+        = url_field :submission, :publication, value: @submission.publication, required: true
+    -# %tr
+    -#   %td{align: "right", colspan: "2"}
+    -#     = submit_tag button_text
+    
+    
+  %h1 NEW METADATA
+  .container.bs-docs-container.w900px
+    %span.asterik{style: "float:right;"} * fields are required
+    %h2 Edit Submission Information
+    %form.form-horizontal{action: "#", role: "form"}
+      / DESCRIPTION
+      .container.bs-docs-container.w900px
+        .row.field-row
+          .col-sm-2.field-label-col
+            %label{for: "submission_description"}<>
+              Description
+              %span.asterik<> *
+          .col-sm-10.field-value-col
+            = text_area :submission, :description, rows: 5, class: 'form-control input-sm w80perc', value: @submission.description, required: true
+            -# %textarea#submission_description.form-control.input-sm.w80perc{name: "submission[description]", required: "required", rows: "5"}
+        / VERSION - STATUS - RELEASE DATE
+        .row.field-row
+          .col-sm-2.field-label-col
+            %label{for: "submission_version"}
+              Version
+          .col-sm-3.field-value-col
+            = text_field :submission, :version, value: @submission.version, class: 'form-control input-sm w80perc'
+            -# %input#submission_version.form-control.input-sm.w100perc{name: "submission[version]", type: "text"}/
+        / HOME PAGE
+        / DOCUMENTATION PAGE
+        / PUBLICATION PAGE
+        / CONTACT
+        .contact.row.field-row
+          #form-inline
+            .col-sm-2.field-label-col
+              %label
+                Contact(s)
+                %span.asterik<> *
+            .col-sm-10.field-value-col
+              #contacts
+                - unless @submission.contact && @submission.contact.size > 0
+                  - @submission.contact = []
+                  - @submission.contact << OpenStruct.new(name: "", email: "")
+
+                - @submission.contact.each_with_index do |contact, i|
+                  .row.row-contact{id: "contact-#{i}"}
+                    .col-sm-1.sub-label
+                      %label.float-right{for: "submission_contact[#{i}][name]"}
+                        Name:
+                        %span.asterik<> *
+                    .col-sm-4.sub-value
+                      %input.form-control.input-sm.w100perc{id: "submission_contact[#{i}][name]", name: "submission[contact[#{i}][name]]", type: "text", value: contact.name, required: true}/
+                    .col-sm-1
+                      %label.float-right{for: "submission_contact[#{i}][email]"}
+                        Email:
+                        %span.asterik<> *
+                    .col-sm-5
+                      %input.form-control.input-sm.w100perc{id: "submission_contact[#{i}][email]", name: "submission[contact[#{i}][email]]", type: "email", value: contact.email, required: true}/
+                    .col-sm-1.div-btn-remove
+                      %button.btn.btn-default.btn-sm{id: "button-remove-contact-#{i}",access: "false", onclick: "removeContact('contact-#{i}')", type: "button"}
+                        %span.glyphicon.glyphicon-trash
+                  / ADD HERE NEW CONTACTS ROWS
+              .row.row-contact-add-button
+                .col-sm-5
+                  %button#button-add-contact.btn-success.btn.btn-sm{access: "false", name: "button-add-contact", type: "button"}
+                    %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+                    Add New Contact
+        / *********************   DATACITE ****************************
+        / IDENTIFIER 1
+        .row.field-row
+          .col-sm-2.field-label-col
+            %label{for: "Identifier"}
+              Identifier
+              %span.asterik<> *
+          .col-sm-10.field-value-col{id: "identifier_fields_col"}
+            - doi_already_assigned = false
+            - if !@identifierRequest.nil?
+              - if @identifierRequest.status == "PENDING"
+                .row
+                  .col-sm-8.sub-label
+                    %p
+                      You have a new DOI pending request for this semantic resource. You can cancel this request before it is processed. 
+                  .col-sm-4.sub-label
+                    %button.btn.btn-danger.btn-sm.btn_cancel_request{id: "btn_cancel_request-#{@identifierRequest.requestId}", access: "false", type: "button"}
+                      Cancel Request
+              - elsif @identifierRequest.status == "PROCESSED" && (@identifierRequest.requestType == "DOI_CREATE" || @identifierRequest.requestType == "DOI_UPDATE")
+                - doi_already_assigned = true
+            - else 
+              / Manually insert Identifier
+              .row
+                .col-sm-12.sub-label
+                  %p
+                    You can request a new DOI
+              .row
+                .col-sm-1.sub-label
+                  %label.float-right{for: "submission_identifierType"}
+                    Type
+                    %span.asterik<> *
+                .col-sm-3.sub-value
+                  - selected_identifierType = @submission.identifierType ? @submission.identifierType : "None"
+                  %select#submission_identifierType.form-control.input-sm.w100perc{name: "submission[identifierType]"}
+                    %option{value: "None", selected: selected_identifierType == "None"}= "None"
+                    %option{value: "DOI", selected: selected_identifierType == "DOI"}= "DOI"
+                    %option{value: "Other", selected: selected_identifierType == "Other"}= "Other"
+                  / <input class="w100perc" value="DOI" type="text" name="submission[identifierType]" id="submission_identifierType"/>
+                .col-sm-2
+                  %label.float-right{for: "submission_identifier"}
+                    Identifier
+                    %span.asterik<> *
+                .col-sm-4
+                  %input#submission_identifier.form-control.input-sm.w100perc{name: "submission[identifier]", type: "text", value: @submission.identifier}/
+                -# .col-sm-2
+                -#   %button#button-load-by-doi.btn.btn-default.btn-sm{type: "button"}
+                -#     %span.glyphicon.glyphicon-refresh
+                -#     Load
+              - if !doi_already_assigned
+                .row.margin-top-10px
+                  #div-cb-require-doi.col-sm-11.col-sm-offset-1
+                    %input#doi_request{name: "submission[is_doi_requested]", type: "checkbox", checked: @submission.is_doi_requested}/
+                    %label{for: "doi_request"} I want require a DOI
+                    %span.help-block.caption (You must compile the fields below. Your request will be evaluated by our team.)
+          
+        / CREATOR(s)
+        .creators.row.field-row
+          .col-sm-2.field-label-col
+            %label{for: "Creators"}
+              Creator(s)
+              %span.asterik<> *
+          .col-sm-10.field-value-col
+            #creators
+              - unless @submission.creators && @submission.creators.size > 0
+                - @submission.creators = []
+                - @submission.creators << getEmptyCreatorObject()
+
+              - @submission.creators.each_with_index do |creator, i|
+                .row.row-creator{id: "creator-#{i}"}
+                  / CREATOR DATA
+                  .col-sm-12
+                    / RADIO BUTTON TO CHOOSE BETWEEN PARSONAL or ORGANIZATIONAL CREATOR
+                    .row.creatorType
+                      / <input type="hidden" id="submission_creators[0][nameType]" name="submission[creators[0][nameType]]" value="Personal">
+                      .col-sm-4.radio-xs
+                        %label.lbl-creatorType
+                          - checked = creator.nameType == "Personal"
+                          %input{id: "radio-creatorType-Personal-#{i}", checked: checked, name: "submission[creators[#{i}][nameType]]", onclick: "changeCreatorType(#{i})", type: "radio", value: "Personal"}/
+                          Person
+                      .col-sm-4.radio-xs
+                        %label.lbl-creatorType
+                          - checked = creator.nameType == "Organizational"
+                          %input{id: "radio-creatorType-Organizational-#{i}", checked: checked, name: "submission[creators[#{i}][nameType]]", onclick: "changeCreatorType(#{i})", type: "radio", value: "Organizational"}/
+                          Organization
+                      / BUTTON REMOVE CREATOR ROW
+                      .col-sm-offset-1.col-sm-3
+                        %button.btn.btn-danger.btn-sm{id: "button-remove-creator-#{i}", access: "false", onclick: "removeCreator('creator-#{i}')", type: "button"}
+                          Remove This Creator
+                          %span.glyphicon.glyphicon-trash
+                    / CREATORS IDENTIFIER
+                    #creatorIdentifiers.sub-section
+                      %div{id: "creatorIdentifiers-#{i}"}
+                        - if creator.creatorIdentifiers && creator.creatorIdentifiers.size > 0
+                          - creator.creatorIdentifiers.each_with_index do |creatorIdentifier, j|
+                            .row.row-creatorIdentifier{id: "creatorIdentifier-#{i}_#{j}"}
+                              .col-sm-11
+                                .row.nested-row-values
+                                  .col-sm-2
+                                    %label.float-right.lb-sm{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifierScheme]"}
+                                      Scheme:
+                                      %span.asterik<> *
+                                  .col-sm-4
+                                    %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifierScheme]", name: "submission[creators[#{i}][creatorIdentifiers][#{j}][nameIdentifierScheme]]", type: "text", value: creatorIdentifier.nameIdentifierScheme, required: true}/
+                                    %span.input_example<> Ex.: ISNI, ORCID
+                                  .col-sm-2
+                                    %label.float-right.lb-sm{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][schemeURI]"}
+                                      Scheme URI:
+                                      %span.asterik<> *
+                                  .col-sm-4
+                                    %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][creatorIdentifiers][#{j}][schemeURI]", name: "submission[creators[#{i}][creatorIdentifiers][#{j}][schemeURI]]", type: "text", value: creatorIdentifier.schemeURI, required: true}/
+                                    %span.input_example<> Ex.: http://isni.org/isni/, http://orcid.org/
+                                .row.nested-row-values
+                                  .col-sm-2
+                                    %label.float-right.lb-sm{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifier]"}
+                                      Name Identifier:
+                                      %span.asterik<> *
+                                  .col-sm-10
+                                    %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifier]", name: "submission[creators[#{i}][creatorIdentifiers][#{j}][nameIdentifier]]", type: "text", value: creatorIdentifier.nameIdentifier, required: true}/
+                                    %span.input_example<> Ex. ISNI: 0000000134596520 or Ex. ORCID: 0000-0001-5393-1421
+                              / BUTTON REMOVE CREATOR IDENTIFIER ROW
+                              .col-sm-1
+                                %button.btn.btn-default.btn-sm.btn-remove-row{access: "false", id: "button-remove-creatorIdentifier-#{i}_#{j}", onclick: "removeCreatorIdentifier('creatorIdentifier-#{i}_#{j}')", type: "button"}
+                                  %span.glyphicon.glyphicon-trash
+    
+                            / here will be added the creator creatorIdentifiers
+                          
+                      .row.row-creatorIdentifier-buttons
+                        .col-sm-11
+                          %button#button-add-creatorIdentifier.col-md-4.btn-default.btn.btn-xs{access: "false", onclick: "addCreatorIdentifier(#{i})", type: "button"}
+                            %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+                            Add Creator Identifier
+                    / PERSON
+                    - readonly = false
+                    - display_personal_fields = "display:none;"
+                    - require_personal_fields = false
+                    - if creator.nameType == "Personal"
+                      - readonly = 'true'
+                      - display_personal_fields = 'display:block;'
+                      - require_personal_fields = 'required'
+                    .row.nested-row-values{id: "div-creator-personal-field-#{i}", style: display_personal_fields}
+                      .col-sm-2
+                        %label.float-right{for: "submission_creators[#{i}][givenName]"}
+                          First Name:
+                          %span.asterik<> *
+                      .col-sm-4
+                        %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][givenName]", name: "submission[creators[#{i}][givenName]]", oninput: "updateCreatorName(#{i})", type: "text", value: creator.givenName, required: require_personal_fields}/
+                      .col-sm-2
+                        %label.float-right{for: "submission_creators[#{i}][familyName]"}
+                          Surname:
+                          %span.asterik<> *
+                      .col-sm-4
+                        %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][familyName]", name: "submission[creators[#{i}][familyName]]", oninput: "updateCreatorName(#{i})", type: "text", value: creator.familyName, required: require_personal_fields}/
+                    / ORGANIZATION
+                    .row
+                      .col-sm-2
+                        %label.float-right{for: "submission_creators[#{i}][creatorName]"}
+                          Name:
+                          %span.asterik<> *
+                      .col-sm-10
+                        %input.form-control.input-sm.w100perc{readonly: readonly, id: "submission_creators[#{i}][creatorName]", name: "submission[creators[#{i}][creatorName]]", type: "text", value: creator.creatorName, required: true}/
+                    / AFFILIATION
+                    #affiliations.sub-section
+                      %div{id: "creatorAffiliations-#{i}"}
+                        - if creator.affiliations && creator.affiliations.size > 0
+                          - creator.affiliations.each_with_index do |affiliation, j|
+                            .row.row-creatorAffiliation{id: "creatorAffiliation-#{i}_#{j}"}
+                              .col-sm-11
+                                .row.nested-row-values
+                                  .col-sm-2
+                                    %label.float-right.lb-sm{for: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifierScheme]"}
+                                      Scheme:
+                                      %span.asterik<> *
+                                  .col-sm-4
+                                    %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifierScheme]", name: "submission[creators[#{i}][affiliations][#{j}][affiliationIdentifierScheme]]", type: "text", value: affiliation.affiliationIdentifierScheme, required: true}/
+                                    %span.input_example<> Ex. ROR
+                                  .col-sm-2
+                                    %label.float-right.lb-sm{for: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifier]"}
+                                      Affiliation Ident. URI:
+                                      %span.asterik<> *
+                                  .col-sm-4
+                                    %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifier]", name: "submission[creators[#{i}][affiliations][#{j}][affiliationIdentifier]]", type: "text", value: affiliation.affiliationIdentifier, required: true}/
+                                    %span.input_example<> Ex. https://ror.org/04wxnsj81
+                                .row.nested-row-values
+                                  .col-sm-2
+                                    %label.float-right.lb-sm{for: "submission_creators[#{i}][affiliations][#{j}][affiliation]"}
+                                      Affiliation Name:
+                                      %span.asterik<> *
+                                  .col-sm-10
+                                    %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][affiliations][#{j}][affiliation]", name: "submission[creators[#{i}][affiliations][#{j}][affiliation]]", type: "text", value: affiliation.affiliation, required: true}/
+                                    %span.input_example<> Add here the name of the formal institution to which the creator belongs, e.g. LifeWatch Eric, Datacite, ecc.
+                              / BUTTON REMOVE CREATOR AFFILIATION ROW
+                              .col-sm-1
+                                %button.btn.btn-default.btn-sm.btn-remove-row{access: "false", id: "button-remove-creatorAffiliation-#{i}_#{j}", onclick: "removeCreatorAffiliation('creatorAffiliation-#{i}_#{j}')", type: "button"}
+                                  %span.glyphicon.glyphicon-trash
+
+                          / here will be added the creator affiliations
+                      .row.row-creatorAffiliation-buttons
+                        .col-sm-11
+                          %button#button-add-creatorAffiliation.col-md-4.btn-default.btn.btn-xs{onclick: "addCreatorAffiliation(#{i})", type: "button"}
+                            %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+                            Add Affiliation
+                / here will be added the creators
+            .row.row-creator-add-button
+              .col-sm-5
+                %button#button-add-creator.col-md-8.btn-success.btn.btn-sm{access: "false", name: "button-add-creator", type: "button"}
+                  %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+                  Add New Creator
+        / TITLEs
+        .titles.row.field-row
+          #form-inline
+            .col-sm-2.field-label-col
+              %label
+                Title(s)
+                %span.asterik<> *
+            .col-sm-10.field-value-col
+              #titles
+                - unless @submission.titles && @submission.titles.size > 0
+                  - @submission.titles = []
+                  - @submission.titles << OpenStruct.new(title: "", lang: "en-En", titleType: "AlternativeTitle")
+
+                - @submission.titles.each_with_index do |title, i|
+                  .row.row-title{id: "title-#{i}"}
+                    .col-sm-11
+                      / row for text title
+                      .row.nested-row-values
+                        .col-sm-2
+                          %label.float-right{for: "submission_titles[#{i}][title]"}
+                            Title:
+                            %span.asterik<> *
+                        .col-sm-10
+                          %input.form-control.input-sm.w100perc{id: "submission_titles[#{i}][title]", name: "submission[titles[#{i}][title]]", type: "text", value: title.title, required: true}/
+                      / row for text lang and type
+                      .row.nested-row-values
+                        .col-sm-2
+                          %label.float-right{for: "submission_titles[#{i}][lang]"}
+                            Language:
+                            %span.asterik<> *
+                        .col-sm-4
+                          - selected_title_lang = title.lang ? title.lang : "en-EN"
+                          %select.form-control.input-sm.w100perc{id: "submission_titles[#{i}][lang]", name: "submission[titles[#{i}][lang]]"}
+                            %option{value: "en-EN", selected: selected_title_lang == "en-EN"}= "English"
+                            %option{value: "it-IT", selected: selected_title_lang == "it-IT"}= "Italian"
+                            %option{value: "fr-FR", selected: selected_title_lang == "fr-FR"}= "French" 
+                            %option{value: "de-DE", selected: selected_title_lang == "de-DE"}= "German" 
+                            %option{value: "es-ES", selected: selected_title_lang == "es-ES"}= "Spanish"                          
+                        .col-sm-1
+                          %label.float-right{for: "submission_titles[#{i}][titleType]"} Type:
+                        .col-sm-5
+                          - selected_title_titleType = title.titleType ? title.titleType : "en-EN"
+                          %select.form-control.input-sm.w100perc{id: "submission_titles[#{i}][titleType]", name: "submission[titles[#{i}][titleType]]"}
+                            %option{value: "AlternativeTitle", selected: selected_title_titleType == "AlternativeTitle"}= "Alternative Title"
+                            %option{value: "Subtitle", selected: selected_title_titleType == "Subtitle"}= "Subtitle"
+                            %option{value: "TranslatedTitle", selected: selected_title_titleType == "TranslatedTitle"}= "Translated Title"
+                            %option{value: "Other", selected: selected_title_titleType == "Other"}= "Other"
+                    .col-sm-1.div-btn-remove
+                      %button.btn.btn-default.btn-sm.btn-remove-title{id: "button-remove-title-#{i}", access: "false", onclick: "removeTitle('title-#{i}')", type: "button"}
+                        %span.glyphicon.glyphicon-trash
+                  / ADD NEW TITLE HERE
+              .row.row-title-add-button
+                .col-sm-5
+                  %button#button-add-title.col-md-8.btn-success.btn.btn-sm{access: "false", type: "button"}
+                    %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+                    Add New Title
+        / PUBLISHER
+        .row.field-row
+          .col-sm-2.field-label-col
+            %label{for: "submission_publisher"}
+              Publisher
+              %span.asterik<> *
+          .col-sm-10.field-value-col
+            %input#submission_publisher.form-control.input-sm.w80perc{name: "submission[publisher]", type: "text", value: @submission.publisher, required: true}/
+        / PUBLICATION YEAR
+        .row.field-row
+          .col-sm-2.field-label-col
+            %label{for: "submission_publicationYear"}
+              Publication Year
+              %span.asterik<> *
+          .col-sm-2.field-value-col
+            %input#submission_publicationYear.form-control.input-sm.w80perc{name: "submission[publicationYear]", type: "number", value: @submission.publicationYear, required: true}/
+        / RESOURCE TYPE
+        .row.field-row
+          .col-sm-2.field-label-col
+            %label{for: "submission_resourceType"}
+              Resource Type
+              %span.asterik<> *
+          .col-sm-10.field-value-col
+            .col-sm-2
+              %label.float-right{for: "submission_resourceTypeGeneral"} General Type:
+            .col-sm-3
+              - selected_resourceTypeGeneral = @submission.resourceTypeGeneral ? @submission.resourceTypeGeneral : "Dataset"
+              %select#submission_resourceTypeGeneral.form-control.input-sm.w100perc{name: "submission[resourceTypeGeneral]"}
+                %option{value: "Dataset", selected: selected_resourceTypeGeneral == "Dataset"}= "Dataset"
+                %option{value: "Other", selected: selected_resourceTypeGeneral == "Other"}= "Other"
+            .col-sm-2
+              %label.float-right{for: "submission_resourceTypeGeneral"} Resource Type:
+            .col-sm-5
+              %input#submission_resourceType.form-control.input-sm.w100perc{name: "submission[resourceType]", type: "text", value: @submission.resourceType, required: true}/
+        .row.row-btn-submit
+          .col-sm-offset-5.col-sm-2
+            = submit_tag button_text, class: "btn btn-primary"
+  %div
+    
+
+-# ECOPORTAL - NEW JAVASCRIPT - BEGIN
+:javascript
+
+  function addInput(attr, inputType)
+  {
+    var container = document.createElement("div");
+    container.innerHTML = '<input type="' + inputType + '" name="submission[' + attr + '][]" id="submission_' + attr + '" style="margin-bottom: 0.3em;"><br>';
+    document.getElementById(attr + 'Div').appendChild(container);
+  }
+
+  /**
+   * To add a new value to selectDropdown when btn clicked
+   */
+  function addValueToSelect(attr)
+  {
+    if(jQuery('#add_' + attr).val()) {
+      var newOption = jQuery('#add_' + attr).val();
+      var selectedOptions = jQuery('#select_' + attr).val();
+      jQuery('#select_' + attr).append(jQuery('<option>', {
+        value: newOption,
+        text: newOption
+      }));
+      if (selectedOptions.constructor === Array) {
+        selectedOptions.push(newOption);
+      } else {
+        selectedOptions = newOption;
+      }
+      jQuery('#select_' + attr).val(selectedOptions)
+      jQuery('#add_' + attr).val("");
+      jQuery('#btnAdd' + attr).hide();
+      jQuery('#add_' + attr).hide();
+    }
+  }
+
+  /**
+   * To add a new value to selectDropdown when btn clicked
+   */
+  function addOntoToSelect(attr)
+  {
+    if(jQuery('#add_' + attr).val()) {
+      var newOption = jQuery('#add_' + attr).val();
+      var selectedOptions = jQuery('#select_' + attr).val();
+      jQuery('#select_' + attr).append(jQuery('<option>', {
+        value: newOption,
+        text: newOption
+      }));
+      if (selectedOptions === null) {
+        selectedOptions = [];
+        selectedOptions.push(newOption);
+      } else if (selectedOptions.constructor === Array) {
+        selectedOptions.push(newOption);
+      } else {
+        selectedOptions = newOption;
+      }
+      jQuery('#select_' + attr).val(selectedOptions)
+      jQuery('#select_' + attr).trigger("liszt:updated");
+      jQuery('#add_' + attr).val("");
+    }
+  }
+
+  /**
+   * To show/hide the simple metadata div
+   */
+  function toggleDiv(divId, panelGroup = "none")
+  {
+    var e = document.getElementById(divId + "Div");
+    if (e.style.display == 'block') {
+      e.style.display = 'none';
+      document.getElementById(divId + "Btn").classList.remove("active");
+    } else {
+      if (panelGroup === "description") {
+        // if panel chosen isPart of description, close the others
+        jQuery(".descriptionPanels").css("display", "none");
+        jQuery(".descriptionBtn").removeClass("active");
+      } else if (panelGroup === "commuple") {
+        jQuery(".commuplePanels").css("display", "none");
+        jQuery(".commupleBtn").removeClass("active");
+      } else if (panelGroup === "ontocontent") {
+        jQuery(".ontocontentPanels").css("display", "none");
+        jQuery(".ontocontentBtn").removeClass("active");
+      }
+
+      e.style.display = 'block';
+      document.getElementById(divId + "Btn").classList.add("active");
+    }
+  }
+
+  /**
+   * For Multiple select
+   */
+  jQuery(document).ready(function() {
+    "use strict";
+    jQuery("#naturalLanguageSelect").chosen({
+      search_contains: true
+    });
+    jQuery(".selectOntology").chosen({
+      search_contains: true
+    });
+
+    $('.tooltip').tooltipster({
+      interactive: true,
+      position: "right",
+      contentAsHTML: true,
+      animation: 'fade',
+      delay: 200,
+      theme: 'tooltipster-light',
+      trigger: 'hover'
+    });
+
+    
+    if ( $(".btn_cancel_request").length ) { 
+      //the button exists      
+      var btn_cancel_selector = $(".btn_cancel_request")
+      var req_id = btn_cancel_selector[0].id.split("-")[1]
+      btn_cancel_selector.click(function(e){
+        var resp_Yes = confirm("Do you want to cancel the DOI request?");
+        if (resp_Yes) {
+            if (req_id) {
+            //ajax call to cancel the request
+            var URL = '/ajax/cancelIdentifierRequest'
+            jQuery.ajax({
+              type: "POST",
+              url: URL,
+              data: {
+                requestId: req_id,
+                status: "CANCELED"
+              },
+              dataType: "json",
+              success: function(data) {
+                //jQuery(".subscribe_spinner").hide();
+                alert("The request was canceled!");
+                var html_identifier = `
+                  <!-- Manually insert Identifier -->
+                  <div class="row">
+                      <div class="col-sm-12 sub-label">
+                        <p>
+                            You can request a new DOI
+                        </p>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-1 sub-label">
+                        <label class="float-right" for="submission_identifierType">
+                        Type<span class="asterik">*</span></label>
+                      </div>
+                      <div class="col-sm-3 sub-value">
+                        <select class="form-control input-sm w100perc" id="submission_identifierType" name="submission[identifierType]">
+                            <option selected="selected" value="None">None</option>
+                            <option value="DOI">DOI</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <!-- <input class="w100perc" value="DOI" type="text" name="submission[identifierType]" id="submission_identifierType"/> -->
+                      </div>
+                      <div class="col-sm-2">
+                        <label class="float-right" for="submission_identifier">
+                        Identifier<span class="asterik">*</span></label>
+                      </div>
+                      <div class="col-sm-4">
+                        <input class="form-control input-sm w100perc" id="submission_identifier" name="submission[identifier]" type="text" disabled="">
+                      </div>
+                      <div class="col-sm-2">
+                        <button class="btn btn-default btn-sm" id="button-load-by-doi" type="button" style="display: none;">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                        Load
+                        </button>
+                      </div>
+                  </div>
+                  <div class="row margin-top-10px">
+                      <div class="col-sm-11 col-sm-offset-1" id="div-cb-require-doi" style="display: block;">
+                        <input id="doi_request" name="submission[is_doi_requested]" type="checkbox">
+                        <label for="doi_request">I want require a DOI</label>
+                        <span class="help-block caption">(You must compile the fields below. Your request will be evaluated by our team.)</span>
+                      </div>
+                  </div>`;
+                $("#identifier_fields_col").html(html_identifier)
+                $("#submission_identifierType").change(function(e){
+                  // log('submission_identifierType change');
+                  updateIdentifierType();
+                });
+              },
+              error: function(data) {
+                alert( "An Error has occurred. The request cannot be canceled");
+              }
+            }); 
+            /*$.post(URL, 
+              {
+                requestId: req_id,
+                status: "CANCELED"
+              },
+              function(data, status){
+                alert("The request was canceled!");
+              }).fail(function() {
+              alert( "An Error has occurred. The request cannot be canceled" );
+              });*/
+          } else {
+            alert("WARNING! The request ID is not defined. The request cannot be canceled")
+          }
+        }
+        e.preventDefault();        
+      });
+      
+    } 
+    
+   
+    
+  });

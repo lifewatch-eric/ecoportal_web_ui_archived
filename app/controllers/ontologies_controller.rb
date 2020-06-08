@@ -205,12 +205,16 @@ class OntologiesController < ApplicationController
   end
 
   def create
+    #LOGGER.debug("\n\n=======================================\n  WEB_UI - ontologies_controller -> create:\n\n   >  params=#{params.nil? ? "nil" : params.inspect}")
     if params['commit'] == 'Cancel'
       redirect_to "/ontologies"
       return
     end
     @ontology = LinkedData::Client::Models::Ontology.new(values: params[:ontology])
     @ontology_saved = @ontology.save
+
+    #LOGGER.debug("\n\n   >  @ontology:#{@ontology.inspect} \n\n   >  @ontology_saved:#{@ontology_saved.inspect}")
+
     if !@ontology_saved || @ontology_saved.errors
       @categories = LinkedData::Client::Models::Category.all
       @user_select_list = LinkedData::Client::Models::User.all.map {|u| [u.username, u.id]}
@@ -232,6 +236,7 @@ class OntologiesController < ApplicationController
   end
 
   def edit
+    #LOGGER.debug("\n\n=======================================\n  WEB_UI - ontologies_controller -> edit")
     # Note: find_by_acronym includes ontology views
     @ontology = LinkedData::Client::Models::Ontology.find_by_acronym(params[:id]).first
     redirect_to_home unless session[:user] && @ontology.administeredBy.include?(session[:user].id) || session[:user].admin?
@@ -265,13 +270,16 @@ class OntologiesController < ApplicationController
   end
 
   def new
+    #Si arriva qui quando si clicca Submit new Ontology da ontology browser
+    #LOGGER.debug("\n\n=======================================\n  WEB_UI - ontologies_controller -> new : params:#{params.nil? ? "nil" : params.inspect}")
     if (params[:id].nil?)
       @ontology = LinkedData::Client::Models::Ontology.new(values: params[:ontology])
-      @ontology.administeredBy = [session[:user].id]
+      @ontology.administeredBy = [session[:user].id]      
     else
       # Note: find_by_acronym includes ontology views
       @ontology = LinkedData::Client::Models::Ontology.find_by_acronym(params[:ontology]).first
     end
+    #LOGGER.debug("\n\n   >  @ontology =:#{@ontology.nil? ? "nil" : @ontology.inspect}")
     @categories = LinkedData::Client::Models::Category.all
     @user_select_list = LinkedData::Client::Models::User.all.map {|u| [u.username, u.id]}
     @user_select_list.sort! {|a,b| a[1].downcase <=> b[1].downcase}
@@ -364,6 +372,7 @@ class OntologiesController < ApplicationController
   def summary
     # Note: find_by_acronym includes ontology views
     @ontology = LinkedData::Client::Models::Ontology.find_by_acronym(params[:id]).first
+    # LOGGER.debug("@@@ ontologies_controller: summary - @ontology: #{@ontology.to_json.html_safe}")
     not_found if @ontology.nil?
     # Check to see if user is requesting RDF+XML, return the file from REST service if so
     if request.accept.to_s.eql?("application/ld+json") || request.accept.to_s.eql?("application/json")
@@ -377,10 +386,14 @@ class OntologiesController < ApplicationController
     @projects = @ontology.explore.projects.sort {|a,b| a.name.downcase <=> b.name.downcase } || []
     @analytics = LinkedData::Client::HTTP.get(@ontology.links["analytics"])
     # retrieve submissions in descending submissionId order, should be reverse chronological order.
+    # Ecoportal - modified - BEGIN
     @submissions = @ontology.explore.submissions.sort {|a,b| b.submissionId.to_i <=> a.submissionId.to_i } || []
+    # @submissions = @ontology.explore.submissions({include: "submissionId,creationDate,released,submissionStatus,hasOntologyLanguage,version"}).sort {|a,b| b.submissionId.to_i <=> a.submissionId.to_i } || []
+    # Ecoportal - modified - END
     LOG.add :error, "No submissions for ontology: #{@ontology.id}" if @submissions.empty?
     # Get the latest submission, not necessarily the latest 'ready' submission
-    @submission_latest = @ontology.explore.latest_submission rescue @ontology.explore.latest_submission(include: "")
+    @submission_latest = @ontology.explore.latest_submission({include:"creators:[creatorsIdentifiers:[:all]]"}) rescue @ontology.explore.latest_submission(include: "")
+    #LOGGER.debug("\n\n *********** WEB UI- ontologies_controller: summary - @submission_latest: #{@submission_latest.inspect}")
     @views = @ontology.explore.views.sort {|a,b| a.acronym.downcase <=> b.acronym.downcase } || []
     if request.xhr?
       render :partial => 'metadata', :layout => false

@@ -51,50 +51,60 @@ table.dataTable tbody tr.selected {
   background-color: #D7E3EA;
 }
 
-.ontologies_list_container {
+.ontologies_list_container,
+.doi_requests_list_container {
   width: 90%;
   padding: 1em;
 }
 
 /* Datatables */
-.ontologies_list_container {
+.ontologies_list_container,
+.doi_requests_list_container {
   clear: both;
 }
 
-.ontologies_list_container .dataTables_length {
+.ontologies_list_container .dataTables_length,
+.doi_requests_list_container .dataTables_length{
   float: left;
   padding: 1em 0;
 }
 
-.ontologies_list_container .dataTables_filter {
+.ontologies_list_container .dataTables_filter,
+.doi_requests_list_container .dataTables_filter {
   float: right;
   padding-top: 3px;
 }
 
-.ontologies_list_container .dataTables_filter input {
+.ontologies_list_container .dataTables_filter input,
+.doi_requests_list_container .dataTables_filter input{
   width: 200px;
 }
 
-.ontologies_list_container .dataTables_info {
+.ontologies_list_container .dataTables_info,
+.doi_requests_list_container .dataTables_info {
   text-align: center;
   padding: .5em;
 }
 
-.ontologies_list_container .dataTables_paginate {
+.ontologies_list_container .dataTables_paginate,
+.doi_requests_list_container .dataTables_paginate {
   text-align: center;
 }
 
-.ontologies_list_container .dataTables_paginate .paginate_button {
+.ontologies_list_container .dataTables_paginate .paginate_button,
+.doi_requests_list_container .dataTables_paginate .paginate_button{
   text-decoration: underline;
   cursor: pointer;
   padding: 0 .5em;
 }
 
-.ontologies_list_container .dataTables_paginate .paginate_button:hover {
+.ontologies_list_container .dataTables_paginate .paginate_button:hover,
+.doi_requests_list_container .dataTables_paginate .paginate_button:hover {
   text-decoration: none;
 }
 
-.ontologies_list_container .first, .ontologies_list_container .previous, .ontologies_list_container .next, .ontologies_list_container .last {
+.ontologies_list_container .first, .ontologies_list_container .previous, .ontologies_list_container .next, .ontologies_list_container .last,
+.doi_requests_list_container .first, .doi_requests_list_container .previous, .doi_requests_list_container .next, .doi_requests_list_container .last {
   padding: 0 .5em;
 }
 

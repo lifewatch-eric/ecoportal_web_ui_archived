@@ -44,3 +44,6 @@ config_prod/*
 TAGS
 
 config/site_config.rb
+.vs/VSWorkspaceState.json
+.vs/slnx.sqlite
+.vs/ecoportal_web_ui/v15/.suo

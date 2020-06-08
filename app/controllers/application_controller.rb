@@ -20,6 +20,20 @@ class ApplicationController < ActionController::Base
   REST_URI = $REST_URL
   API_KEY = $API_KEY
 
+  # Ecoportal - add namespace from agroportal + ref to datacite - BEGIN
+  RESOLVE_NAMESPACE = {:omv => "http://omv.ontoware.org/2005/05/ontology#", :skos => "http://www.w3.org/2004/02/skos/core#", :owl => "http://www.w3.org/2002/07/owl#",
+    :rdf => "http://www.w3.org/1999/02/22-rdf-syntax-ns#", :rdfs => "http://www.w3.org/2000/01/rdf-schema#", :metadata => "http://data.bioontology.org/metadata/",
+    :metadata_def => "http://data.bioontology.org/metadata/def/", :dc => "http://purl.org/dc/elements/1.1/", :xsd => "http://www.w3.org/2001/XMLSchema#",
+    :oboinowl_gen => "http://www.geneontology.org/formats/oboInOwl#", :obo_purl => "http://purl.obolibrary.org/obo/",
+    :umls => "http://bioportal.bioontology.org/ontologies/umls/", :door => "http://kannel.open.ac.uk/ontology#", :dct => "http://purl.org/dc/terms/",
+    :void => "http://rdfs.org/ns/void#", :foaf => "http://xmlns.com/foaf/0.1/", :vann => "http://purl.org/vocab/vann/", :adms => "http://www.w3.org/ns/adms#",
+    :voaf => "http://purl.org/vocommons/voaf#", :dcat => "http://www.w3.org/ns/dcat#", :mod => "http://www.isibang.ac.in/ns/mod#", :prov => "http://www.w3.org/ns/prov#",
+    :cc => "http://creativecommons.org/ns#", :schema => "http://schema.org/", :doap => "http://usefulinc.com/ns/doap#", :bibo => "http://purl.org/ontology/bibo/",
+    :wdrs => "http://www.w3.org/2007/05/powder-s#", :cito => "http://purl.org/spar/cito/", :pav => "http://purl.org/pav/", :nkos => "http://w3id.org/nkos/nkostype#",
+    :oboInOwl => "http://www.geneontology.org/formats/oboInOwl#", :idot => "http://identifiers.org/idot/", :sd => "http://www.w3.org/ns/sparql-service-description#",
+    :cclicense => "http://creativecommons.org/licenses/", :datacite => "http://datacite.org/schema/kernel-4#"}
+  # Ecoportal - add namespace from agroportal + ref to datacite - END  
+
   REST_URI_BATCH = REST_URI + '/batch'
 
   # Note that STATS is a DIRECT CONNECTION to the JAVA-REST API
@@ -120,7 +134,8 @@ class ApplicationController < ActionController::Base
         apikey: LinkedData::Client.settings.apikey,
         userapikey: get_apikey,
         rest_url: LinkedData::Client.settings.rest_url,
-        biomixer_url: $BIOMIXER_URL
+        biomixer_url: $BIOMIXER_URL,
+        resolve_namespace: RESOLVE_NAMESPACE
     }
     config[:ncbo_slice] = @subdomain_filter[:acronym] if (@subdomain_filter[:active] && !@subdomain_filter[:acronym].empty?)
     config.to_json
@@ -171,6 +186,7 @@ class ApplicationController < ActionController::Base
   end
 
   def response_errors(error_struct)
+    #LOGGER.debug("\n\nWEB_UI : application_controller - response_errors - error_struct = #{error_struct.inspect}")
     errors = {error: "There was an error, please try again"}
     return errors unless error_struct
     return errors unless error_struct.respond_to?(:errors)

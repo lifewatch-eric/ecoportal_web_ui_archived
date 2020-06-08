@@ -17,8 +17,8 @@ end
 # - LOGGER.debug("message")
 # require 'rack/logger'
 # if [:development, :console].include?(settings.environment)
-#   LOGGER = LocalLogger.new(STDOUT)
-#   LOGGER.level = Logger::DEBUG
+#   #LOGGER = LocalLogger.new(STDOUT)
+#   #LOGGER.level = Logger::DEBUG
 # else
 Dir.mkdir('log') unless File.exist?('log')
 log = File.new("log/local_logger.log", "a+")

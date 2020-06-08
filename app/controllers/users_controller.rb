@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   # GET /users/1;edit
   def edit
-    LOGGER.debug("user_controller: edit")
+    # LOGGER.debug("user_controller: edit")
     @user = LinkedData::Client::Models::User.find(params[:id])
     @user ||= LinkedData::Client::Models::User.find_by_username(params[:id]).first
 
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    LOGGER.debug("user_controller: create")
+    # LOGGER.debug("user_controller: create")
     @errors = validate(params[:user])
     @user = LinkedData::Client::Models::User.new(values: params[:user])
 
@@ -73,8 +73,8 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @errors = validate_update(params[:user])
-    LOGGER.debug("user_controller: update [PUT] user:#{params[:user]}: ")
-    LOGGER.debug("  > params #{params.to_json}")
+    # LOGGER.debug("user_controller: update [PUT] user:#{params[:user]}: ")
+    # LOGGER.debug("  > params #{params.to_json}")
     if @errors.size < 1
       @user = LinkedData::Client::Models::User.find(params[:id])
       @user = LinkedData::Client::Models::User.find_by_username(params[:id]).first if @user.nil?
@@ -130,17 +130,17 @@ class UsersController < ApplicationController
 
   def verify_owner
     #Ecoportal - begin
-    LOGGER.debug("CALL users_controller -> verify_owner(): params[:id]=#{params[:id]} ")  #Ecoportal - cancellami
-    if session[:user].nil? 
-      LOGGER.debug("users_controller -> verify_owner(): session[:user] == nil")
-    end
+    # LOGGER.debug("CALL users_controller -> verify_owner(): params[:id]=#{params[:id]} ")  #Ecoportal - cancellami
+    # if session[:user].nil? 
+      # LOGGER.debug("users_controller -> verify_owner(): session[:user] == nil")
+    # end
     #Ecoportal - end
 
     return if current_user_admin?
     if session[:user].nil? || (!session[:user].id.eql?(params[:id]) && !session[:user].username.eql?(params[:id]))
-      if !session[:user].nil?
-        LOGGER.debug("  > users_controller -> verify_owner(): session[:user].id=#{session[:user].id}, session[:user].username= #{session[:user].username}, params[:id]=#{params[:id]} ")  #Ecoportal - cancellami
-      end
+      # if !session[:user].nil?
+        # LOGGER.debug("  > users_controller -> verify_owner(): session[:user].id=#{session[:user].id}, session[:user].username= #{session[:user].username}, params[:id]=#{params[:id]} ")  #Ecoportal - cancellami
+      # end
       redirect_to :controller => 'login', :action => 'index', :redirect => "/accounts/#{params[:id]}"
     end
   end
@@ -156,7 +156,7 @@ class UsersController < ApplicationController
 
   def validate(params)
     errors=[]
-    LOGGER.debug("validate(params) for #{params[:username]} -> #{params.to_json}")
+    # LOGGER.debug("validate(params) for #{params[:username]} -> #{params.to_json}")
     if !params[:phone].nil? && params[:phone].length > 0
       if  !params[:phone].match(/^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*$/i)
         errors << "Please enter a valid phone number"

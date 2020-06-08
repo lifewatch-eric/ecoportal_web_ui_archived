@@ -8,4 +8,8 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( *.png *.jpg *.jpeg *.gif vendor.js )
+
+# ECOPORTAL - REPLACED - BEGIN
+# Rails.application.config.assets.precompile += %w( *.png *.jpg *.jpeg *.gif vendor.js )
+Rails.application.config.assets.precompile += %w( *.png *.jpg *.jpeg *.gif vendor.js jsonld.js tooltipster.bundle.min.js metadata_form.js)
+# ECOPORTAL - REPLACED - END

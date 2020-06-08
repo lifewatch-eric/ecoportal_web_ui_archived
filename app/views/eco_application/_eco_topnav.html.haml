@@ -54,6 +54,8 @@
               = link_to("Mappings", mappings_path())
             %li
               = link_to("Recommender", recommender_index_path())
+            %li
+              = link_to("Vocbench", "http://vocbench.lifewatchitaly.eu", target: "_blank")
             - unless Rails.env.appliance?
               %li
                 = link_to("Resource Index", resource_index_index_path())            

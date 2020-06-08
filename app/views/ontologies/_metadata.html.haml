@@ -1,6 +1,19 @@
 %div{:style => "padding: 1em;"}
   %div{:style => "float: right; width: 40%"}
     %div{style: "padding-left: 1em;"}
+      - if !@submission_latest.nil?
+        %h2{:style => "margin-left: 1em;"} Get my metadata back
+        -# %button{:id => "getMetadataBackNquadsBtn", :class => "btn btn-primary",
+        -# :style => "margin-bottom: 1em; margin-left: 1em;"} N-Triple
+        -# %button{:id => "getMetadataBackJsonldBtn", :class => "btn btn-primary",
+        -# :style => "margin-bottom: 1em; margin-left: 1em;"} Json-LD
+        -# %button{:id => "getMetadataBackXmlBtn", :class => "btn btn-primary",
+        -# :style => "margin-bottom: 1em; margin-left: 1em;"} RDF/XML
+        %button{:id => "getMetadataDataciteJsonBtn", :class => "btn btn-primary",
+        :style => "margin-bottom: 1em; margin-left: 1em;"} Json (DATACITE)
+        %button{:id => "getMetadataEcoportalJsonBtn", :class => "btn btn-primary",
+        :style => "margin-bottom: 1em; margin-left: 1em;"} Json (ECOPORTAL)
+        -# -# Listener in bp_ontology_viewer.js.erb
       = render :partial => 'metrics'
       = render :partial => 'visits'
   %div{style: "width: 60%;"}

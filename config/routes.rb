@@ -89,6 +89,7 @@ BioportalWebUi::Application.routes.draw do
   get '/ajax/classes/treeview' => 'concepts#show_tree'
   get '/ajax/properties/tree' => 'concepts#property_tree'
   get '/ajax/biomixer' => 'concepts#biomixer'
+  match '/ajax/cancelIdentifierRequest' => 'ajax_proxy#cancelIdentifierRequest', via: :post
 
   # User
   get '/logout' => 'login#destroy', :as => :logout
@@ -128,6 +129,12 @@ BioportalWebUi::Application.routes.draw do
   match '/admin/ontologies/:acronym/log' => 'admin#parse_log', via: [:get]
   match '/admin/update_info' => 'admin#update_info', via: [:get]
   match '/admin/update_check_enabled' => 'admin#update_check_enabled', via: [:get]
+
+  match '/admin/doi_requests_list' => 'admin#doi_requests_list', via: [:get]
+  match '/admin/doi_requests' => 'admin#process_doi_requests', via: [:put]
+  # match '/admin/doi_requests/reject' => 'admin#reject_doi_requests', via: [:put]
+  # match '/admin/doi_requests/create_doi' => 'admin#create_doi', via: [:put]
+  # match '/admin/doi_requests/update_doi' => 'admin#update_doi', via: [:put]
 
   ###########################################################################################################
   # Install the default route as the lowest priority.

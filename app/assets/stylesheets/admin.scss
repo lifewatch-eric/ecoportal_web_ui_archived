@@ -140,3 +140,38 @@ table.dataTable tbody tr.selected {
     margin-right: 8px;
   }
 }
+
+div.groupFormError {
+  color: red;
+  padding-top: 3px;
+}
+
+div.reviewFormError {
+  color: red;
+  padding-top: 3px;
+}
+
+#facebox div.alert-box.error ul {
+  padding-bottom: 0;
+  list-style-type: none;
+}
+
+#process-scheduling {
+
+  .site-admin-page-header {
+    justify-content: space-between;
+
+    .job-title {
+      text-transform: uppercase;
+    }
+  }
+
+  .site-admin-page-section {
+    @extend .mb-5
+  }
+
+  .job-schedule {
+    font-style: italic;
+    cursor: help;
+  }
+}

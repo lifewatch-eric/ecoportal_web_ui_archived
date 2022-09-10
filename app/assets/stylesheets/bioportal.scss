@@ -72,7 +72,7 @@
   padding:6px 0 0 5px;
 }
 .tabs li.selected {
-  background:#234979;
+  background:#0f4e8a;
   border-top:1px solid #8ca0b9;
   height:23px;
 }
@@ -133,7 +133,7 @@
   padding: .6em .8em;
 }
 .minimal tbody tr:hover td {
-  color: #234979;
+  color: #0f4e8a;
   background: #f5fafa;
   border-bottom: 1px solid #ccc;
 }
@@ -208,7 +208,7 @@ table.align-right th:nth-child(2) {
 .zebra th {
   white-space:nowrap;
   font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-  color: #234979;
+  color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
@@ -221,7 +221,7 @@ table.align-right th:nth-child(2) {
 }
 .zebra tbody th {
   font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-  color: #234979;
+  color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
@@ -273,7 +273,7 @@ table.align-right th:nth-child(2) {
 .form th {
   white-space:nowrap;
   font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-  color: #234979;
+  color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
@@ -324,12 +324,12 @@ table.align-right th:nth-child(2) {
 
 .notetype {
   font:12px bold "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-  color: #234979;
+  color: #0f4e8a;
 }
 .header {
   cursor:pointer;
   font:11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-  color: #234979;
+  color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
@@ -367,7 +367,7 @@ table.align-right th:nth-child(2) {
 .resources th {
   white-space:nowrap;
   font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-  color: #234979;
+  color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
@@ -379,7 +379,7 @@ table.align-right th:nth-child(2) {
 }
 .resources tbody th {
   font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-  color: #234979;
+  color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
@@ -427,7 +427,7 @@ table.align-right th:nth-child(2) {
 tr.mainresource td {
   cursor:pointer;
   font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-  color: #234979;
+  color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
@@ -439,7 +439,7 @@ tr.mainresource td {
 
 /* Ratings */
 .star_ratings{
-    color: #234979;
+    color: #0f4e8a;
     border: 1px solid #C1DAD7;
     background: #e2ebf0;
     width:300px;
@@ -457,7 +457,7 @@ tr.mainresource td {
   cursor:pointer;
   font-weight:bold;
   font:14px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-  color: #234979;
+  color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
   border-bottom: 1px solid #C1DAD7;
@@ -918,11 +918,11 @@ button.fg-button-menu, button.fg-button {
 }
 
 .too_many_children_override {
-  color: #234979 !important;
+  color: #0f4e8a !important;
 }
 
 .too_many_children_override:hover {
-  color: #234979 !important;
+  color: #0f4e8a !important;
   text-decoration: underline !important;
 }
 
@@ -950,16 +950,20 @@ button.fg-button-menu, button.fg-button {
  ************************************/
 .btn-bp-login {
   color: #C58612;
-  border-color: #C58612 !important;
+  border-color: #C58612 !important;#212529
 
   &:hover {
-    color: #234979;
+    color: #0f4e8a;
     background-color: #C58612;
   }
 }
 
 .navbar-custom {
-  background-color: #234979;
+  background-color: #0f4e8a;
+}
+
+.navbar {
+  margin: 0;
 }
 
 .nav_text a {

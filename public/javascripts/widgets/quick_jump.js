@@ -238,7 +238,7 @@ function jumpTo_setup_functions() {
         onFindValue: jumpTo_jumpToValue,
         onItemSelect: jumpTo_jumpToSelect,
         width: result_width,
-        footer: '<div style="color: grey; font-size: 8pt; font-family: Verdana; padding: .8em .5em .3em;">Results provided by <a style="color: grey;" href="' + BP_SEARCH_SERVER + '">' + BP_ORG_SITE + '</a></div>',
+        footer: '<div style="color: grey; font-size: 8pt; font-family: Titillium Web, Verdana; padding: .8em .5em .3em;">Results provided by <a style="color: grey;" href="' + BP_SEARCH_SERVER + '">' + BP_ORG_SITE + '</a></div>',
         formatItem: jumpTo_formatItem
     });
     // Setup polling to get definitions

@@ -1,24 +1,22 @@
 var ontNotesTable;
 var ont_columns = { archived: 3, date: 7, subjectSort: 2 };
 
-jQuery(".ontologies.show").ready(function(){
+jQuery(document).ready(function(){
   setupNotesFaceboxSizing();
   bindAddCommentClick();
   bindAddProposalClick();
+  bindDeleteNoteClick();
   bindProposalChange();
   bindReplyClick();
   bindReplyCancelClick();
   bindReplySaveClick();
-
+  // Wire up subscriptions button activity
   jQuery("a.subscribe_to_notes").live("click", function(){
     subscribeToNotes(this);
   });
-
   jQuery("#hide_archived_ont").click(function(){
     hideOrUnhideArchivedOntNotes();
   });
-
-  wireOntTable(jQuery("#ontology_notes_list"));
 });
 
 NOTES_PROPOSAL_TYPES = {
@@ -65,6 +63,94 @@ function bindAddProposalClick() {
     addProposalBox(id, type, this);
   });
 }
+
+function bindDeleteNoteClick() {
+  jQuery("a.delete_note").live('click', function() {
+    let id = jQuery(this).attr("data-parent-id");
+    let type = jQuery(this).attr("data-parent-type");
+    let notesContentSelector = jQuery(this).closest("#notes_content");
+    let noteListClass = type == "ontology" ? "notes_ont_list_table" : "notes_concept_list_table";
+    let selectedCheckBoxes = notesContentSelector.find("." + noteListClass + " input.delete_note_checkbox:checked").get();
+
+    let note2classes = {};
+    for (let cb of selectedCheckBoxes) {
+      if (typeof cb.dataset.relatedClass != undefined && cb.dataset.relatedClass) {
+        note2classes[cb.dataset.note_id] = JSON.parse(cb.dataset.relatedClass);
+      }
+    }
+
+    let selectedNotes = Object.getOwnPropertyNames(note2classes);
+
+    if (selectedNotes.length == 0) return;
+
+    jQuery(".delete_notes_error").html("");
+    jQuery(".delete_notes_spinner").show();
+
+    jQuery.ajax({
+      type: "GET",
+      url: "/ajax/notes/delete?noteids=" + selectedNotes.join(","),
+      data: {
+        "noteids": selectedNotes.join(",")
+      }
+    }).done(function (data) {
+      let successfullyDeletedNotes = new Set(data.success || []);
+      let erroneousNotes = new Set(data.error || []);
+
+      let dataTable = notesContentSelector.find("." + noteListClass).DataTable();
+
+      for (let selectedCheckBox of selectedCheckBoxes) {
+        let noteId = selectedCheckBox.dataset.note_id;
+        if (successfullyDeletedNotes.has(noteId)) {
+          dataTable.row(selectedCheckBox.closest("tr")).remove();
+        }
+      }
+      dataTable.draw();
+
+      if (type == "ontology") { // we are on the ontology note tab
+        //... delete the notes in the class notes tab too and invalidate the cache
+        let ontologyContentSelector = jQuery("#ont_classes_content");
+        for (let noteId of successfullyDeletedNotes) {
+          let classes4note = note2classes[noteId];
+          classes4note.forEach(cls => setCache(cls, null)); // invalidate cache
+        }
+
+        let currentClass = ontologyContentSelector.find("a.add_comment").map((i,v)=>v.dataset.parentId).get()[0] || null;
+        if (currentClass != null) {
+          let classNotesTable = ontologyContentSelector.find("table.concept_notes_list");
+          let classNotesDataTable = classNotesTable.DataTable();
+
+          for (let noteId of successfullyDeletedNotes) {
+            let classes4note = note2classes[noteId];
+            if (classes4note.indexOf(currentClass) != -1) {
+              classNotesDataTable.row(classNotesTable.find("input[type='checkbox'][data-note_id='" + noteId + "']").closest("tr")).remove();
+              jQuery("#note_count").html(parseInt(jQuery("#note_count").html()) - 1);
+            }
+          }
+
+          classNotesDataTable.draw();
+        } else { // the classes tab has not been loaded before, and thus the corresponding div is just empty. Retrieve the page again
+          jQuery.bioportal.ont_pages["classes"].retrieve();
+        }
+      } else { // we are on the class note tab
+        // decrement the note count
+        jQuery("#note_count").html(parseInt(jQuery("#note_count").html()) - successfullyDeletedNotes.size);
+        //... delete the notes in the ontology notes tab too
+        if (typeof ontNotesTable !== "undefined") {
+          let ontNotesDataTable = ontNotesTable.DataTable();
+          for (let noteId of successfullyDeletedNotes) {
+            ontNotesDataTable.row(ontNotesTable.find("input[type='checkbox'][data-note_id='" + noteId + "']").closest("tr")).remove();
+          }
+          ontNotesDataTable.draw();
+        }
+      }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+      jQuery(".delete_notes_error").text("Server error: " + textStatus);
+    }).always(function() {
+     jQuery(".delete_notes_spinner").hide();
+    });
+  });
+}
+
 
 function bindReplyClick() {
   jQuery("a.reply_reply").live('click', function(){
@@ -180,30 +266,33 @@ function addNoteOrReply(button, note) {
   }
 }
 
+function getSubjectFromNoteObject(note) {
+  return note["subject"] || "no subject";
+}
+
 function addNote(button, note) {
-  var user = getUser();
   var id = note["id"].split("/").pop();
-  var noteLink = generateNoteLink(id, note);
-  var noteLinkHTML = jQuery("<div>").append(noteLink).html();
+  var deleteBoxHTML = generateNoteDeleteBox("delete_" + id, note).outerHtml();
+  var noteLinkHTML = generateNoteLink(id, note).outerHtml()
+  var user = getUser();
   var created = note["created"].split("T")[0];
-  // TODO_REV: Add column for note delete checkbox
-  var deleteBox = "";
   var noteType = getNoteType(note);
-  var noteRow = [deleteBox, noteLinkHTML, note["subject"], "false", user["username"], noteType, "", created];
+  var noteRow = [deleteBoxHTML, noteLinkHTML, getSubjectFromNoteObject(note), false, user["username"], noteType, "", created];
   // Add note to concept table (if we're on a concept page)
-  if (jQuery(button).closest("#notes_content").length > 0) {
-    var jRow = jQuery("<tr>");
-    jRow.append(jQuery("<td>").html(generateNoteLink("concept_"+id, note)));
-    jRow.append(jQuery("<td>").html(user["username"]));
-    jRow.append(jQuery("<td>").html(noteType));
-    jRow.append(jQuery("<td>").html(created));
-    jQuery("table.concept_notes_list").prepend(jRow);
+  if (jQuery(button).closest("#notes_content").find("table.concept_notes_list").length > 0) {
+    jQuery("table.concept_notes_list").DataTable().row.add(
+        [generateNoteDeleteBox( "delete_" + id, note).outerHtml(),
+        generateNoteLink("concept_"+id, note).outerHtml(),
+          user["username"],
+          noteType,
+          created
+        ]).draw();
     jQuery("#note_count").html(parseInt(jQuery("#note_count").html()) + 1);
     jQuery("a#concept_"+id).facebox();
   }
   // Add note to main table
   if (typeof ontNotesTable !== "undefined") {
-    ontNotesTable.fnAddData(noteRow);
+    ontNotesTable.DataTable().row.add(noteRow).draw();
   }
   jQuery("a#"+id).facebox();
 }
@@ -214,8 +303,10 @@ function addReply(button, note) {
   var replyAuthor = jQuery("<div>").addClass("reply_author").html("<b>"+user["username"]+"</b> seconds ago");
   var replyBody = jQuery("<div>").addClass("reply_body").html(note.body);
   var replyMeta = jQuery("<div>").addClass("reply_meta");
-  replyMeta.append(jQuery("<a>").addClass("reply_reply").attr("data-parent-id", note["id"]).attr("href", "#reply").html("reply"));
-  reply.append(replyAuthor).append(replyBody).append(replyMeta);
+  replyMeta.append(jQuery("<a>").addClass("reply_reply").attr("data-parent-id", note["id"]).attr("data-parent-type", "reply").attr("href", "#reply").html("reply"));
+  var discussion = jQuery("<div>").addClass("discussion").append(jQuery("<div>").addClass("discussion_container"));
+
+  reply.append(replyAuthor).append(replyBody).append(replyMeta).append(discussion);
   jQuery(button).closest("div.reply").children(".discussion").children(".discussion_container").prepend(reply);
 }
 
@@ -326,7 +417,12 @@ function generateNoteLink(id, note) {
     .addClass("notes_list_link")
     .attr("href", "/ontologies/"+jQuery(document).data().bp.ont_viewer.ontology_id+"/notes/"+encodeURIComponent(note["id"]))
     .attr("id", id)
-    .html(note["subject"]);
+    .text(getSubjectFromNoteObject(note));
+}
+
+function generateNoteDeleteBox(id, note) {
+  return jQuery("<input>").attr("type", "checkbox").attr("id", id).addClass("delete_note_checkbox")
+      .attr("data-note_id", note.id).attr("data-related-class", JSON.stringify(note.relatedClass));
 }
 
 function getNoteType(note) {
@@ -376,28 +472,4 @@ function hideOrUnhideArchivedOntNotes() {
     // Unchecked
     ontNotesTable.fnFilter('', ont_columns.archived, true, false);
   }
-}
-
-function wireOntTable(ontNotesTableNew) {
-  jQuery.data(document.body, "ontology_id", "#{@ontology.acronym}");
-
-  ontNotesTable = ontNotesTableNew;
-  ontNotesTable.dataTable({
-    "iDisplayLength": 50,
-    "sPaginationType": "full_numbers",
-    "aaSorting": [[ont_columns.date, 'desc']],
-    "aoColumns": [
-      { "bVisible": false }, // Delete
-      { "iDataSort": ont_columns.subjectSort }, // Subject link
-      { "bVisible": false }, // Subject for sort
-      { "bVisible": false }, // Archived for filter
-      null, // Author
-      null, // Type
-      null, // Target
-      null // Created
-    ],
-  });
-  // Important! Table is somehow getting set to zero width. Reset here.
-  jQuery(ontNotesTable).css("width", "100%");
-  ontNotesTable.fnFilter('false', ont_columns.archived);
 }

@@ -1,31 +1,33 @@
 shared:
   links:
-    about: 'https://www.bioontology.org/about-us/'
-    cite: 'https://www.bioontology.org/about-us/#cite-bioportal'
-    facebook: 'https://www.facebook.com/National-Center-for-Biomedical-Ontology-127444774011153/'
-    github: 'http://github.com/ncbo'
+    about: 'https://ecoportal.lifewatch.eu/static_pages/aboutus'
+    cite: 'https://ecoportal.lifewatch.eu/static_pages/citeus'
+    facebook: 'https://www.facebook.com/LifeWatch-ERIC-245225669516847'
+    github: 'https://github.com/lifewatch-eric'
     help: 'https://www.bioontology.org/wiki/BioPortal_Help'
+    linkedin: 'https://www.linkedin.com/company/lifewatch-eric/'
     mission: 'https://www.bioontology.org/about-us/#mission'
-    privacy_policy: 'https://www.bioontology.org/privacy/'
+    privacy_policy: 'https://ecoportal.lifewatch.eu/static_pages/privacy_policy'
     rest_api: 'http://data.bioontology.org/documentation'
-    team: 'https://www.bioontology.org/about-us/#team'
-    terms: 'https://www.bioontology.org/terms/'
-    twitter: 'http://twitter.com/bioontology'
+    team: 'https://ecoportal.lifewatch.eu/static_pages/team'
+    terms: 'https://ecoportal.lifewatch.eu/static_pages/terms'
+    twitter: 'https://twitter.com/lifewatcheric'
     virtual_appliance: 'https://ontoportal.github.io/administration/'
     widgets: 'http://www.bioontology.org/wiki/NCBO_Widgets'
-    wiki: 'https://www.bioontology.org/wiki/'
+    wiki: 'https://github.com/lifewatch-eric/documentation/wiki'
+    youtube: 'https://www.youtube.com/channel/UCP6ag3SoJ6oeisE7ibg4-pg'
 
 development:
   links:
-    release_notes: 'https://github.com/ncbo/bioportal_web_ui/releases'
+    release_notes: 'https://github.com/lifewatch-eric/bioportal_web_ui/releases'
 
 staging:
   links:
-    release_notes: 'https://github.com/ncbo/bioportal_web_ui/releases'
+    release_notes: 'https://github.com/lifewatch-eric/bioportal_web_ui/releases'
 
 production:
   links:
-    release_notes: 'https://github.com/ncbo/bioportal_web_ui/releases'
+    release_notes: 'https://github.com/lifewatch-eric/bioportal_web_ui/releases'
 
 appliance:
   links:

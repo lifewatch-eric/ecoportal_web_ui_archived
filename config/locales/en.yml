@@ -47,7 +47,7 @@ en:
     index:
       find_ontology_placeholder: Start typing ontology name, then choose from list
       query_placeholder: Enter a class, e.g. Melanoma
-      tagline: the world's most comprehensive repository of biomedical ontologies
+      tagline: the LifeWatch ERIC repository of semantic resources for the ecological domain
       title: Welcome to the %{organization} 
       welcome: Welcome to %{site},
     help:

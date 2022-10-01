@@ -52,7 +52,7 @@
               - if note.deletable?(session[:user])
                 = delete_note_checkbox(note)
             %td
-              = link_to note.subject, "#{@note_link}#{CGI.escape(note.id)}", :id => "row_#{note.id}", :class => "ont_notes_list_link notes_list_link"
+              = link_to get_note_subject(note), "#{@note_link}#{CGI.escape(note.id)}", :id => "row_#{note.id}", :class => "ont_notes_list_link notes_list_link"
               &nbsp;&nbsp;&nbsp;
               %span{:id => "#{note.id}_row_archived", :style => "font-size: x-small; color: grey;"}
                 - if note.archived

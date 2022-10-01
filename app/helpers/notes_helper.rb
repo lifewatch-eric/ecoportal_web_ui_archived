@@ -4,6 +4,10 @@ module NotesHelper
 
   NOTES_TAGS = %w(a br b em strong i)
 
+  def get_note_subject(note)
+    note.subject || "no subject"
+  end
+
   def recurse_replies(replies)
     return "" if replies.nil?
     html = ""

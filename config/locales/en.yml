@@ -45,9 +45,9 @@ en:
 
   home:
     index:
-      find_ontology_placeholder: Start typing ontology name, then choose from list
+      find_ontology_placeholder: Start typing resource name, then choose from list
       query_placeholder: Enter a class, e.g. Melanoma
-      tagline: the LifeWatch ERIC repository of semantic resources for the ecological domain
+      tagline: the LifeWatch ERIC repository of semantic resources for ecology and related domains
       title: Welcome to the %{organization} 
       welcome: Welcome to %{site},
     help:

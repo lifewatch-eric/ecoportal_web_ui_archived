@@ -32,10 +32,8 @@
     -# TODO: Add/remove aria-describedby attribute for SKOS help text display
     = select "submission", "hasOntologyLanguage", options_for_select(ont_formats, selected), {required: true}, {class: "form-control"}
     %small.form-text.text-muted#helpSkosFormat
-      SKOS vocabularies submitted to BioPortal must contain a minimum of one concept scheme and top concept assertion. |
-      Please refer to the NCBO wiki for a more <a href="https://www.bioontology.org/wiki/index.php/SKOSSupport", target="_blank">detailed explanation</a> |
-      with examples. |
-
+      SKOS vocabularies submitted to EcoPortal must contain a minimum of one concept scheme and top concept assertion.
+      Please refer to the NCBO wiki for a more <a href="https://www.bioontology.org/wiki/SKOSSupport", target="_blank">detailed explanation</a> with examples.
 %div.form-group.row
   %div.col-sm-10.offset-sm-2
     %a#collapseOWLOptions{href: "#owl-options", role: "button", data: {toggle: "collapse"}, aria: {expanded: "false", controls: "owl-options"}, |

@@ -68,7 +68,7 @@ en:
       annotatorplus_html: <em>Check out <a href="%{annotatorplus_href}">AnnotatorPlus</a> beta; a new version of the Annotator with added support for negation, and more!</em>
 
   recommender:
-    intro: Get recommendations for the most relevant ontologies based on an excerpt from a biomedical text or a list of keywords
+    intro: Get recommendations for the most relevant semantic resources based on an excerpt from a ecological text or a list of keywords
 
   search:
     index:

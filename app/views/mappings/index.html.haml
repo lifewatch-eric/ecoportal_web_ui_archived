@@ -3,13 +3,13 @@
 %h1 Mappings
 %p.tab_description
   = t('mappings.intro').html_safe
-  = link_to(help_path(anchor: "Mappings_Tab"), id: "mappings-help", "aria-label": "View mappings help") do
+  = link_to("https://github.com/lifewatch-eric/documentation/wiki/EcoTools#mappings", id: "mappings-help", "aria-label": "View mappings help") do
     %i.fas.fa-question-circle.fa-lg{"aria-hidden": "true"}
 %p#mappings_select
   - if @options.empty?
     No mappings available
   - else
-    = select('search', 'ontologies', @options, {:include_blank => ""},{:onchange=>"loadMappings(this.value);", "data-placeholder".to_sym => "Select an Ontology", autocomplete: "off"})
+    = select('search', 'ontologies', @options, {:include_blank => ""},{:onchange=>"loadMappings(this.value);", "data-placeholder".to_sym => "Select a Semantic Resource", autocomplete: "off"})
     %p#display_options
       %input{type: "radio", name: "display_type", value: "table", id: "display_table", checked: true, autocomplete: "off"}
       %label{for: "display_table"} Table

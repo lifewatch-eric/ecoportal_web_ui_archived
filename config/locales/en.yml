@@ -107,5 +107,5 @@ en:
           <p>Justification (optional)<br>Provide any additional information about the requested term here.</p>
         </blockquote>
   mappings:
-    intro: Browse mappings between classes in different ontologies
+    intro: Browse mappings between classes in different semantic resources
 

@@ -85,7 +85,7 @@ en:
       intro: Browse a selection of projects that use %{site} resources
 
   ontologies:
-    intro: Browse the library of ontologies
+    intro: Browse the library of semantic resources
 
   concepts:
     request_term:

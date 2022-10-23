@@ -46,7 +46,7 @@ en:
   home:
     index:
       find_ontology_placeholder: Start typing resource name, then choose from list
-      query_placeholder: Enter a class, e.g. Melanoma
+      query_placeholder: Enter a class, e.g. Environmental impact
       tagline: the LifeWatch ERIC repository of semantic resources for ecology and related domains
       title: Welcome to the %{organization} 
       welcome: Welcome to %{site},
@@ -72,8 +72,8 @@ en:
 
   search:
     index:
-      intro: Search for a class in multiple ontologies
-      search_keywords_placeholder: Enter a class, e.g. Melanoma
+      intro: Search for a class in multiple semantic resources
+      search_keywords_placeholder: Enter a class, e.g. Environmental impact
       categories_placeholder: Start typing to select categories or leave blank to use all
       property_definition: Named association between two entities. Examples are "definition" (a relation between a class and some text) and "part-of" (a relation between two classes).
       obsolete_definition: >

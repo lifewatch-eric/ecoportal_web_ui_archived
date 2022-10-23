@@ -1043,38 +1043,6 @@ jQuery(".admin.index").ready(function() {
     });
   });
 
-  //==============================================================
-  //      DOI REQUEST MANAGEMENT
-  //==============================================================
-  displayDOIRequest({}, DUMMY_DOI_REQUEST);
-
-  // allow selecting of rows, except on link clicks
-  jQuery('#adminDOIReq tbody').on('click', 'tr', function(event) {
-    if (event.target.tagName.toLowerCase() != 'a') {
-      jQuery(this).toggleClass('selected');
-    }
-  });
-
-  var doi_req_nav_html = `
-    <span style="padding-left:30px;">Apply to Selected Rows:&nbsp;&nbsp;&nbsp;&nbsp;
-      <select id="doi_req_action" name="doi_req_action">
-        <option value="">Please Select</option>        
-        <option value="process">Process</option>
-        <option value="reject">Reject</option>       
-      </select>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <a class="link_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" href="javascript:;" id="doi_req_action_submit">
-        <span class="ui-button-text">Go</span>
-      </a>
-    </span>`
-  jQuery("div.doi_req_nav").html(doi_req_nav_html);
-
-  // DOI REQUESTS ADMIN - BUTTON onclick actions ---------------------------------------
-
-  // onclick action for "Go" button for performing an action on a set of DOI REQUESTS
-  jQuery("#doi_req_action_submit").click(function() {
-    performActionOnDoiRequests();
-  });
 
   //==============================================================
   //      CATEGORIES MANAGEMENT

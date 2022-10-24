@@ -19,7 +19,7 @@
           %li
             %a.pop_window{href: "/feedback?location=http%253A%252F%252Fecoportal.lifewatchitaly.eu%252F"} Contact Us
           %li
-            = link_to("Help", help_path())
+            = link_to("Help", Rails.configuration.settings.links[:help], target: "_blank")
           %li
             %a{href: Rails.configuration.settings.links[:wiki], target: "_blank"} EcoPortal Wiki Documentation
       .col.col-md

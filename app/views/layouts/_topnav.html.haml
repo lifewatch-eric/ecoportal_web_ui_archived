@@ -47,7 +47,7 @@
         %div.dropdown-menu.dropdown-menu-right{aria: {labelledby: "supportMenuDropdownLink"}}
           = link_to("Contact Us", feedback_path(location: encode_param(request.url)), id: "submitFeedbackMenuItem", class: "dropdown-item pop_window")
           %div.dropdown-divider
-          = link_to("Help", help_path(), class: "dropdown-item")
+          = link_to("Help", Rails.configuration.settings.links[:help], class: "dropdown-item")
 
       %li.nav-item
         = link_to("About Us", "/static_pages/aboutus", class: "nav-link")

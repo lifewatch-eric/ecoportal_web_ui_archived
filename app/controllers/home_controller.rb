@@ -58,7 +58,7 @@ class HomeController < ApplicationController
 
   def feedback
     # Show the header/footer or not
-    feedback_layout = params[:pop].eql?("true") ? "eco_popup" : "eco_ontology"
+    feedback_layout = params[:pop].eql?("true") ? "popup" : "ontology"
 
     # We're using a hidden form field to trigger for error checking
     # If sim_submit is nil, we know the form hasn't been submitted and we should
@@ -93,7 +93,7 @@ class HomeController < ApplicationController
     Notifier.feedback(params[:name],params[:email],params[:comment],params[:location]).deliver_now
 
     if params[:pop].eql?("true")
-      render "feedback_complete", layout: "eco_popup"
+      render "feedback_complete", layout: "popup"
     else
       flash[:notice]="Feedback has been sent"
       redirect_to_home

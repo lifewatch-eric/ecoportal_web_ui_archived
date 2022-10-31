@@ -9,34 +9,50 @@
   -#         %strong EcoPortal
   -#         employs an international staff with wide-ranging expertise and multidisciplinary skills. Staff members, roles and contact details are available below.
 -# %center
-%h3.separator-title Team members
-.container.team-card-container
-  .row.team-cards
-    .col-sm-2.col1.team-card-content
-      = image_tag("static/fiore.jpg", style: "vertical-align: middle;")
-    .col-sm-4.team-card-content.col2.col4
-      %h4 Nicola Fiore
-      %p Service Centre ICT Coordinator
-      %p Service Centre - LifeWatch ERIC
-      %p nicola.fiore[at]lifewatch.eu
-    .col-sm-2.col1.team-card-content
-      = image_tag("static/irosati.jpg", style: "vertical-align: middle;")
-    .col-sm-4.team-card-content.col2.col4
-      %h4 Ilaria Rosati
-      %p Data Manager - LifeWatch Italy
-      %p Research Institute on Terrestrial Ecosystems - National Research Council
-      %p ilaria.rosati[at]]cnr.it
-  .row.team-cards
-    .col-sm-2.col1.team-card-content
-      = image_tag("static/mrpasimeni.jpg", style: "vertical-align: middle;")
-    .col-sm-4.col2.team-card-content
-      %h4 Maria Rita Pasimeni
-      %p Data Consultant - LifeWatch ERIC
-      %p mariarita.pasimeni[at]]unisalento.it
-    .col-sm-2.col1.team-card-content
-      = image_tag("static/ccruschi.jpg", style: "vertical-align: middle;")
-    .col-sm-4.team-card-content.col2.col4
-      %h4 Claudio Cruschi
-      %p Senior Software Engineer Consultant
-      %p c.cruschi[at]elif.it
-  .row.team-cards
+.container.card-container
+  %section
+    .row
+      .col-sm-12
+        %h3.separator-title Team members
+
+    .row
+      .col-sm-12
+        .container.team-card-container
+          .row.team-cards
+            .col-sm-2.col1.team-card-content
+              %img{:alt => "Nicola fiore", :src => "https://github.com/lifewatch-eric/documentation/raw/main/assets/img/team/nicola-fiore.png", :style => "vertical-align: middle; height: 200px; width: 200px;"}/
+            .col-sm-4.team-card-content.col2.col4
+              %h4 Nicola Fiore
+              %p LifeWatch ERIC Service Centre ICT Coordinator
+              %p nicola.fiore[at]lifewatch.eu
+            .col-sm-2.col1.team-card-content
+              %img{:alt => "Irosati", :src => "/assets/static/irosati-19deeac6c325aade9ec125e0bb4eb232b3c59f9d21901e6182b36da89556c7e4.jpg", :style => "vertical-align: middle;height: 200px;width: 200px;"}/
+            .col-sm-4.team-card-content.col2.col4
+              %h4 Ilaria Rosati
+              %p Data Scientist - LifeWatch Italy
+              %p Research Institute on Terrestrial Ecosystems - National Research Council
+              %p ilaria.rosati[at]cnr.it
+          .row.team-cards
+            .col-sm-2.col1.team-card-content
+              %img{:alt => "Lucia vaira", :src => "https://github.com/lifewatch-eric/documentation/raw/main/assets/img/team/lucia-vaira.png", :style => "vertical-align: middle; height: 200px; width: 200px;"}/
+            .col-sm-4.team-card-content.col2.col4
+              %h4 Lucia Vaira
+              %p LifeWatch ERIC Web Portal Officer
+              %p lucia.vaira[at]lifewatch.eu
+            .col-sm-2.col1.team-card-content
+              %img{:alt => "Xeni", :src => "https://github.com/lifewatch-eric/documentation/raw/main/assets/img/team/Xeni.jpg", :style => "vertical-align: middle; height: 200px; width: 200px;"}/
+            .col-sm-4.team-card-content.col2.col4
+              %h4 Xeni Kechagioglou
+              %p LifeWatch ERIC Ontology Developer
+              %p xeni.kechagioglou[at]lifewatch.eu
+          .row.team-cards
+            .col-sm-2.col1.team-card-content
+              %img{:alt => "Pierfrancesco tommasino", :src => "https://github.com/lifewatch-eric/documentation/raw/main/assets/img/team/pierfrancesco-tommasino.jpg", :style => "vertical-align: middle; height: 200px; width: 200px;"}/
+            .col-sm-4.team-card-content.col2.col4
+              %h4 Pierfrancesco Tommasino
+              %p Research Grant - LifeWatch Italy
+              %p Research Institute on Terrestrial Ecosystems - National Research Council
+              %p pierfrancesco.tommasino[at]iret.cnr.it
+            .col-sm-2.col1.team-card-content
+            .col-sm-4.team-card-content.col2.col4
+          .row.team-cards

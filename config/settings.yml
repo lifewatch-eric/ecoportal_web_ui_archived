@@ -1,6 +1,6 @@
 shared:
   links:
-    about: 'https://ecoportal.lifewatch.eu/static_pages/aboutus'
+    about: '/static_pages/aboutus'
     cite: '/static_pages/citeus'
     facebook: 'https://www.facebook.com/LifeWatch-ERIC-245225669516847'
     github: 'https://github.com/lifewatch-eric'

@@ -1177,3 +1177,71 @@ a.truncated_less, a.truncated_more {
   color: white;
 }
 
+/******* ADDED BY ECOPORTAL *******/
+
+/******* TEAM ******/
+.team-card-container .col1 {
+  background-color:  #f2f2f2;
+  color:white;
+}
+
+.team-card-container .col2 {
+  background-color:  #f2f2f2;
+  /*margin-left: 1rem;*/
+  padding: 2rem !important;
+}
+
+.team-cards {
+  display: flex;
+  display: -webkit-flex;
+  flex-flow: row nowrap;
+  -webkit-flex-flow: row nowrap;
+  align-items: stretch;
+  -webkit-align-items: stretch;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.team-card-container {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  /*width: 33.3%;*/
+  padding: 10px;
+}
+
+.team-card-content img {
+  display: block;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.team-card-content {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  /*flex: 1;
+  -webkit-flex: 1;*/
+  padding: 0px;
+  margin: 0px 0px;
+}
+
+.team-card-container .col2 {
+  margin: 0px 10px 0px 0px;
+}
+
+.team-card-container .col4 {
+  margin: 0px 0px;
+}
+
+.team-card-content h4 {
+  color: #0f4e8a;
+}
+

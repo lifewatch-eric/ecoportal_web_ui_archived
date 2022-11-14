@@ -1,4 +1,5 @@
-- @title = t(".title", organization: "#{$ORG_SITE}")
+- #@title = t(".title", organization: "#{$ORG_SITE}")
+- @title = "Welcome"
 
 - unless $FRONT_NOTICE.nil? || $FRONT_NOTICE.empty? || cookies[:front_page_notice_closed].eql?("true")
   :javascript

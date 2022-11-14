@@ -610,11 +610,11 @@ function generateDownloadFile(content, fileExtension) {
 // });
 
 
-jQuery("#getMetadataDataciteJsonBtn").click(function(){
+jQuery("#getMetadataDataciteJsonBtn").live(function(){
   downloadMetadataJSON("datacite-json");
 });
 
-jQuery("#getMetadataEcoportalJsonBtn").click(function(){
+jQuery("#getMetadataEcoportalJsonBtn").live(function(){
   downloadMetadataJSON("ecoportal-json");
 });
 

@@ -97,7 +97,7 @@ GEM
     crass (1.0.3)
     cube-ruby (0.0.3)
     daemons (1.2.5)
-    dalli (2.7.6)
+    dalli (3.2.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)

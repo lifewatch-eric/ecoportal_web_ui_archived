@@ -10,8 +10,8 @@
 = hidden_field :submission, :ontology, value: @ontology.id
 
 %div.form-group.row
-  %div.col-sm-10.offset-sm-2
-    %label.col-form-label.font-italic{style: "color: red"} * Fields marked with an asterisk are required.  
+  %div.col-sm-12
+    %label.col-form-label.font-italic{style: "color: red"} * Fields marked with an asterisk are required.
 
 -# Description
 %div.form-group.row
@@ -37,13 +37,13 @@
 %div.form-group.row
   %div.col-sm-10.offset-sm-2
     %a#collapseOWLOptions{href: "#owl-options", role: "button", data: {toggle: "collapse"}, aria: {expanded: "false", controls: "owl-options"}, |
-    class: "btn btn-outline-secondary btn-sm"} Show advanced OWL options |
+    class: "btn btn-primary"} Show advanced OWL options |
 
 -# Optional property overrides for OWL ontologies
 %div#owl-options.collapse
   %div.form-group.row
     %div.col-sm-10.offset-sm-2
-      %label Customize default property settings
+      %label{style: "font-weight: bold"} Customize default property settings
 
   -# Preferred name
   %div.form-group.row
@@ -52,7 +52,7 @@
       = text_field :submission, :prefLabelProperty, value: @submission.prefLabelProperty, class: "form-control form-control-sm", aria: {describedBy: "preferredNameHelpBlock"}
       %small.form-text.text-muted#preferredNameHelpBlock 
         Enter a property ID, or use the default setting: |
-        <a href="http://www.w3.org/2004/02/skos/core#prefLabel", target="_blank">http://www.w3.org/2004/02/skos/core#prefLabel</a>. |
+        <a href="http://www.w3.org/2004/02/skos/core#prefLabel" target="_blank">http://www.w3.org/2004/02/skos/core#prefLabel</a>. |
     
   -# Synonym
   %div.form-group.row
@@ -61,7 +61,7 @@
       = text_field :submission, :synonymProperty, value: @submission.synonymProperty, class: "form-control form-control-sm", aria: {describedBy: "synonymHelpBlock"}
       %small.form-text.text-muted#synonymHelpBlock
         Enter a property ID, or leave blank to use the default setting: |
-        <a href="http://www.w3.org/2004/02/skos/core#altLabel", target="_blank">http://www.w3.org/2004/02/skos/core#altLabel</a>. |
+        <a href="http://www.w3.org/2004/02/skos/core#altLabel" target="_blank">http://www.w3.org/2004/02/skos/core#altLabel</a>. |
     
   -# Definition
   %div.form-group.row
@@ -70,7 +70,7 @@
       = text_field :submission, :definitionProperty, value: @submission.definitionProperty, class: "form-control form-control-sm", aria: {describedBy: "definitionHelpBlock"}
       %small.form-text.text-muted#definitionHelpBlock
         Enter a property ID, or leave blank to use the default setting: |
-        <a href="http://www.w3.org/2004/02/skos/core#definition", target: "_blank">http://www.w3.org/2004/02/skos/core#definition</a>. |
+        <a href="http://www.w3.org/2004/02/skos/core#definition" target="_blank">http://www.w3.org/2004/02/skos/core#definition</a>. |
 
   -# Author
   %div.form-group.row
@@ -79,12 +79,12 @@
       = text_field :submission, :authorProperty, value: @submission.authorProperty, class: "form-control form-control-sm", aria: {describedBy: "authorHelpBlock"}
       %small.form-text.text-muted#authorHelpBlock
         Enter a property ID, or leave blank to use the default setting: |
-        <a href="http://purl.org/dc/elements/1.1/creator", target: "_blank">http://purl.org/dc/elements/1.1/creator</a>. |
+        <a href="http://purl.org/dc/elements/1.1/creator" target="_blank">http://purl.org/dc/elements/1.1/creator</a>. |
 
   -# Obsolete classes
   %div.form-group.row
     %div.col-sm-10.offset-sm-2
-      %label Identify obsolete classes
+      %label{style: "font-weight: bold"} Identify obsolete classes
 
   %div.form-group.row 
     %div.col-sm-10.offset-sm-2
@@ -170,13 +170,15 @@
       %span{:style => "font-size:11px;"} (choose a file on your local file system to upload)
       - display = (checked and "" or "display:none;")
       %div#upload{style: display}
-        = f.file_field :filePath, required: true
+        %label.btn.btn-primary
+          Choose file
+          = f.file_field :filePath, required: true
         = f.select("masterFileName", @masterFileOptions, { include_blank: "Select primary file from zip contents", required: true}, {style: "border-color: red;"})
 
 -# Contact(s)
 %div#contacts.form-group.row
   %label.col-sm-2.col-form-label
-    Contact
+    Contact(s)
     %span.asterik *
   - if @submission.contact && @submission.contact.size > 0
     - @submission.contact.each_with_index do |contact, i|
@@ -187,7 +189,7 @@
           = text_field :submission, :"contact[#{i}][name]", value: contact["name"], class: "form-control flex-grow-1 mx-2"
           %label Email
           = text_field :submission, :"contact[#{i}][email]", value: contact["email"], class: "form-control flex-grow-1 mx-2"
-          %button.btn.btn-success.add-contact
+          %button.btn.btn-primary.add-contact
             %i{class: "fas fa-plus fa-lg", aria: {hidden: "true"}}
       - else
         -# TODO
@@ -197,9 +199,9 @@
           = text_field :submission, :"contact[#{i}][name]", value: contact["name"], class: "form-control flex-grow-1 mx-2"
           %label Email
           = text_field :submission, :"contact[#{i}][email]", value: contact["email"], class: "form-control flex-grow-1 mx-2"
-          %button.btn.btn-success.add-contact
+          %button.btn.btn-primary.add-contact
             %i{class: "fas fa-plus fa-lg", aria: {hidden: "true"}}
-          %button.btn.btn-danger.ml-1.remove-contact
+          %button.btn.btn-primary.ml-1.remove-contact
             %i{class: "fas fa-minus fa-lg", aria: {hidden: "true"}}
   - else
     -# TODO
@@ -208,7 +210,7 @@
       = text_field :submission, :"contact[0][name]", class: "form-control flex-grow-1 mx-2"
       %label Email:
       = text_field :submission, :"contact[0][email]", class: "form-control flex-grow-1 mx-2"
-      %button.btn.btn-success.add-contact
+      %button.btn.btn-primary.add-contact
         %i{class: "fas fa-plus fa-lg", aria: {hidden: "true"}}      
 
 -# Home page
@@ -232,13 +234,13 @@
     %span.asterik * 
   %div.col-sm-10
     = url_field :submission, :publication, value: @submission.publication, required: true, class: "form-control", aria: {describedBy: "pubsHelpBlock"}        
-    %small.form-text.text-muted#pubsHelpBlock Enter a URL for a page that lists publications about your ontology.
+    %small.form-text.text-muted#pubsHelpBlock Enter a URL for a page that lists publications about your ontology. Protocol is required (http://, https:// or ftp://).
 
-%h1 NEW METADATA
+%h2 New Metadata
 %h2 Edit Submission Information
 
 %div.form-group.row
-  %div.col-sm-10.offset-sm-2
+  %div.col-sm-12
     %label.col-form-label.font-italic{style: "color: red"} * Fields marked with an asterisk are required. 
 
 / *********************   DATACITE ****************************
@@ -257,7 +259,7 @@
             %p
               You have a new DOI pending request for this semantic resource. You can cancel this request before it is processed. 
           .col-sm-4.sub-label
-            %button.btn.btn-danger.btn-sm.btn_cancel_request{id: "btn_cancel_request-#{@identifierRequest.requestId}", access: "false", type: "button"}
+            %button.btn.btn-primary.btn-sm.btn_cancel_request{id: "btn_cancel_request-#{@identifierRequest.requestId}", access: "false", type: "button"}
               Cancel Request
       - elsif @identifierRequest.status == "PROCESSED" && (@identifierRequest.requestType == "DOI_CREATE" || @identifierRequest.requestType == "DOI_UPDATE")
         - doi_already_assigned = true
@@ -293,7 +295,7 @@
         .row.margin-top-10px
           #div-cb-require-doi.col-sm-11.col-sm-offset-1
             %input#doi_request{name: "submission[is_doi_requested]", type: "checkbox", checked: @submission.is_doi_requested}/
-            %label{for: "doi_request"} If your asset has no PID, select this box to request a DOI be assigned by EcoPortal
+            %label{for: "doi_request"} Check this box if your asset has no PID and you want to request a DOI
 
 / CREATOR(s)
 %div.form-group.row
@@ -325,7 +327,7 @@
                   Organization
               / BUTTON REMOVE CREATOR ROW
               .col-sm-offset-1.col-sm-3
-                %button.btn.btn-danger.btn-sm{id: "button-remove-creator-#{i}", access: "false", onclick: "removeCreator('creator-#{i}')", type: "button"}
+                %button.btn.btn-primary.btn-sm{id: "button-remove-creator-#{i}", access: "false", onclick: "removeCreator('creator-#{i}')", type: "button"}
                   Remove This Creator
                   %i.fas.fa-trash-alt
             / CREATORS IDENTIFIER
@@ -367,7 +369,7 @@
                   
               .row.row-creatorIdentifier-buttons
                 .col-sm-11
-                  %button#button-add-creatorIdentifier.btn.btn-outline-secondary.btn-sm{access: "false", onclick: "addCreatorIdentifier(#{i})", type: "button"}
+                  %button#button-add-creatorIdentifier.btn.btn-primary{access: "false", onclick: "addCreatorIdentifier(#{i})", type: "button"}
                     %span.fas.fa-plus{"aria-hidden" => "true"}
                     Add Creator Identifier
             / PERSON
@@ -435,13 +437,13 @@
                   / here will be added the creator affiliations
               .row.row-creatorAffiliation-buttons
                 .col-sm-11
-                  %button#button-add-creatorAffiliation.btn.btn-outline-secondary.btn-sm{onclick: "addCreatorAffiliation(#{i})", type: "button"}
+                  %button#button-add-creatorAffiliation.btn.btn-primary{onclick: "addCreatorAffiliation(#{i})", type: "button"}
                     %span.fas.fa-plus{"aria-hidden" => "true"}
                     Add Affiliation
         / here will be added the creators
     .row.row-creator-add-button
       .col-sm-5
-        %button#button-add-creator.btn.btn-success{access: "false", name: "button-add-creator", type: "button"}
+        %button#button-add-creator.btn.btn-primary{access: "false", name: "button-add-creator", type: "button"}
           %span.fas.fa-plus{"aria-hidden" => "true"}
           Creator
 
@@ -491,12 +493,12 @@
                   %option{value: "TranslatedTitle", selected: selected_title_titleType == "TranslatedTitle"}= "Translated Title"
                   %option{value: "Other", selected: selected_title_titleType == "Other"}= "Other"
           .col-sm-1.div-btn-remove
-            %button.btn.btn-danger.btn-remove-title{id: "button-remove-title-#{i}", access: "false", onclick: "removeTitle('title-#{i}')", type: "button"}
+            %button.btn.btn-primary.btn-remove-title{id: "button-remove-title-#{i}", access: "false", onclick: "removeTitle('title-#{i}')", type: "button"}
               %i.fas.fa-trash-alt
     / ADD NEW TITLE HERE
     .row.row-title-add-button
       .col-sm-5
-        %button#button-add-title.btn.btn-success{access: "false", type: "button"}
+        %button#button-add-title.btn.btn-primary{access: "false", type: "button"}
           %span.fas.fa-plus{"aria-hidden" => "true"}
           Title 
 

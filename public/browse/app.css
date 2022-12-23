@@ -45,6 +45,7 @@
 #facets {
   margin-top: 1em;
 }
+
 .new_ontology_button {
   display: inline-block;
   width: 100%;
@@ -61,6 +62,11 @@
 .facet_disabled {
   color: gray;
 }
+
+.facet h4 {
+  font-size: 1.3em;
+}
+
 .checkbox_list {
   max-height: 200px;
   overflow: auto;
@@ -81,7 +87,7 @@
 }
 @keyframes highlight {
   0% {
-    background: yellow;
+    background: #f2f2f2;
   }
   100% {
     background: none;
@@ -89,7 +95,7 @@
 }
 @-webkit-keyframes highlight {
   0% {
-    background: yellow;
+    background: #f2f2f2;
   }
   100% {
     background: none;
@@ -105,7 +111,7 @@
   clear: both;
 }
 .ontology {
-  border: thin gray solid;
+  border: thin #f2f2f2 solid;
   border-radius: 5px;
   padding: .5em 1em .5em;
   margin: 1em 0;

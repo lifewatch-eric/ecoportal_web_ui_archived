@@ -108,7 +108,7 @@
 /* Tables */
 
 .minimal {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-family: "Titillium Web", "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
   font-size: 12px;
   background: #fff;
   text-align: left;
@@ -117,7 +117,7 @@
 .minimal caption {
   padding: 0 0 5px 0;
   width: 100%;
-  font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: italic 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   text-align: right;
 }
 .minimal thead th {
@@ -149,7 +149,7 @@ table.align-right th:nth-child(2) {
 .basic caption {
   padding: 0 0 5px 0;
   width: 100%;
-  font: italic 95% "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: italic 95% "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   text-align: right;
 }
 .basic thead th, .basic tbody th {
@@ -170,7 +170,7 @@ table.align-right th:nth-child(2) {
 .annotations caption {
   padding: 0 0 5px 0;
   width: 100%;
-  font: italic 95% "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: italic 95% "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   text-align: right;
 }
 .annotations thead th, .basic tbody th {
@@ -202,12 +202,12 @@ table.align-right th:nth-child(2) {
 .zebra caption {
   padding: 0 0 5px 0;
   width: 100%;
-  font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: italic 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   text-align: right;
 }
 .zebra th {
   white-space:nowrap;
-  font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: bold 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
@@ -220,7 +220,7 @@ table.align-right th:nth-child(2) {
   background-color: #e2ebf0;
 }
 .zebra tbody th {
-  font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: bold 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
@@ -236,7 +236,7 @@ table.align-right th:nth-child(2) {
   border-left: 1px solid #C1DAD7;
   border-top: 0;
   background: #f5fafa;
-  font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: bold 10px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #797268;
 }
 .zebra th.nobg {
@@ -267,12 +267,12 @@ table.align-right th:nth-child(2) {
 .form caption {
   padding: 0 0 5px 0;
   width: 100%;
-  font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: italic 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   text-align: right;
 }
 .form th {
   white-space:nowrap;
-  font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: bold 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
@@ -288,7 +288,7 @@ table.align-right th:nth-child(2) {
   border-left: 1px solid #C1DAD7;
   border-top: 0;
   background: #f5fafa;
-  font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: bold 10px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #797268;
 }
 .form th.nobg {
@@ -323,12 +323,12 @@ table.align-right th:nth-child(2) {
 /* Notes*/
 
 .notetype {
-  font:12px bold "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font:12px bold "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #0f4e8a;
 }
 .header {
   cursor:pointer;
-  font:11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font:11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
@@ -337,7 +337,7 @@ table.align-right th:nth-child(2) {
   letter-spacing: 2px;
   text-align: left;
   padding: 6px 6px 6px 12px;
-  background: #e2ebf0;
+  background: #f2f2f2;
 }
 .message {
   background: #ECF5FB;
@@ -361,12 +361,12 @@ table.align-right th:nth-child(2) {
 .resources caption {
   padding: 0 0 5px 0;
   width: 100%;
-  font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: italic 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   text-align: right;
 }
 .resources th {
   white-space:nowrap;
-  font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: bold 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
@@ -375,10 +375,10 @@ table.align-right th:nth-child(2) {
   text-transform: uppercase;
   text-align: left;
   padding: 6px 6px 6px 12px;
-  background: #e2ebf0;
+  background: #f2f2f2;
 }
 .resources tbody th {
-  font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: bold 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
@@ -393,7 +393,7 @@ table.align-right th:nth-child(2) {
   border-left: 1px solid #C1DAD7;
   border-top: 0;
   background: #f5fafa;
-  font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: bold 10px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #797268;
 }
 .resources th.nobg {
@@ -426,7 +426,7 @@ table.align-right th:nth-child(2) {
 }
 tr.mainresource td {
   cursor:pointer;
-  font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font: bold 11px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
@@ -434,14 +434,14 @@ tr.mainresource td {
   border-top: 1px solid #C1DAD7;
   text-align: left;
   padding: 6px 6px 6px 12px;
-  background: #e2ebf0;
+  background: #f2f2f2;
 }
 
 /* Ratings */
 .star_ratings{
     color: #0f4e8a;
     border: 1px solid #C1DAD7;
-    background: #e2ebf0;
+    background: #f2f2f2;
     width:300px;
     float:left;
     margin-right:10px;
@@ -456,7 +456,7 @@ tr.mainresource td {
 .pheader {
   cursor:pointer;
   font-weight:bold;
-  font:14px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  font:14px "Titillium Web", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
   color: #0f4e8a;
   border-left: 1px solid #C1DAD7;
   border-right: 1px solid #C1DAD7;
@@ -465,7 +465,7 @@ tr.mainresource td {
   letter-spacing: 1px;
   text-align: left;
   padding: 6px 6px 6px 12px;
-  background: #e2ebf0;
+  background: #f2f2f2;
 }
 
 .home_button{
@@ -898,7 +898,7 @@ button.fg-button-menu, button.fg-button {
   text-align: left;
   margin: 1px 1px;
   text-decoration: none;
-  font-family: Lucida Console,Monaco,monospace;
+  font-family: "Titillium Web", Lucida Console,Monaco,monospace;
 }
 
 .ont_icons .disabled {
@@ -1180,68 +1180,32 @@ a.truncated_less, a.truncated_more {
 /******* ADDED BY ECOPORTAL *******/
 
 /******* TEAM ******/
-.team-card-container .col1 {
+.team-card-container .row {
   background-color:  #f2f2f2;
-  color:white;
+  margin: 5px 0;
+}
+.team-card-container .col-sm-6 {
+  padding: 0;
 }
 
-.team-card-container .col2 {
-  background-color:  #f2f2f2;
-  /*margin-left: 1rem;*/
-  padding: 2rem !important;
-}
-
-.team-cards {
+.team-card {
   display: flex;
-  display: -webkit-flex;
-  flex-flow: row nowrap;
-  -webkit-flex-flow: row nowrap;
-  align-items: stretch;
-  -webkit-align-items: stretch;
-  justify-content: space-between;
-  -webkit-justify-content: space-between;
-  margin-top: 5px;
-  margin-bottom: 5px;
 }
 
-.team-card-container {
-  display: flex;
-  display: -webkit-flex;
-  flex-direction: column;
-  -webkit-flex-direction: column;
-  /*width: 33.3%;*/
-  padding: 10px;
-}
-
-.team-card-content img {
-  display: block;
-  height: auto;
-  margin: 0px;
-  padding: 0px;
-  max-width: 100%;
-  width: 100%;
-}
-
-.team-card-content {
-  display: flex;
-  display: -webkit-flex;
-  flex-direction: column;
-  -webkit-flex-direction: column;
-  /*flex: 1;
-  -webkit-flex: 1;*/
-  padding: 0px;
-  margin: 0px 0px;
-}
-
-.team-card-container .col2 {
-  margin: 0px 10px 0px 0px;
-}
-
-.team-card-container .col4 {
-  margin: 0px 0px;
-}
-
-.team-card-content h4 {
+.team-card-container h4 {
   color: #0f4e8a;
+}
+
+.team-card-image {
+  box-sizing: border-box;
+  flex-basis: 220px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding-right: 20px;
+  text-align: center;
+}
+
+.team-card-image img {
+  height: 200px;
 }
 

@@ -7,7 +7,7 @@ shared:
     help: 'https://github.com/lifewatch-eric/documentation/wiki'
     linkedin: 'https://www.linkedin.com/company/lifewatch-eric/'
     mission: 'https://www.bioontology.org/about-us/#mission'
-    privacy_policy: '/static_pages/privacy_policy'
+    privacy_policy: 'https://www.lifewatchitaly.eu/en/privacy-policy'
     rest_api: 'http://data.bioontology.org/documentation'
     team: '/static_pages/team'
     terms: '/static_pages/terms'

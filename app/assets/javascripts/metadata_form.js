@@ -67,7 +67,7 @@ function addCreator(creatorObj) {
 
     <!-- BUTTON REMOVE CREATOR ROW -->
     <div class="col-sm-offset-1 col-sm-3">                  
-      <button type="button" onclick="removeCreator('creator-$1')" class="btn btn-danger btn-sm"  access="false" id="button-remove-creator-$1">
+      <button type="button" onclick="removeCreator('creator-$1')" class="btn btn-primary btn-sm"  access="false" id="button-remove-creator-$1">
         Remove This Creator <span class="fas fa-trash-alt"></span></button>
     </div>
   </div>
@@ -359,7 +359,7 @@ function addCreatorIdentifier(creatorIndex, creatorIdentifierObj) {
     </div>
     <!-- BUTTON REMOVE CREATOR IDENTIFIER ROW -->
     <div class="col-sm-1">
-      <button type="button" onclick="removeCreatorIdentifier('creatorIdentifier-${creatorIndex}_$1')" class="btn btn-danger btn-remove-row"  access="false" id="button-remove-creatorIdentifier-${creatorIndex}_$1">
+      <button type="button" onclick="removeCreatorIdentifier('creatorIdentifier-${creatorIndex}_$1')" class="btn btn-primary btn-remove-row"  access="false" id="button-remove-creatorIdentifier-${creatorIndex}_$1">
       <span class="fas fa-trash-alt"></span></button>
     </div>`;
  
@@ -478,7 +478,7 @@ function addCreatorAffiliation(creatorIndex, creatorAffiliationObj) {
   </div>
   <!-- BUTTON REMOVE CREATOR AFFILIATION ROW -->
   <div class="col-sm-1">
-    <button type="button" onclick="removeCreatorAffiliation('creatorAffiliation-${creatorIndex}_$1')" class="btn btn-danger btn-remove-row"  access="false" id="button-remove-creatorAffiliation-${creatorIndex}_$1">
+    <button type="button" onclick="removeCreatorAffiliation('creatorAffiliation-${creatorIndex}_$1')" class="btn btn-primary btn-remove-row"  access="false" id="button-remove-creatorAffiliation-${creatorIndex}_$1">
       <span class="fas fa-trash-alt"></span></button>
   </div>`;
  
@@ -712,7 +712,7 @@ function addTitle(titleObj) {
       </div>
     </div>
     <div class="col-sm-1 div-btn-remove">                  
-      <button type="button" onclick="removeTitle('title-$1')" class="btn btn-danger btn-remove-title"  access="false" id="button-remove-title-$1">
+      <button type="button" onclick="removeTitle('title-$1')" class="btn btn-primary btn-remove-title"  access="false" id="button-remove-title-$1">
       <span class="fas fa-trash-alt"></span></button>
     </div>`
 

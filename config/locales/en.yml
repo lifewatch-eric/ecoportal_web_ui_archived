@@ -51,17 +51,24 @@ en:
       title: Welcome to the %{organization} 
       welcome: Welcome to %{site},
     help:
-      welcome: Welcome to the National Center for Biomedical Ontology’s %{site}. %{site} is a web-based application for accessing and sharing biomedical ontologies.
+      welcome: Welcome to the LifeWatch ERIC’s %{site}. %{site} is a repository of semantic resources for ecology and related domains.
       getting_started: >
-        %{site} allows users to browse, upload, download, search, comment on, and create mappings for ontologies.
+        %{site} supports the community in the creation, management, mapping and alignment of its semantic resources and subsequently also of its data.
       browse: >
-        Users can browse and explore individual ontologies by navigating either a tree structure or an animated graphical view. Users can also view mappings and 
-        ontology metadata, and download ontologies. Additionally, users who are signed in may submit a new ontology to the library.
-      rest_examples_html: View documentation and examples of the <a href="http://data.bioontology.org/documentation" target="_blank">%{site} REST API</a>.
+        Users can browse and explore individual semantic resources by navigating either a tree structure or 
+        an animated graphical view. Users can also view mappings and semantic resource metadata, and download 
+        semantic resources. Additionally, users who are signed in may also submit a new semantic resource to the 
+        library. All submissions to the library are reviewed.
+      documentation_html: >
+        General documentation is available on <a href="https://github.com/lifewatch-eric/documentation/wiki" target="_blank">GitHub</a>
+      rest_examples_html: View documentation and examples of the <a href="https://data.ecoportal.lifewatch.eu/documentation" target="_blank">%{site} REST API</a>.
       announce_list_html: >
         To receive notices of new releases or site outages, please subscribe to the 
         <a href="https://mailman.stanford.edu/mailman/listinfo/bioontology-support" target="_blank">bioontology-support list</a>.
-
+      contact_html: >
+        If you have any comment or need for support, please email <b>service.centre@lifewatch.eu</b>. 
+        If you are interested and would like to join our information mailing list, please subscribe to our user mailing 
+        list.
   annotator:
     index:
       intro: Get annotations for ecological text with classes from the semantic resources

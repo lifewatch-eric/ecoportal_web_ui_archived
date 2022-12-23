@@ -32,8 +32,9 @@
         = @errors.to_json
 
 %div{:style => "width:500px"}
-  %span.asterik{:style => "float:right;"} * fields are required
-  %h1 #{title_text}
+  %h1.mt-5 #{title_text}
+  %div
+    %span.asterik* fields are required
 %table#new_ontology.form{:width => "50%"}
   %tr
     %th
@@ -64,9 +65,9 @@
       - selected = @ontology.licensed? ? "licensed" : selected
       - display_private = @ontology.private? ? "" : "hidden"
       - display_licensed = @ontology.licensed? ? "" : "hidden"
-      = f.select :viewingRestriction, view_restiction_options, { :selected => selected }
+      = f.select :viewingRestriction, view_restiction_options, { :selected => selected}, {:style => "padding-right: 15px" }
       #viewingRestrictionsPrivate.viewing_restriction_types{:style => "padding: .5em; border: thin solid #C1DAD7; margin: .5em .5em .5em 0;", class: display_private}
-        %h3 Add or remove accounts that are allowed to view classes in this semantic resource using the account name
+        %h3{style: "font-size: 14px"} Add or remove accounts that are allowed to view classes in this semantic resource using the account name
         = f.select(:acl, @user_select_list, {include_blank: true, selected: @ontology.acl}, {multiple: true, :"data-placeholder" => "Select users who have access"})
       #viewingRestrictionsLicensed.viewing_restriction_types{:style => "padding: .5em; border: thin solid #C1DAD7; margin: .5em .5em .5em 0;", class: display_licensed}
         %b License Text:

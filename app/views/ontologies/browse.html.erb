@@ -13,10 +13,10 @@
 </div>
 
 <main class="grid-container" role="main" style="margin-bottom: 1em; margin-top: 1em;" ng-cloak>
-  <h1 style="font-size: 3em;">Browser</h1>
+  <h class="mt-5">Browser</h1>
   <p>
     <%= t('ontologies.intro').html_safe %>
-    <%= help_icon("/help#Browse_Tab", id: "ontology-browser-help").html_safe %>
+    <%= help_icon("https://github.com/lifewatch-eric/documentation/wiki/EcoTools#browse", id: "ontology-browser-help").html_safe %>
   </p>
 
   <div ng-controller="OntologyList">

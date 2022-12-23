@@ -37,7 +37,7 @@ class HomeController < ApplicationController
 
   def help
     # Show the header/footer or not
-    layout = params[:pop].eql?("true") ? "eco_popup" : "eco_ontology"
+    layout = params[:pop].eql?("true") ? "popup" : "ontology"
     render :layout => layout
   end
 

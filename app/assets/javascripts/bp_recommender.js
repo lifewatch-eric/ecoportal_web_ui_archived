@@ -330,7 +330,7 @@ rec.checkFirst = function(data) {
     $("#inputTextHighlighted div.card-body").empty();
     $("#inputTextHighlighted div.card-body").append(terms);
     $("#inputTextHighlighted").show();
-    $("#chk0").parents(".row:first").css("background-color", "#e2ebf0");
+    $("#chk0").parents(".row:first").css("background-color", "#f2f2f2");
 }
 
 jQuery(document).ready(function() {

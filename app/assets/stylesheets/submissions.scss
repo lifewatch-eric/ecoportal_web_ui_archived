@@ -1,5 +1,14 @@
+#identifier_fields_col {
+	border: 1px solid #f2f2f2;
+}
+
 div#contacts  div.contact.col-sm-10.offset-sm-2 {
 	margin-top: 5px;
+}
+
+#contacts .contact {
+	border: 1px solid #f2f2f2;
+	padding: 10px;
 }
 
 #contacts .contact label {
@@ -7,5 +16,14 @@ div#contacts  div.contact.col-sm-10.offset-sm-2 {
 }
 
 #submissionLocation small.form-text {
-  margin-bottom: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.row-resourceType {
+	border: 1px solid #f2f2f2;
+	padding: 10px;
+}
+
+.row-resourceType label {
+	margin-bottom: 0;
 }

@@ -159,16 +159,19 @@
         = radio_button(:submission, :isRemote, 0, :onclick=>"location_toggle('upload');", checked: checked, class: "form-check-input")
         %label.form-check-label{for: "submission_isRemote_0"} 
           Upload local file
-        - display = (checked and "" or "display:none;")
+        - display = checked ? "" : "display:none;"
         %div.hidden_field#upload{style: display}
-          = f.file_field(:filePath, class: "mt-2")
+          %label.btn.btn-primary{for: "submission_filePath"} Choose File
+          %span#submission_filePathVisualization
+          %div{style: "display: none"}
+            = f.file_field(:filePath, class: "mt-2")
     - else
       -# TODO: Has this section of code actually been tested?
       = radio_button :submission, :isRemote, 0, :onclick=>"location_toggle('upload');", checked: true
       Upload Local File
       %br/
       %span{:style => "font-size:11px;"} (choose a file on your local file system to upload)
-      - display = (checked and "" or "display:none;")
+      - display = checked ? "" : "display:none;"
       %div#upload{style: display}
         %label.btn.btn-primary
           Choose file
@@ -184,32 +187,38 @@
     - @submission.contact.each_with_index do |contact, i|
       - if i == 0
         -# Contact div
-        %div.col-sm-10.d-flex.align-items-center.contact
+        %div.col-sm-10.d-flex.align-items-baseline.contact
           %label Name
-          = text_field :submission, :"contact[#{i}][name]", value: contact["name"], class: "form-control flex-grow-1 mx-2"
+          %div.formControlErrorContainer
+            = text_field :submission, :"contact[#{i}][name]", value: contact["name"], class: "form-control", required: true
           %label Email
-          = text_field :submission, :"contact[#{i}][email]", value: contact["email"], class: "form-control flex-grow-1 mx-2"
+          %div.formControlErrorContainer
+            = email_field :submission, :"contact[#{i}][email]", value: contact["email"], class: "form-control", required: true
           %button.btn.btn-primary.add-contact
             %i{class: "fas fa-plus fa-lg", aria: {hidden: "true"}}
       - else
         -# TODO
         -# Secondary contacts need to be offset by 2 columns, and have a delete button.
-        %div.col-sm-10.d-flex.align-items-center.offset-sm-2.contact
+        %div.col-sm-10.d-flex.align-items-baseline.offset-sm-2.contact
           %label Name
-          = text_field :submission, :"contact[#{i}][name]", value: contact["name"], class: "form-control flex-grow-1 mx-2"
+          %div.formControlErrorContainer
+            = text_field :submission, :"contact[#{i}][name]", value: contact["name"], class: "form-control", required: true
           %label Email
-          = text_field :submission, :"contact[#{i}][email]", value: contact["email"], class: "form-control flex-grow-1 mx-2"
+          %div.formControlErrorContainer
+            = email_field :submission, :"contact[#{i}][email]", value: contact["email"], class: "form-control", required: true
           %button.btn.btn-primary.add-contact
             %i{class: "fas fa-plus fa-lg", aria: {hidden: "true"}}
           %button.btn.btn-primary.ml-1.remove-contact
             %i{class: "fas fa-minus fa-lg", aria: {hidden: "true"}}
   - else
     -# TODO
-    %div.col-sm-10.d-flex.align-items-center.contact
+    %div.col-sm-10.d-flex.align-items-baseline.contact
       %label Name:
-      = text_field :submission, :"contact[0][name]", class: "form-control flex-grow-1 mx-2"
+      %div.formControlErrorContainer
+        = text_field :submission, :"contact[0][name]", class: "form-control", required: true
       %label Email:
-      = text_field :submission, :"contact[0][email]", class: "form-control flex-grow-1 mx-2"
+      %div.formControlErrorContainer
+        = email_field :submission, :"contact[0][email]", class: "form-control", required: true
       %button.btn.btn-primary.add-contact
         %i{class: "fas fa-plus fa-lg", aria: {hidden: "true"}}      
 
@@ -265,35 +274,31 @@
         - doi_already_assigned = true
     - else 
       / Manually insert Identifier
-      .row
-        .col-sm-12.sub-label
-          %p
-            Insert the Persistent Identifier - DOI or other - of your semantic asset
-      .row
-        .col-sm-1.sub-label
-          %label.float-right{for: "submission_identifierType"}
-            Type
-            %span.asterik<> *
-        .col-sm-3.sub-value
+      %div.d-flex.align-items-baseline
+        %label.float-right{for: "submission_identifierType"}
+          Type:
+          %span.asterik<> *
+        %div.formControlErrorContainer
           - selected_identifierType = @submission.identifierType ? @submission.identifierType : "None"
           %select#submission_identifierType.form-control.input-sm.w100perc{name: "submission[identifierType]"}
             %option{value: "None", selected: selected_identifierType == "None"}= "None"
             %option{value: "DOI", selected: selected_identifierType == "DOI"}= "DOI"
             %option{value: "Other", selected: selected_identifierType == "Other"}= "Other"
           / <input class="w100perc" value="DOI" type="text" name="submission[identifierType]" id="submission_identifierType"/>
-        .col-sm-2
-          %label.float-right{for: "submission_identifier"}
-            Identifier
-            %span.asterik<> *
-        .col-sm-4
-          %input#submission_identifier.form-control.input-sm.w100perc{name: "submission[identifier]", type: "text", value: @submission.identifier}/
+        %label{for: "submission_identifier"}
+          Identifier:
+          %span.asterik<> *
+        %div.formControlErrorContainer
+          %input#submission_identifier.form-control.input-sm.w100perc{name: "submission[identifier]", type: "text", value: @submission.identifier, required: "true"}/
         -# .col-sm-2
         -#   %button#button-load-by-doi.btn.btn-default.btn-sm{type: "button"}
         -#     %span.glyphicon.glyphicon-refresh
         -#     Load
+      %div
+        %small.form-text.text-muted Insert the Persistent Identifier - DOI or other - of your semantic asset
       - if !doi_already_assigned
-        .row.margin-top-10px
-          #div-cb-require-doi.col-sm-11.col-sm-offset-1
+        .div.margin-top-10px
+          #div-cb-require-doi
             %input#doi_request{name: "submission[is_doi_requested]", type: "checkbox", checked: @submission.is_doi_requested}/
             %label{for: "doi_request"} Check this box if your asset has no PID and you want to request a DOI
 
@@ -312,7 +317,7 @@
         .row.row-creator{id: "creator-#{i}"}
           / CREATOR DATA
           .col-sm-12
-            / RADIO BUTTON TO CHOOSE BETWEEN PARSONAL or ORGANIZATIONAL CREATOR
+            / RADIO BUTTON TO CHOOSE BETWEEN PERSONAL or ORGANIZATIONAL CREATOR
             .row.creatorType
               / <input type="hidden" id="submission_creators[0][nameType]" name="submission[creators[0][nameType]]" value="Personal">
               .col-sm-4.radio-xs
@@ -344,14 +349,14 @@
                               %span.asterik<> *
                           .col-sm-4
                             %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifierScheme]", name: "submission[creators[#{i}][creatorIdentifiers][#{j}][nameIdentifierScheme]]", type: "text", value: creatorIdentifier.nameIdentifierScheme, required: true}/
-                            %span.input_example<> Ex.: ISNI, ORCID
+                            %small.form-text.text-muted Ex.: ISNI, ORCID
                           .col-sm-2
                             %label.float-right.lb-sm{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][schemeURI]"}
                               Scheme URI:
                               %span.asterik<> *
                           .col-sm-4
                             %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][creatorIdentifiers][#{j}][schemeURI]", name: "submission[creators[#{i}][creatorIdentifiers][#{j}][schemeURI]]", type: "text", value: creatorIdentifier.schemeURI, required: true}/
-                            %span.input_example<> Ex.: http://isni.org/isni/, http://orcid.org/
+                            %small.form-text.text-muted Ex.: http://isni.org/isni/, http://orcid.org/
                         .row.nested-row-values
                           .col-sm-2
                             %label.float-right.lb-sm{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifier]"}
@@ -359,7 +364,7 @@
                               %span.asterik<> *
                           .col-sm-10
                             %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifier]", name: "submission[creators[#{i}][creatorIdentifiers][#{j}][nameIdentifier]]", type: "text", value: creatorIdentifier.nameIdentifier, required: true}/
-                            %span.input_example<> Ex. ISNI: 0000000134596520 or Ex. ORCID: 0000-0001-5393-1421
+                            %small.form-text.text-muted Ex. ISNI: 0000000134596520 or Ex. ORCID: 0000-0001-5393-1421
                       / BUTTON REMOVE CREATOR IDENTIFIER ROW
                       .col-sm-1
                         %button.btn.btn-default.btn-sm.btn-remove-row{access: "false", id: "button-remove-creatorIdentifier-#{i}_#{j}", onclick: "removeCreatorIdentifier('creatorIdentifier-#{i}_#{j}')", type: "button"}
@@ -378,7 +383,7 @@
             - if creator.nameType == "Personal"
               - readonly = 'true'
               - require_personal_fields = 'required'
-            .row.nested-row-values{id: "div-creator-personal-field-#{i}"}
+            .row.nested-row-values{id: "div-creator-personal-field-#{i}", style: !require_personal_fields ? "display:none" : nil}
               .col-sm-2
                 %label.float-right{for: "submission_creators[#{i}][givenName]"}
                   First Name:
@@ -392,7 +397,7 @@
               .col-sm-4
                 %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][familyName]", name: "submission[creators[#{i}][familyName]]", oninput: "updateCreatorName(#{i})", type: "text", value: creator.familyName, required: require_personal_fields}/
             / ORGANIZATION
-            .row
+            .row.nested-row-values
               .col-sm-2
                 %label.float-right{for: "submission_creators[#{i}][creatorName]"}
                   Name:
@@ -413,14 +418,14 @@
                               %span.asterik<> *
                           .col-sm-4
                             %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifierScheme]", name: "submission[creators[#{i}][affiliations][#{j}][affiliationIdentifierScheme]]", type: "text", value: affiliation.affiliationIdentifierScheme, required: true}/
-                            %span.input_example<> Ex. ROR
+                            %small.form-text.text-muted Ex. ROR
                           .col-sm-2
                             %label.float-right.lb-sm{for: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifier]"}
                               Affiliation Ident. URI:
                               %span.asterik<> *
                           .col-sm-4
                             %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifier]", name: "submission[creators[#{i}][affiliations][#{j}][affiliationIdentifier]]", type: "text", value: affiliation.affiliationIdentifier, required: true}/
-                            %span.input_example<> Ex. https://ror.org/04wxnsj81
+                            %small.form-text.text-muted Ex. https://ror.org/04wxnsj81
                         .row.nested-row-values
                           .col-sm-2
                             %label.float-right.lb-sm{for: "submission_creators[#{i}][affiliations][#{j}][affiliation]"}
@@ -428,7 +433,7 @@
                               %span.asterik<> *
                           .col-sm-10
                             %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][affiliations][#{j}][affiliation]", name: "submission[creators[#{i}][affiliations][#{j}][affiliation]]", type: "text", value: affiliation.affiliation, required: true}/
-                            %span.input_example<> Add here the name of the formal institution to which the creator belongs, e.g. LifeWatch Eric, Datacite, ecc.
+                            %small.form-text.text-muted Enter the name of the formal institution to which the creator belongs, e.g. LifeWatch ERIC, DataCite, etc.
                       / BUTTON REMOVE CREATOR AFFILIATION ROW
                       .col-sm-1
                         %button.btn.btn-default.btn-sm.btn-remove-row{access: "false", id: "button-remove-creatorAffiliation-#{i}_#{j}", onclick: "removeCreatorAffiliation('creatorAffiliation-#{i}_#{j}')", type: "button"}
@@ -462,7 +467,7 @@
         .row.row-title{id: "title-#{i}"}
           .col-sm-11
             / row for text title
-            .row.nested-row-values.align-items-center
+            .row.nested-row-values
               .col-sm-2
                 %label.float-right{for: "submission_titles[#{i}][title]"}
                   Title:
@@ -523,18 +528,22 @@
   %label.col-sm-2.col-form-label{for: "submission_resourceType"}
     Resource Type
     %span.asterik<> *
-  %div.col-sm-10.d-flex.align-items-center
+  %div.col-sm-10.d-flex.align-items-baseline.row-resourceType
     %label{for: "submission_resourceTypeGeneral", style: "white-space: nowrap"} General Type:
     - selected_resourceTypeGeneral = @submission.resourceTypeGeneral ? @submission.resourceTypeGeneral : "Dataset"
-    %select#submission_resourceTypeGeneral.form-control.input-sm.flex-grow-1.mx-2{name: "submission[resourceTypeGeneral]"}
-      %option{value: "Dataset", selected: selected_resourceTypeGeneral == "Dataset"}= "Dataset"
-      %option{value: "Other", selected: selected_resourceTypeGeneral == "Other"}= "Other"
-    %label{for: "submission_resourceTypeGeneral", style: "white-space: nowrap"} Resource Type:
-    %input#submission_resourceType.form-control.input-sm.flex-grow-1.mx-2{name: "submission[resourceType]", type: "text", value: @submission.resourceType, required: true}
+    %div.formControlErrorContainer
+      %select#submission_resourceTypeGeneral.form-control{name: "submission[resourceTypeGeneral]"}
+        %option{value: "Dataset", selected: selected_resourceTypeGeneral == "Dataset"}= "Dataset"
+        %option{value: "Other", selected: selected_resourceTypeGeneral == "Other"}= "Other"
+    %label{for: "submission_resourceTypeGeneral", style: "white-space: nowrap"}
+      Resource Type:
+      %span.asterik<> *
+    %div.formControlErrorContainer
+      %input#submission_resourceType.form-control{name: "submission[resourceType]", type: "text", value: @submission.resourceType, required: true}
 
 %div.form-group.row
   %div.col-sm-10.offset-sm-2
-    %div.form-inline
+    %div.form-inline.justify-content-center{style: "margin-top: 2em"}
       = submit_tag button_text, class: "btn btn-primary mr-sm-2"
       = link_to "Cancel", :back, class: "btn btn-primary"
 
@@ -671,44 +680,30 @@
                 alert("The request was canceled!");
                 var html_identifier = `
                   <!-- Manually insert Identifier -->
-                  <div class="row">
-                      <div class="col-sm-12 sub-label">
-                        <p>
-                            Insert the Persistent Identifier - DOI or other - of your semantic asset
-                        </p>
-                      </div>
+                  <div class="d-flex align-items-baseline">
+                    <label class="float-right" for="submission_identifierType">Type<span class="asterik">*</span></label>
+                    <div class="formControlErrorContainer">
+                      <select class="form-control input-sm w100perc" id="submission_identifierType" name="submission[identifierType]">
+                        <option selected="selected" value="None">None</option>
+                        <option value="DOI">DOI</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <!-- <input class="w100perc" value="DOI" type="text" name="submission[identifierType]" id="submission_identifierType"/> -->
+                    </div>
+                    <label class="float-right" for="submission_identifier">Identifier<span class="asterik">*</span></label>
+                    <div class="formControlErrorContainer">
+                      <input class="form-control input-sm w100perc" id="submission_identifier" name="submission[identifier]" type="text" disabled="">
+                    </div>
                   </div>
-                  <div class="row">
-                      <div class="col-sm-1 sub-label">
-                        <label class="float-right" for="submission_identifierType">
-                        Type<span class="asterik">*</span></label>
-                      </div>
-                      <div class="col-sm-3 sub-value">
-                        <select class="form-control input-sm w100perc" id="submission_identifierType" name="submission[identifierType]">
-                            <option selected="selected" value="None">None</option>
-                            <option value="DOI">DOI</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <!-- <input class="w100perc" value="DOI" type="text" name="submission[identifierType]" id="submission_identifierType"/> -->
-                      </div>
-                      <div class="col-sm-2">
-                        <label class="float-right" for="submission_identifier">
-                        Identifier<span class="asterik">*</span></label>
-                      </div>
-                      <div class="col-sm-4">
-                        <input class="form-control input-sm w100perc" id="submission_identifier" name="submission[identifier]" type="text" disabled="">
-                      </div>
-                      <div class="col-sm-2">
-                        <button class="btn btn-default btn-sm" id="button-load-by-doi" type="button" style="display: none;">
-                        <span class="glyphicon glyphicon-refresh"></span>
-                        Load
-                        </button>
-                      </div>
+                  <div>
+                    <small class="form-text text-muted">
+                        Insert the Persistent Identifier - DOI or other - of your semantic asset
+                    </small>
                   </div>
-                  <div class="row margin-top-10px">
-                      <div class="col-sm-11 col-sm-offset-1" id="div-cb-require-doi" style="display: block;">
+                  <div class="margin-top-10px">
+                      <div id="div-cb-require-doi">
                         <input id="doi_request" name="submission[is_doi_requested]" type="checkbox">
-                        <label for="doi_request">If your asset has no PID, select this box to request a DOI be assigned by EcoPortal</label>
+                        <label for="doi_request">Check this box if your asset has no PID and you want to request a DOI</label>
                       </div>
                   </div>`;
                 $("#identifier_fields_col").html(html_identifier)

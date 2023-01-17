@@ -88,9 +88,11 @@ function addContact(event) {
     var name = input.getAttribute("name").replace(/0/g, index);
     input.setAttribute("name", name);
     
-    input.setAttribute("value", "");
+    // input.setAttribute("value", "");
 
-    input.removeAttribute("required");
+    //input.removeAttribute("required");
+
+    input.value = "";
   }
 
   contacts[index - 1].insertAdjacentElement('afterend', newContact);

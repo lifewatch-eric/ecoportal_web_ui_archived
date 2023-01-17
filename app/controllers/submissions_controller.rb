@@ -98,6 +98,14 @@ class SubmissionsController < ApplicationController
         @errors = ["Please enter a contact"]
       end
 
+      # the partial submissions/_form access the attributes of a submission through the dot notation;
+      # however, the constructor of OntologySubmission client manages nested objects has hashes rather
+      # than structs. So, if needed, we parse the parameters using the same recursive strategy adopted by the
+      # HTTP client
+      submission_params_h = submission_params
+      submission_params_h["@type"] = "http://data.bioontology.org/metadata/OntologySubmission"
+      @submission = LinkedData::Client::HTTP.recursive_struct(submission_params_h)
+
       render "new"
     else
 

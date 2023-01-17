@@ -29,7 +29,9 @@
   position: relative;
   float: right;
   left: -33%;
+  margin-bottom: -5em; /* To avoid that 5em of white space are left underneath */
 }
+
 .search {
   float: left;
   width: 150px;
@@ -43,15 +45,13 @@
   padding-bottom: 2px;
 }
 #facets {
-  margin-top: 1em;
+  margin-top: calc(1em - 5px);  /* account for the -5px margin on top .search */
 }
 
 .new_ontology_button {
-  display: inline-block;
+  box-sizing: border-box;
   width: 100%;
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-  margin-top: 1em;
+  white-space: break-spaces !important;
 }
 .facet {
   margin: 1em 0;
@@ -106,6 +106,7 @@
   animation: highlight 1s;
 }
 #ontologies {
+  margin-top: 1em;
 }
 .clear {
   clear: both;

@@ -1,5 +1,5 @@
 - button_text ||= "Create semantic resource"
-- title_text ||= "Submit New Semantic Resource"
+- title_text ||= "Submit a New Semantic Resource"
 
 :css
   div.ontologyFormError {
@@ -31,7 +31,7 @@
         -# A generic fallback
         = @errors.to_json
 
-%div{:style => "width:500px"}
+%div
   %h1.mt-5 #{title_text}
   %div
     %span.asterik* fields are required
@@ -49,7 +49,7 @@
     %td
       - acronym_enabled = @ontology.acronym.nil? || ! @errors.nil?
       = f.text_field(:acronym, value: @ontology.acronym, :disabled => ! acronym_enabled, data: { acronyms: acronyms(@ontologies) })
-      %ul#acronym_errors.enable-lists{style: "color: red; padding: 3px;"}
+      %ul#acronym_errors.enable-lists
   %tr
     %th
       Administrators:

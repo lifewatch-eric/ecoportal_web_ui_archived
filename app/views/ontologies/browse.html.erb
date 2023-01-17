@@ -13,8 +13,8 @@
 </div>
 
 <main class="grid-container" role="main" style="margin-bottom: 1em; margin-top: 1em;" ng-cloak>
-  <h class="mt-5">Browser</h1>
-  <p>
+  <h1 class="mt-5" style="padding-left: 10px">Browser</h1>
+  <p style="padding-left: 10px">
     <%= t('ontologies.intro').html_safe %>
     <%= help_icon("https://github.com/lifewatch-eric/documentation/wiki/EcoTools#browse", id: "ontology-browser-help").html_safe %>
   </p>
@@ -36,13 +36,9 @@
 
     <div id="facets" class="grid-20">
       <%if session[:user].nil?%>
-        <a class="new_ontology_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" href="/login?redirect=/ontologies/new">
-          <span class="ui-button-text">Submit New Semantic Resource</span>
-        </a>
+        <a class="new_ontology_button btn btn-primary" href="/login?redirect=/ontologies/new">Submit New Semantic Resource</a>
       <%else%>
-        <a class="new_ontology_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" href="/ontologies/new">
-          <span class="ui-button-text">Submit New Semantic Resource</span>
-        </a>
+        <a class="new_ontology_button btn btn-primary" href="/ontologies/new">Submit New Semantic Resource</a>
       <%end%>
 
       <div id="ont_view_facet" class="facet">

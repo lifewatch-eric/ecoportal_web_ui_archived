@@ -95,10 +95,21 @@
 }
 
 .separtor1{
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #f2f2f2;
   margin: 5px;
 }
 
+.formControlErrorContainer {
+  @extend .w100perc;
+  @extend .flex-grow-1;
+  @extend .mx-2;
+
+  display: block;
+}
+
+.help-block.error-help-block {
+  color: red;
+}
 
 /********** CONTACT ***********/
 .row-contact {
@@ -113,8 +124,7 @@
 /********** TITLE ***********/
 
 .row-title {
-  background: #f2f2f2;
-  border: 1px solid #ddd;
+  border: 1px solid #f2f2f2;
   padding: 10px;
   margin:5px 0px;
 }
@@ -126,6 +136,10 @@
 
 .row-title-add-button {
   margin:0px 0px;
+}
+
+.row-title label {
+  padding-top: calc(0.375rem + 1px); /* padding + border of .form-control */
 }
 
 
@@ -140,10 +154,13 @@
 }
 
 .row-creator{
-  background: #f2f2f2;
-  border: 1px solid #ddd;
+  border: 1px solid #f2f2f2;
   padding-top:10px;
   margin:5px 0px;
+}
+
+.row-creator label {
+  padding-top: calc(0.375rem + 1px); /* padding + border of .form-control */
 }
 
 .row-creator-add-button {
@@ -154,8 +171,7 @@
   margin-top:15px;
   margin-bottom:15px;
   padding: 5px;
-  background-color: #eee;
-  border: 1px solid #ddd;
+  border: 1px solid #f2f2f2;
 }
 
 .btn-remove-row {
@@ -170,9 +186,8 @@
   flex-wrap: wrap;
   margin: 5px 0px;
   padding-top: 5px;
-  background-color: #ddd;
+  border: 1px solid #f2f2f2;
 }
-
 
 /********** CREATOR IDENTIFIER ***********/
 .row-creatorAffiliation {
@@ -180,7 +195,7 @@
   flex-wrap: wrap;
   margin: 5px 0px;
   padding-top: 5px;
-  background-color: #ddd;
+  border: 1px solid #f2f2f2;
 }
 
 span.input_example {

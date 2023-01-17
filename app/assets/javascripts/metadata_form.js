@@ -40,7 +40,15 @@ $(document).ready(function(){
   // checkEnablingStatus_RemoveContactButton();
   checkEnablingStatus_RemoveCreatorButton();
   checkEnablingStatus_RemoveTitleButton();
-  
+
+  // add events related to path management
+  $("#submission_filePath").change(event => {
+    let pathname = "";
+    if (event.target.files.length > 0) {
+      pathname = event.target.files[0].name;
+    }
+    $("#submission_filePathVisualization").text(pathname);
+  });
 });
 
 
@@ -80,7 +88,7 @@ function addCreator(creatorObj) {
     </div>
     <div class="row row-creatorIdentifier-buttons">
       <div class="col-sm-11">
-        <button type="button" class="col-md-4 btn-default btn btn-xs" access="false" id="button-add-creatorIdentifier" onclick="addCreatorIdentifier($1)">
+        <button type="button" class="col-md-4 btn btn-primary" access="false" id="button-add-creatorIdentifier" onclick="addCreatorIdentifier($1)">
           <span class="fas fa-plus" aria-hidden="true"></span> Add Creator Identifier</button>
       </div>
     </div>
@@ -118,7 +126,7 @@ function addCreator(creatorObj) {
 
     <div class="row row-creatorAffiliation-buttons">
       <div class="col-sm-11">
-        <button type="button" class="col-md-4 btn-default btn btn-xs" id="button-add-creatorAffiliation" onclick="addCreatorAffiliation($1)">
+        <button type="button" class="col-md-4 btn btn-primary" id="button-add-creatorAffiliation" onclick="addCreatorAffiliation($1)">
           <span class="fas fa-plus" aria-hidden="true"></span> Add Affiliation</button>
       </div>
     </div>
@@ -135,10 +143,10 @@ function addCreator(creatorObj) {
   let div = $('<div/>', { class:"row row-creator", id:"creator-" + index });
   div.append(html);
    
-  $("#creators").append(div)
+  $("#creators").append(div);
   
   if(creatorObj)
-    setCreatorObject(index, creatorObj)
+    setCreatorObject(index, creatorObj);
 
   checkEnablingStatus_RemoveCreatorButton();
 }
@@ -339,13 +347,13 @@ function addCreatorIdentifier(creatorIndex, creatorIdentifierObj) {
           <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifierScheme]">Scheme:<span class="asterik">*</span></label></div>
         <div class="col-sm-4">
           <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifierScheme]]" id="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifierScheme]" required="required"/>
-          <span class="input_example">Ex.: ISNI, ORCID</span>
+          <small class="form-text text-muted">Ex.: ISNI, ORCID</small>
         </div> 
         <div class="col-sm-2">
           <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][creatorIdentifiers][$1][schemeURI]">Scheme URI:<span class="asterik">*</span></label></div>
         <div class="col-sm-4">
           <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][creatorIdentifiers][$1][schemeURI]]" id="submission_creators[${creatorIndex}][creatorIdentifiers][$1][schemeURI]" required="required"/>
-          <span class="input_example">Ex.: http://isni.org/isni/, http://orcid.org/</span>
+          <small class="form-text text-muted">Ex.: http://isni.org/isni/, http://orcid.org/</small>
         </div> 
       </div>
       <div class="row nested-row-values">
@@ -353,7 +361,7 @@ function addCreatorIdentifier(creatorIndex, creatorIdentifierObj) {
           <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifier]">Name Identifier:<span class="asterik">*</span></label></div>
         <div class="col-sm-10">
           <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifier]]" id="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifier]" required="required"/>
-          <span class="input_example">Example for ISNI: 0000000134596520 or for ORCID: 0000-0001-5393-1421</span>
+          <small class="form-text text-muted">Example for ISNI: 0000000134596520 or for ORCID: 0000-0001-5393-1421</small>
         </div>
       </div>
     </div>
@@ -457,14 +465,14 @@ function addCreatorAffiliation(creatorIndex, creatorAffiliationObj) {
         <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifierScheme]">Scheme:<span class="asterik">*</span></label></div>
       <div class="col-sm-4">
         <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][affiliations][$1][affiliationIdentifierScheme]]" id="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifierScheme]" required="required"/>
-        <span class="input_example">Ex. ROR</span>
+        <small class="form-text text-muted">Ex. ROR</small>
       </div> 
 
       <div class="col-sm-2">
         <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifier]">Affiliation Ident. URI:<span class="asterik">*</span></label></div>
       <div class="col-sm-4">
         <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][affiliations][$1][affiliationIdentifier]]" id="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifier]" required="required"/>
-        <span class="input_example">Ex. https://ror.org/04wxnsj81</span>
+        <small class="form-text text-muted">Ex. https://ror.org/04wxnsj81</small>
       </div> 
     </div>
     <div class="row nested-row-values">
@@ -472,7 +480,7 @@ function addCreatorAffiliation(creatorIndex, creatorAffiliationObj) {
         <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][affiliations][$1][affiliation]">Affiliation Name:<span class="asterik">*</span></label></div>
       <div class="col-sm-10">
         <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][affiliations][$1][affiliation]]" id="submission_creators[${creatorIndex}][affiliations][$1][affiliation]" required="required"/>
-        <span class="input_example">Add here the name of the formal institution to which the creator belongs, e.g. LifeWatch Eric, Datacite, ecc.</span>
+        <small class="form-text text-muted">Enter the name of the formal institution to which the creator belongs, e.g. LifeWatch ERIC, DataCite, etc.</small>
       </div>
     </div>
   </div>
@@ -687,7 +695,7 @@ function addTitle(titleObj) {
           <input class="form-control input-sm w100perc" type="text" name="submission[titles[$1][title]]" id="submission_titles[$1][title]" ${value_title} required="required"/></div>
       </div>
       <!-- row for text lang and type -->
-      <div class="row">
+      <div class="row nested-row-values">
         <div class="col-sm-2">
           <label class="float-right" for="submission_titles[$1][lang]">Language:<span class="asterik">*</span></label></div>
         <div class="col-sm-4">

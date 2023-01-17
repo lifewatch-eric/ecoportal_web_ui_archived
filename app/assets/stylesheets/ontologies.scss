@@ -2,6 +2,15 @@ $ont-metadata-bg-color: #f2f2f2;
 $widget-table-border-color: #EFEFEF;
 $ont-show-bg-color: #e9ecef;
 
+#acronym_errors {
+  color: red;
+  padding: 3px
+}
+
+#acronym_errors:empty {
+  display: none;
+}
+
 .ontologies.show {
   background-color: $ont-show-bg-color;
 

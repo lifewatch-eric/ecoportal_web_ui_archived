@@ -116,7 +116,7 @@ class Oauth2Controller < ApplicationController
       if redirect == "/"
         redirect =  request.protocol + request.host_with_port + "/"
       end
-      redirect = build_url_with_params(@@configStruct.logout_endpoint, {client_id: @@configStruct.client_id, id_token_hint: idt, post_logout_redirect_uri: redirect})
+      redirect = build_url_with_params(@@configStruct.end_session_endpoint, {client_id: @@configStruct.client_id, id_token_hint: idt, post_logout_redirect_uri: redirect})
       external_redirect_allowed = true
     end
 
@@ -138,7 +138,7 @@ class Oauth2Controller < ApplicationController
     OpenIDConnect::Client.new(
       identifier: @@configStruct.client_id,
       secret: @@configStruct.client_secret,
-      redirect_uri: @@configStruct.authorize_redirect_uri,
+      redirect_uri: request.protocol + request.host_with_port + "/oauth2/authorize_callback",
       host: @@configStruct.host,
       authorization_endpoint: @@configStruct.authorization_endpoint,
       token_endpoint: @@configStruct.token_endpoint,

@@ -1,12 +1,13 @@
 if $SSO_ENABLED
   Oauth2Controller.config do |config|
-    config.client_id = 'ecoportal-web-ui'
-    config.client_secret = 'uDfeD3D0UsKfCLKLWVmdfUMsTH891dbm'
-    config.authorize_redirect_uri = 'http://localhost:8080/oauth2/authorize_callback'
-    config.host = 'localhost'
-    config.authorization_endpoint = 'http://localhost:8080:8080/realms/xxxx/protocol/openid-connect/auth'
-    config.token_endpoint = 'http://localhost:8080:8080/realms/xxxx/protocol/openid-connect/token'
-    config.userinfo_endpoint = 'http://localhost:8080:8080/realms/xxxx/protocol/openid-connect/userinfo'
-    config.logout_endpoint = 'http://localhost:8080:8080/realms/xxxx/protocol/openid-connect/logout'
+
+    idpMetadataJSON = JSON.parse(IO.read(Rails.root.join("config/oauth2/idp-configuration.json")), {symbolize_names: true})
+
+    config.client_id = Rails.application.credentials.oauth2[:client_id]
+    config.client_secret = Rails.application.credentials.oauth2[:client_secret]
+    config.authorization_endpoint = idpMetadataJSON[:authorization_endpoint]
+    config.token_endpoint = idpMetadataJSON[:token_endpoint]
+    config.userinfo_endpoint = idpMetadataJSON[:userinfo_endpoint]
+    config.end_session_endpoint = idpMetadataJSON[:end_session_endpoint]
   end
 end

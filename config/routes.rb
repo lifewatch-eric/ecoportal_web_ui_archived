@@ -25,14 +25,8 @@ Rails.application.routes.draw do
   end
 
   if $SSO_ENABLED
-    get "/login" => "saml#login", as: :login_index
-    get "/logout" => "saml#sp_logout_request"
-
-    # SAML
-
-    get 'saml/metadata', to: 'saml#metadata'
-    post 'saml/acs', to: 'saml#acs'
-    post 'saml/slo', to: 'saml#process_logout_response'
+    get "/login" => "oauth2#login", as: :login_index
+    get "/logout" => "oauth2#logout"
   else
     resources :login
   end

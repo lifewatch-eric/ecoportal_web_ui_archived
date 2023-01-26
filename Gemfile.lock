@@ -14,15 +14,6 @@ GIT
       oj
       spawnling (= 2.1.5)
 
-GIT
-  remote: https://github.com/onelogin/ruby-saml.git
-  revision: 79fc1d772d84ae4f80a4f5b747b00d830839657e
-  tag: v1.12.1
-  specs:
-    ruby-saml (1.12.1)
-      nokogiri (>= 1.10.5)
-      rexml
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -83,11 +74,14 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    aes_key_wrap (1.1.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.2)
+    attr_required (1.0.1)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
+    bindata (2.4.14)
     bootstrap (4.1.3)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
@@ -141,6 +135,8 @@ GEM
     faraday-excon (2.0.0)
       excon (>= 0.27.4)
       faraday (~> 2.0.0.alpha.pre.2)
+    faraday-follow_redirects (0.3.0)
+      faraday (>= 1, < 3)
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (2.1.0)
@@ -169,6 +165,12 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     json (2.6.1)
+    json-jwt (1.16.1)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      bindata
+      faraday (~> 2.0)
+      faraday-follow_redirects
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -190,8 +192,12 @@ GEM
     multi_json (1.15.0)
     multipart-post (2.2.3)
     mysql2 (0.5.2)
+    net-protocol (0.2.1)
+      timeout
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
+    net-smtp (0.3.3)
+      net-protocol
     net-ssh (6.1.0)
     netrc (0.11.0)
     newrelic_rpm (8.7.0)
@@ -201,6 +207,19 @@ GEM
       racc (~> 1.4)
     oj (3.13.11)
     open_uri_redirections (0.2.1)
+    openid_connect (2.2.0)
+      activemodel
+      attr_required (>= 1.0.0)
+      faraday (~> 2.0)
+      faraday-follow_redirects
+      json-jwt (>= 1.16)
+      net-smtp
+      rack-oauth2 (~> 2.2)
+      swd (~> 2.0)
+      tzinfo
+      validate_email
+      validate_url
+      webfinger (~> 2.0)
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
@@ -214,6 +233,13 @@ GEM
     rack (2.2.3)
     rack-mini-profiler (3.0.0)
       rack (>= 1.2.0)
+    rack-oauth2 (2.2.0)
+      activesupport
+      attr_required
+      faraday (~> 2.0)
+      faraday-follow_redirects
+      json-jwt (>= 1.11.0)
+      rack (>= 2.1.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.4.1)
@@ -316,6 +342,11 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     stackprof (0.2.19)
+    swd (2.0.2)
+      activesupport (>= 3)
+      attr_required (>= 0.0.5)
+      faraday (~> 2.0)
+      faraday-follow_redirects
     temple (0.8.2)
     thin (1.8.1)
       daemons (~> 1.0, >= 1.0.9)
@@ -324,6 +355,7 @@ GEM
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timeout (0.3.1)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
@@ -332,6 +364,16 @@ GEM
       unf_ext
     unf_ext (0.0.8.1)
     unicode-display_width (2.1.0)
+    validate_email (0.1.6)
+      activemodel (>= 3.0)
+      mail (>= 2.2.5)
+    validate_url (1.0.15)
+      activemodel (>= 3.0.0)
+      public_suffix
+    webfinger (2.1.2)
+      activesupport
+      faraday (~> 2.0)
+      faraday-follow_redirects
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -370,6 +412,7 @@ DEPENDENCIES
   oj
   ontologies_api_client!
   open_uri_redirections
+  openid_connect (~> 2.2.0)
   pry
   psych (< 4)
   rack-mini-profiler
@@ -380,7 +423,6 @@ DEPENDENCIES
   rest-client
   rspec-rails
   rubocop
-  ruby-saml (= 1.12.1)!
   sass-rails (~> 5.0)
   select2-rails
   stackprof

@@ -78,4 +78,4 @@ group :test do
   gem 'capybara'
 end
 
-gem 'ruby-saml', '= 1.12.1', git: "https://github.com/onelogin/ruby-saml.git", tag: "v1.12.1"
+gem 'openid_connect', '~> 2.2.0'

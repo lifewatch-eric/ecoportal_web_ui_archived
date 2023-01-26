@@ -702,4 +702,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def build_url_with_params(url, params)
+    # See https://stackoverflow.com/a/26867426
+    uri = URI.parse(url)
+    new_query_ar = URI.decode_www_form(uri.query || '')
+    params.each_key { |k| new_query_ar << [k, params[k]] }
+    uri.query = URI.encode_www_form(new_query_ar)
+    uri.to_s
+  end
+
 end

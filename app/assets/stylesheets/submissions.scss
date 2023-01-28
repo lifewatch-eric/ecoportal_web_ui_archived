@@ -2,6 +2,10 @@
 	border: 1px solid #f2f2f2;
 }
 
+#identifier_fields_col .d-flex > label {
+	padding-top: calc(0.375rem + 1px); /* padding + border of .form-control */
+}
+
 div#contacts  div.contact.col-sm-10.offset-sm-2 {
 	margin-top: 5px;
 }
@@ -13,6 +17,11 @@ div#contacts  div.contact.col-sm-10.offset-sm-2 {
 
 #contacts .contact label {
 	margin-bottom: 0;
+	padding-top: calc(0.375rem + 1px); /* padding + border of .form-control */
+}
+
+#contacts .contact .d-flex > .btn {
+	align-self: flex-start;
 }
 
 #submissionLocation small.form-text {
@@ -25,5 +34,5 @@ div#contacts  div.contact.col-sm-10.offset-sm-2 {
 }
 
 .row-resourceType label {
-	margin-bottom: 0;
+	padding-top: calc(0.375rem + 1px); /* padding + border of .form-control */
 }

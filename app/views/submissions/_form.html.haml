@@ -5,7 +5,7 @@
       %ul
         - for error in @errors
           %li
-            = error          
+            = error
 
 = hidden_field :submission, :ontology, value: @ontology.id
 
@@ -15,7 +15,7 @@
 
 -# Description
 %div.form-group.row
-  %label.col-sm-2.col-form-label{for: "submission_description"} 
+  %label.col-sm-2.col-form-label{for: "submission_description"}
     Description
     %span.asterik *
   %div.col-sm-10
@@ -23,7 +23,7 @@
 
 -# Format
 %div.form-group.row
-  %label.col-sm-2.col-form-label{for: "submission_hasOntologyLanguage"} 
+  %label.col-sm-2.col-form-label{for: "submission_hasOntologyLanguage"}
     Format
     %span.asterik *
   %div.col-sm-10
@@ -50,10 +50,10 @@
     %div.col-sm-10.offset-sm-2
       %label{for: "submission_prefLabelProperty"} Preferred name
       = text_field :submission, :prefLabelProperty, value: @submission.prefLabelProperty, class: "form-control form-control-sm", aria: {describedBy: "preferredNameHelpBlock"}
-      %small.form-text.text-muted#preferredNameHelpBlock 
+      %small.form-text.text-muted#preferredNameHelpBlock
         Enter a property ID, or use the default setting: |
         <a href="http://www.w3.org/2004/02/skos/core#prefLabel" target="_blank">http://www.w3.org/2004/02/skos/core#prefLabel</a>. |
-    
+
   -# Synonym
   %div.form-group.row
     %div.col-sm-10.offset-sm-2
@@ -62,7 +62,7 @@
       %small.form-text.text-muted#synonymHelpBlock
         Enter a property ID, or leave blank to use the default setting: |
         <a href="http://www.w3.org/2004/02/skos/core#altLabel" target="_blank">http://www.w3.org/2004/02/skos/core#altLabel</a>. |
-    
+
   -# Definition
   %div.form-group.row
     %div.col-sm-10.offset-sm-2
@@ -86,11 +86,11 @@
     %div.col-sm-10.offset-sm-2
       %label{style: "font-weight: bold"} Identify obsolete classes
 
-  %div.form-group.row 
+  %div.form-group.row
     %div.col-sm-10.offset-sm-2
       %label{for: "submission_obsoleteProperty"} Obsolete property
       = text_field :submission, :obsoleteProperty, value: @submission.obsoleteProperty, class: "form-control form-control-sm", aria: {describedBy: "obsoleteHelpBlock"}
-      %small.form-text.text-muted#obsoleteHelpBlock 
+      %small.form-text.text-muted#obsoleteHelpBlock
         Optionally enter a property ID that indicates obsolete status for ontology classes |
         (the property value must be set to "true"). Note that by default, BioPortal checks for existence of the owl:deprecated property. |
 
@@ -98,7 +98,7 @@
     %div.col-sm-10.offset-sm-2
       %label{for: "submission_obsoleteParent"} Obsolete branch root
       = text_field :submission, :obsoleteParent, value: @submission.obsoleteParent, class: "form-control form-control-sm", aria: {describedBy: "obsoleteRootHelpBlock"}
-      %small.form-text.text-muted#obsoleteRootHelpBlock 
+      %small.form-text.text-muted#obsoleteRootHelpBlock
         Optionally enter a class ID for the root of an obsolete branch. All classes in the branch will be marked as |
         obsolete, with the exception of the root class. |
 
@@ -110,7 +110,7 @@
 
 -# Status
 %div.form-group.row
-  %label.col-sm-2.col-form-lable{for: "submission_status"} 
+  %label.col-sm-2.col-form-lable{for: "submission_status"}
     Status
     %span.asterik<> *
   %div.col-sm-10
@@ -120,7 +120,7 @@
 
 -# Release date
 %div.form-group.row
-  %label.col-sm-2.col-form-label{for: "datepicker"} 
+  %label.col-sm-2.col-form-label{for: "datepicker"}
     Release date
     %span.asterik<> *
   %div.col-sm-10
@@ -141,13 +141,13 @@
       %div.form-check
         - checked = @ontology.summaryOnly
         = radio_button(:submission, :isRemote, 3, :onclick=>"$('.hidden_field').hide();", checked: checked, aria: {describedBy: "metadataHelpBlock"}, class: "form-check-input")
-        %label.form-check-label{for: "submission_isRemote_3"} 
+        %label.form-check-label{for: "submission_isRemote_3"}
           Metadata only
         %small.form-text.text-muted#metadataHelpBlock Allow users to view and search your ontology metadata, but not its classes and properties.
       %div.form-check
         - checked = !(@submission.pullLocation.nil? || @submission.pullLocation.empty?)
         = radio_button(:submission, :isRemote, 1, :onclick=>"location_toggle('remote');", checked: checked, aria: {describedBy: "loadFromURLHelpBlock"}, class: "form-check-input")
-        %label.form-check-label{for: "submission_isRemote_1"} 
+        %label.form-check-label{for: "submission_isRemote_1"}
           Load from URL
         %small.form-text.text-muted#loadFromURLHelpBlock New versions loaded on a nightly basis.
         - display = (checked and "" or "display:none;")
@@ -157,7 +157,7 @@
       %div.form-check
         - checked = (!@ontology.summaryOnly) && @submission.pullLocation.nil?
         = radio_button(:submission, :isRemote, 0, :onclick=>"location_toggle('upload');", checked: checked, class: "form-check-input")
-        %label.form-check-label{for: "submission_isRemote_0"} 
+        %label.form-check-label{for: "submission_isRemote_0"}
           Upload local file
         - display = checked ? "" : "display:none;"
         %div.hidden_field#upload{style: display}
@@ -187,7 +187,7 @@
     - @submission.contact.each_with_index do |contact, i|
       - if i == 0
         -# Contact div
-        %div.col-sm-10.d-flex.align-items-baseline.contact
+        %div.col-sm-10.d-flex.align-items-top.contact
           %label Name
           %div.formControlErrorContainer
             = text_field :submission, :"contact[#{i}][name]", value: contact["name"], class: "form-control", required: true
@@ -199,7 +199,7 @@
       - else
         -# TODO
         -# Secondary contacts need to be offset by 2 columns, and have a delete button.
-        %div.col-sm-10.d-flex.align-items-baseline.offset-sm-2.contact
+        %div.col-sm-10.d-flex.align-items-top.offset-sm-2.contact
           %label Name
           %div.formControlErrorContainer
             = text_field :submission, :"contact[#{i}][name]", value: contact["name"], class: "form-control", required: true
@@ -212,7 +212,7 @@
             %i{class: "fas fa-minus fa-lg", aria: {hidden: "true"}}
   - else
     -# TODO
-    %div.col-sm-10.d-flex.align-items-baseline.contact
+    %div.col-sm-10.d-flex.align-items-top.contact
       %label Name:
       %div.formControlErrorContainer
         = text_field :submission, :"contact[0][name]", class: "form-control", required: true
@@ -220,7 +220,7 @@
       %div.formControlErrorContainer
         = email_field :submission, :"contact[0][email]", class: "form-control", required: true
       %button.btn.btn-primary.add-contact
-        %i{class: "fas fa-plus fa-lg", aria: {hidden: "true"}}      
+        %i{class: "fas fa-plus fa-lg", aria: {hidden: "true"}}
 
 -# Home page
 %div.form-group.row
@@ -240,9 +240,9 @@
 %div.form-group.row
   %label.col-sm-2.col-form-label{for: "submission_publication"}
     Publications
-    %span.asterik * 
+    %span.asterik *
   %div.col-sm-10
-    = url_field :submission, :publication, value: @submission.publication, required: true, class: "form-control", aria: {describedBy: "pubsHelpBlock"}        
+    = url_field :submission, :publication, value: @submission.publication, required: true, class: "form-control", aria: {describedBy: "pubsHelpBlock"}
     %small.form-text.text-muted#pubsHelpBlock Enter a URL for a page that lists publications about your ontology. Protocol is required (http://, https:// or ftp://).
 
 %h2 New Metadata
@@ -250,7 +250,7 @@
 
 %div.form-group.row
   %div.col-sm-12
-    %label.col-form-label.font-italic{style: "color: red"} * Fields marked with an asterisk are required. 
+    %label.col-form-label.font-italic{style: "color: red"} * Fields marked with an asterisk are required.
 
 / *********************   DATACITE ****************************
 
@@ -258,7 +258,7 @@
 %div.form-group.row
   %label.col-sm-2.col-form-label{for: "submission_publisher"}
     Identifier
-    %span.asterik<> * 
+    %span.asterik<> *
   %div.col-sm-10.field-value-col{id: "identifier_fields_col"}
     - doi_already_assigned = false
     - if !@identifierRequest.nil?
@@ -266,15 +266,15 @@
         .row
           .col-sm-8.sub-label
             %p
-              You have a new DOI pending request for this semantic resource. You can cancel this request before it is processed. 
+              You have a new DOI pending request for this semantic resource. You can cancel this request before it is processed.
           .col-sm-4.sub-label
             %button.btn.btn-primary.btn-sm.btn_cancel_request{id: "btn_cancel_request-#{@identifierRequest.requestId}", access: "false", type: "button"}
               Cancel Request
       - elsif @identifierRequest.status == "PROCESSED" && (@identifierRequest.requestType == "DOI_CREATE" || @identifierRequest.requestType == "DOI_UPDATE")
         - doi_already_assigned = true
-    - else 
+    - else
       / Manually insert Identifier
-      %div.d-flex.align-items-baseline
+      %div.d-flex.align-items-top
         %label.float-right{for: "submission_identifierType"}
           Type:
           %span.asterik<> *
@@ -312,7 +312,7 @@
       - unless @submission.creators && @submission.creators.size > 0
         - @submission.creators = []
         - @submission.creators << getEmptyCreatorObject()
-	  
+
       - @submission.creators.each_with_index do |creator, i|
         .row.row-creator{id: "creator-#{i}"}
           / CREATOR DATA
@@ -344,14 +344,14 @@
                       .col-sm-11
                         .row.nested-row-values
                           .col-sm-2
-                            %label.float-right.lb-sm{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifierScheme]"}
+                            %label.float-right.lb-sm.col-form-label{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifierScheme]"}
                               Scheme:
                               %span.asterik<> *
                           .col-sm-4
                             %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifierScheme]", name: "submission[creators[#{i}][creatorIdentifiers][#{j}][nameIdentifierScheme]]", type: "text", value: creatorIdentifier.nameIdentifierScheme, required: true}/
                             %small.form-text.text-muted Ex.: ISNI, ORCID
                           .col-sm-2
-                            %label.float-right.lb-sm{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][schemeURI]"}
+                            %label.float-right.lb-sm.col-form-label{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][schemeURI]"}
                               Scheme URI:
                               %span.asterik<> *
                           .col-sm-4
@@ -359,7 +359,7 @@
                             %small.form-text.text-muted Ex.: http://isni.org/isni/, http://orcid.org/
                         .row.nested-row-values
                           .col-sm-2
-                            %label.float-right.lb-sm{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifier]"}
+                            %label.float-right.lb-sm.col-form-label{for: "submission_creators[#{i}][creatorIdentifiers][#{j}][nameIdentifier]"}
                               Name Identifier:
                               %span.asterik<> *
                           .col-sm-10
@@ -369,9 +369,9 @@
                       .col-sm-1
                         %button.btn.btn-default.btn-sm.btn-remove-row{access: "false", id: "button-remove-creatorIdentifier-#{i}_#{j}", onclick: "removeCreatorIdentifier('creatorIdentifier-#{i}_#{j}')", type: "button"}
                           %i.fas.fa-trash-alt
-	  
+
                     / here will be added the creator creatorIdentifiers
-                  
+
               .row.row-creatorIdentifier-buttons
                 .col-sm-11
                   %button#button-add-creatorIdentifier.btn.btn-primary{access: "false", onclick: "addCreatorIdentifier(#{i})", type: "button"}
@@ -385,13 +385,13 @@
               - require_personal_fields = 'required'
             .row.nested-row-values{id: "div-creator-personal-field-#{i}", style: !require_personal_fields ? "display:none" : nil}
               .col-sm-2
-                %label.float-right{for: "submission_creators[#{i}][givenName]"}
+                %label.float-right.col-form-label{for: "submission_creators[#{i}][givenName]"}
                   First Name:
                   %span.asterik<> *
               .col-sm-4
                 %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][givenName]", name: "submission[creators[#{i}][givenName]]", oninput: "updateCreatorName(#{i})", type: "text", value: creator.givenName, required: require_personal_fields}/
               .col-sm-2
-                %label.float-right{for: "submission_creators[#{i}][familyName]"}
+                %label.float-right.col-form-label{for: "submission_creators[#{i}][familyName]"}
                   Surname:
                   %span.asterik<> *
               .col-sm-4
@@ -399,7 +399,7 @@
             / ORGANIZATION
             .row.nested-row-values
               .col-sm-2
-                %label.float-right{for: "submission_creators[#{i}][creatorName]"}
+                %label.float-right.col-form-label{for: "submission_creators[#{i}][creatorName]"}
                   Name:
                   %span.asterik<> *
               .col-sm-10
@@ -413,14 +413,14 @@
                       .col-sm-11
                         .row.nested-row-values
                           .col-sm-2
-                            %label.float-right.lb-sm{for: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifierScheme]"}
+                            %label.float-right.lb-sm.col-form-label{for: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifierScheme]"}
                               Scheme:
                               %span.asterik<> *
                           .col-sm-4
                             %input.form-control.input-sm.w100perc{id: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifierScheme]", name: "submission[creators[#{i}][affiliations][#{j}][affiliationIdentifierScheme]]", type: "text", value: affiliation.affiliationIdentifierScheme, required: true}/
                             %small.form-text.text-muted Ex. ROR
                           .col-sm-2
-                            %label.float-right.lb-sm{for: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifier]"}
+                            %label.float-right.lb-sm.col-form-label{for: "submission_creators[#{i}][affiliations][#{j}][affiliationIdentifier]"}
                               Affiliation Ident. URI:
                               %span.asterik<> *
                           .col-sm-4
@@ -428,7 +428,7 @@
                             %small.form-text.text-muted Ex. https://ror.org/04wxnsj81
                         .row.nested-row-values
                           .col-sm-2
-                            %label.float-right.lb-sm{for: "submission_creators[#{i}][affiliations][#{j}][affiliation]"}
+                            %label.float-right.lb-sm.col-form-label{for: "submission_creators[#{i}][affiliations][#{j}][affiliation]"}
                               Affiliation Name:
                               %span.asterik<> *
                           .col-sm-10
@@ -438,7 +438,7 @@
                       .col-sm-1
                         %button.btn.btn-default.btn-sm.btn-remove-row{access: "false", id: "button-remove-creatorAffiliation-#{i}_#{j}", onclick: "removeCreatorAffiliation('creatorAffiliation-#{i}_#{j}')", type: "button"}
                           %i.fas.fa-trash-alt
-	  
+
                   / here will be added the creator affiliations
               .row.row-creatorAffiliation-buttons
                 .col-sm-11
@@ -469,7 +469,7 @@
             / row for text title
             .row.nested-row-values
               .col-sm-2
-                %label.float-right{for: "submission_titles[#{i}][title]"}
+                %label.float-right.col-form-label{for: "submission_titles[#{i}][title]"}
                   Title:
                   %span.asterik<> *
               .col-sm-10
@@ -477,7 +477,7 @@
             / row for text lang and type
             .row.nested-row-values
               .col-sm-2
-                %label.float-right{for: "submission_titles[#{i}][lang]"}
+                %label.float-right.col-form-label{for: "submission_titles[#{i}][lang]"}
                   Language:
                   %span.asterik<> *
               .col-sm-4
@@ -485,11 +485,11 @@
                 %select.form-control.input-sm.w100perc{id: "submission_titles[#{i}][lang]", name: "submission[titles[#{i}][lang]]"}
                   %option{value: "en-EN", selected: selected_title_lang == "en-EN"}= "English"
                   %option{value: "it-IT", selected: selected_title_lang == "it-IT"}= "Italian"
-                  %option{value: "fr-FR", selected: selected_title_lang == "fr-FR"}= "French" 
-                  %option{value: "de-DE", selected: selected_title_lang == "de-DE"}= "German" 
-                  %option{value: "es-ES", selected: selected_title_lang == "es-ES"}= "Spanish"                          
+                  %option{value: "fr-FR", selected: selected_title_lang == "fr-FR"}= "French"
+                  %option{value: "de-DE", selected: selected_title_lang == "de-DE"}= "German"
+                  %option{value: "es-ES", selected: selected_title_lang == "es-ES"}= "Spanish"
               .col-sm-1
-                %label.float-right{for: "submission_titles[#{i}][titleType]"} Type:
+                %label.float-right.col-form-label{for: "submission_titles[#{i}][titleType]"} Type:
               .col-sm-5
                 - selected_title_titleType = title.titleType ? title.titleType : "en-EN"
                 %select.form-control.input-sm.w100perc{id: "submission_titles[#{i}][titleType]", name: "submission[titles[#{i}][titleType]]"}
@@ -505,13 +505,13 @@
       .col-sm-5
         %button#button-add-title.btn.btn-primary{access: "false", type: "button"}
           %span.fas.fa-plus{"aria-hidden" => "true"}
-          Title 
+          Title
 
 / PUBLISHER
 %div.form-group.row
   %label.col-sm-2.col-form-label{for: "submission_publisher"}
     Publisher
-    %span.asterik<> * 
+    %span.asterik<> *
   %div.col-sm-10
     = text_field :submission, :publisher, value: @submission.publisher, required: true, class: "form-control"
 
@@ -528,7 +528,7 @@
   %label.col-sm-2.col-form-label{for: "submission_resourceType"}
     Resource Type
     %span.asterik<> *
-  %div.col-sm-10.d-flex.align-items-baseline.row-resourceType
+  %div.col-sm-10.d-flex.align-items-top.row-resourceType
     %label{for: "submission_resourceTypeGeneral", style: "white-space: nowrap"} General Type:
     - selected_resourceTypeGeneral = @submission.resourceTypeGeneral ? @submission.resourceTypeGeneral : "Dataset"
     %div.formControlErrorContainer
@@ -656,9 +656,9 @@
       trigger: 'hover'
     });
 
-    
-    if ( $(".btn_cancel_request").length ) { 
-      //the button exists      
+
+    if ( $(".btn_cancel_request").length ) {
+      //the button exists
       var btn_cancel_selector = $(".btn_cancel_request")
       var req_id = btn_cancel_selector[0].id.split("-")[1]
       btn_cancel_selector.click(function(e){
@@ -680,7 +680,7 @@
                 alert("The request was canceled!");
                 var html_identifier = `
                   <!-- Manually insert Identifier -->
-                  <div class="d-flex align-items-baseline">
+                  <div class="d-flex align-items-top">
                     <label class="float-right" for="submission_identifierType">Type<span class="asterik">*</span></label>
                     <div class="formControlErrorContainer">
                       <select class="form-control input-sm w100perc" id="submission_identifierType" name="submission[identifierType]">
@@ -715,8 +715,8 @@
               error: function(data) {
                 alert( "An Error has occurred. The request cannot be canceled");
               }
-            }); 
-            /*$.post(URL, 
+            });
+            /*$.post(URL,
               {
                 requestId: req_id,
                 status: "CANCELED"
@@ -730,11 +730,11 @@
             alert("WARNING! The request ID is not defined. The request cannot be canceled")
           }
         }
-        e.preventDefault();        
+        e.preventDefault();
       });
-      
-    } 
-    
-   
-    
+
+    }
+
+
+
   });

@@ -97,12 +97,12 @@ function addCreator(creatorObj) {
   <!-- PERSON -->
   <div class="row nested-row-values" id="div-creator-personal-field-$1">
     <div class="col-sm-2 ">
-      <label class="float-right" for="submission_creators[$1][givenName]">First Name:<span class="asterik">*</span></label></div>
+      <label class="float-right col-form-label" for="submission_creators[$1][givenName]">First Name:<span class="asterik">*</span></label></div>
     <div class="col-sm-4">
       <input class="form-control input-sm w100perc" type="text" name="submission[creators[$1][givenName]]" id="submission_creators[$1][givenName]" oninput="updateCreatorName($1)" required="required"/></div> 
     
     <div class="col-sm-2">
-      <label class="float-right" for="submission_creators[$1][familyName]">Surname:<span class="asterik">*</span></label></div>
+      <label class="float-right col-form-label" for="submission_creators[$1][familyName]">Surname:<span class="asterik">*</span></label></div>
     <div class="col-sm-4">
       <input class="form-control input-sm w100perc" type="text" name="submission[creators[$1][familyName]]" id="submission_creators[$1][familyName]" oninput="updateCreatorName($1)" required="required"/></div> 
   </div>
@@ -110,7 +110,7 @@ function addCreator(creatorObj) {
   <!-- ORGANIZATION -->
   <div class="row nested-row-values">
     <div class="col-sm-2 ">
-      <label class="float-right " for="submission_creators[$1][creatorName]">Name:<span class="asterik">*</span></label></div>
+      <label class="float-right col-form-label" for="submission_creators[$1][creatorName]">Name:<span class="asterik">*</span></label></div>
     <div class="col-sm-10">
       <input class="form-control input-sm w100perc" type="text" name="submission[creators[$1][creatorName]]" id="submission_creators[$1][creatorName]" readonly required="required"/></div>
   </div>
@@ -344,13 +344,13 @@ function addCreatorIdentifier(creatorIndex, creatorIdentifierObj) {
     <div class="col-sm-11">
       <div class="row nested-row-values">
         <div class="col-sm-2">
-          <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifierScheme]">Scheme:<span class="asterik">*</span></label></div>
+          <label class="float-right lb-sm col-form-label" for="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifierScheme]">Scheme:<span class="asterik">*</span></label></div>
         <div class="col-sm-4">
           <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifierScheme]]" id="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifierScheme]" required="required"/>
           <small class="form-text text-muted">Ex.: ISNI, ORCID</small>
         </div> 
         <div class="col-sm-2">
-          <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][creatorIdentifiers][$1][schemeURI]">Scheme URI:<span class="asterik">*</span></label></div>
+          <label class="float-right lb-sm col-form-label" for="submission_creators[${creatorIndex}][creatorIdentifiers][$1][schemeURI]">Scheme URI:<span class="asterik">*</span></label></div>
         <div class="col-sm-4">
           <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][creatorIdentifiers][$1][schemeURI]]" id="submission_creators[${creatorIndex}][creatorIdentifiers][$1][schemeURI]" required="required"/>
           <small class="form-text text-muted">Ex.: http://isni.org/isni/, http://orcid.org/</small>
@@ -358,7 +358,7 @@ function addCreatorIdentifier(creatorIndex, creatorIdentifierObj) {
       </div>
       <div class="row nested-row-values">
         <div class="col-sm-2">
-          <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifier]">Name Identifier:<span class="asterik">*</span></label></div>
+          <label class="float-right lb-sm col-form-label" for="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifier]">Name Identifier:<span class="asterik">*</span></label></div>
         <div class="col-sm-10">
           <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifier]]" id="submission_creators[${creatorIndex}][creatorIdentifiers][$1][nameIdentifier]" required="required"/>
           <small class="form-text text-muted">Example for ISNI: 0000000134596520 or for ORCID: 0000-0001-5393-1421</small>
@@ -462,14 +462,14 @@ function addCreatorAffiliation(creatorIndex, creatorAffiliationObj) {
   <div class="col-sm-11">
     <div class="row nested-row-values">
       <div class="col-sm-2">
-        <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifierScheme]">Scheme:<span class="asterik">*</span></label></div>
+        <label class="float-right lb-sm col-form-label" for="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifierScheme]">Scheme:<span class="asterik">*</span></label></div>
       <div class="col-sm-4">
         <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][affiliations][$1][affiliationIdentifierScheme]]" id="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifierScheme]" required="required"/>
         <small class="form-text text-muted">Ex. ROR</small>
       </div> 
 
       <div class="col-sm-2">
-        <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifier]">Affiliation Ident. URI:<span class="asterik">*</span></label></div>
+        <label class="float-right lb-sm col-form-label" for="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifier]">Affiliation Ident. URI:<span class="asterik">*</span></label></div>
       <div class="col-sm-4">
         <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][affiliations][$1][affiliationIdentifier]]" id="submission_creators[${creatorIndex}][affiliations][$1][affiliationIdentifier]" required="required"/>
         <small class="form-text text-muted">Ex. https://ror.org/04wxnsj81</small>
@@ -477,7 +477,7 @@ function addCreatorAffiliation(creatorIndex, creatorAffiliationObj) {
     </div>
     <div class="row nested-row-values">
       <div class="col-sm-2">
-        <label class="float-right lb-sm" for="submission_creators[${creatorIndex}][affiliations][$1][affiliation]">Affiliation Name:<span class="asterik">*</span></label></div>
+        <label class="float-right lb-sm col-form-label" for="submission_creators[${creatorIndex}][affiliations][$1][affiliation]">Affiliation Name:<span class="asterik">*</span></label></div>
       <div class="col-sm-10">
         <input class="form-control input-sm w100perc" type="text" name="submission[creators[${creatorIndex}][affiliations][$1][affiliation]]" id="submission_creators[${creatorIndex}][affiliations][$1][affiliation]" required="required"/>
         <small class="form-text text-muted">Enter the name of the formal institution to which the creator belongs, e.g. LifeWatch ERIC, DataCite, etc.</small>
@@ -690,14 +690,14 @@ function addTitle(titleObj) {
       <!-- row for text title -->
       <div class="row nested-row-values">
         <div class="col-sm-2">
-          <label class="float-right" for="submission_titles[$1][title]">Title:<span class="asterik">*</span></label></div>
+          <label class="float-right col-form-label" for="submission_titles[$1][title]">Title:<span class="asterik">*</span></label></div>
         <div class="col-sm-10">
           <input class="form-control input-sm w100perc" type="text" name="submission[titles[$1][title]]" id="submission_titles[$1][title]" ${value_title} required="required"/></div>
       </div>
       <!-- row for text lang and type -->
       <div class="row nested-row-values">
         <div class="col-sm-2">
-          <label class="float-right" for="submission_titles[$1][lang]">Language:<span class="asterik">*</span></label></div>
+          <label class="float-right col-form-label" for="submission_titles[$1][lang]">Language:<span class="asterik">*</span></label></div>
         <div class="col-sm-4">
           <select class="form-control input-sm w100perc" name="submission[titles[$1][lang]]" id="submission_titles[$1][lang]" ${value_lang}>
             <option value="en-EN">English</option>
@@ -708,7 +708,7 @@ function addTitle(titleObj) {
           </select>     
         </div>
         <div class="col-sm-1">
-          <label class="float-right" for="submission_titles[$1][titleType]">Type:</label></div>
+          <label class="float-right col-form-label" for="submission_titles[$1][titleType]">Type:</label></div>
         <div class="col-sm-5">
           <select class="form-control input-sm w100perc" name="submission[titles[$1][titleType]]" id="submission_titles[$1][titleType]" ${value_titleType}>
             <option value="AlternativeTitle">Alternative Title</option>

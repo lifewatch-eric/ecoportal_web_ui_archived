@@ -138,11 +138,6 @@
   margin:0px 0px;
 }
 
-.row-title label {
-  padding-top: calc(0.375rem + 1px); /* padding + border of .form-control */
-}
-
-
 /********** CREATOR ***********/
 .creatorType {
   margin:10px 0px;
@@ -157,10 +152,6 @@
   border: 1px solid #f2f2f2;
   padding-top:10px;
   margin:5px 0px;
-}
-
-.row-creator label {
-  padding-top: calc(0.375rem + 1px); /* padding + border of .form-control */
 }
 
 .row-creator-add-button {
@@ -184,7 +175,7 @@
 .row-creatorIdentifier {
   display: flex;
   flex-wrap: wrap;
-  margin: 5px 0px;
+  margin: 5px 0px !important;
   padding-top: 5px;
   border: 1px solid #f2f2f2;
 }
@@ -193,7 +184,7 @@
 .row-creatorAffiliation {
   display: flex;
   flex-wrap: wrap;
-  margin: 5px 0px;
+  margin: 5px 0px !important;
   padding-top: 5px;
   border: 1px solid #f2f2f2;
 }

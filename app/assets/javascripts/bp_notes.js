@@ -52,7 +52,8 @@ function bindAddCommentClick() {
   jQuery("a.add_comment").live('click', function(){
     var id = jQuery(this).attr("data-parent-id");
     var type = jQuery(this).attr("data-parent-type");
-    addCommentBox(id, type, this);
+    var prefLabel = jQuery(this).attr("data-parent-preflabel") || null; // only for class notes
+    addCommentBox(id, type, prefLabel, this);
   });
 }
 
@@ -60,7 +61,8 @@ function bindAddProposalClick() {
   jQuery("a.add_proposal").live('click', function(){
     var id = jQuery(this).attr("data-parent-id");
     var type = jQuery(this).attr("data-parent-type");
-    addProposalBox(id, type, this);
+    var prefLabel = jQuery(this).attr("data-parent-preflabel") || null; // only for class proposals
+    addProposalBox(id, type, prefLabel, this);
   });
 }
 
@@ -220,20 +222,20 @@ var displayError = function(button) {
   jQuery(button).parent().children(".reply_status").html("Error, please try again");
 }
 
-function addCommentBox(id, type, button) {
+function addCommentBox(id, type, prefLabel, button) {
   var formContainer = jQuery(button).parents(".notes_list_container").children(".create_note_form");
   var commentSubject = jQuery("<input>")
     .attr("type", "text")
     .attr("placeholder", "Subject")
     .addClass("comment_subject")
     .add("<br>");
-  var commentFields = commentSubject.add(commentForm(id,type));
+  var commentFields = commentSubject.add(commentForm(id,type, prefLabel));
   var commentWrapper = jQuery("<div>").addClass("reply_box").append(commentFields);
   formContainer.html(commentWrapper);
   formContainer.show();
 }
 
-function addProposalBox(id, type, button) {
+function addProposalBox(id, type, prefLabel, button) {
   var formContainer = jQuery(button).parents(".notes_list_container").children(".create_note_form");
   var proposalForm = jQuery("<div>").addClass("reply_box");
   var select = jQuery("<select>").addClass("proposal_type");
@@ -251,7 +253,7 @@ function addProposalBox(id, type, button) {
   proposalFields(Object.keys(NOTES_PROPOSAL_TYPES).shift(), proposalContainer);
 
   proposalForm.append(proposalContainer);
-  proposalForm.append(jQuery("<div>").addClass("proposal_buttons").append(commentButtons(id, type)));
+  proposalForm.append(jQuery("<div>").addClass("proposal_buttons").append(commentButtons(id, type, prefLabel)));
   formContainer.html(proposalForm);
   formContainer.show();
 }
@@ -277,7 +279,8 @@ function addNote(button, note) {
   var user = getUser();
   var created = note["created"].split("T")[0];
   var noteType = getNoteType(note);
-  var noteRow = [deleteBoxHTML, noteLinkHTML, getSubjectFromNoteObject(note), false, user["username"], noteType, "", created];
+  var classLinkHTML = jQuery(button).data("parent_type") == "class" ? generateClassLink(jQuery(button).data("parent_id"), jQuery(button).data("parent_preflabel")).outerHtml() : "";
+  var noteRow = [deleteBoxHTML, noteLinkHTML, getSubjectFromNoteObject(note), false, user["username"], noteType, classLinkHTML, created];
   // Add note to concept table (if we're on a concept page)
   if (jQuery(button).closest("#notes_content").find("table.concept_notes_list").length > 0) {
     jQuery("table.concept_notes_list").DataTable().row.add(
@@ -293,6 +296,8 @@ function addNote(button, note) {
   // Add note to main table
   if (typeof ontNotesTable !== "undefined") {
     ontNotesTable.DataTable().row.add(noteRow).draw();
+  } else {
+    jQuery.bioportal.ont_pages["notes"].retrieve(); // the ontology notes tab has not been displayed yet, so just re-retrieve its data
   }
   jQuery("a#"+id).facebox();
 }
@@ -323,8 +328,8 @@ function removeReplyBox(button) {
   jQuery(button).closest(".create_note_form").html("");
 }
 
-function commentForm(id, type) {
-  return commentTextArea().add(commentButtons(id, type));
+function commentForm(id, type, prefLabel) {
+  return commentTextArea().add(commentButtons(id, type, prefLabel));
 }
 
 function commentTextArea() {
@@ -339,12 +344,13 @@ function commentTextArea() {
     .add("<br>");
 }
 
-function commentButtons(id, type) {
+function commentButtons(id, type, prefLabel) {
   var button_submit = jQuery("<button>")
     .attr("type","submit")
     .attr("onclick","")
-    .data("parent_id", id)
-    .data("parent_type", type)
+    .attr("data-parent_id", id)
+    .attr("data-parent_type", type)
+    .attr("data-parent_preflabel", prefLabel)
     .addClass("save")
     .html("save");
   var button_cancel = jQuery("<button>")
@@ -418,6 +424,12 @@ function generateNoteLink(id, note) {
     .attr("href", "/ontologies/"+jQuery(document).data().bp.ont_viewer.ontology_id+"/notes/"+encodeURIComponent(note["id"]))
     .attr("id", id)
     .text(getSubjectFromNoteObject(note));
+}
+
+function generateClassLink(id, prefLabel) {
+  return jQuery("<a>")
+      .attr("href", "/ontologies/"+jQuery(document).data().bp.ont_viewer.ontology_id+"?p=classes&conceptid="+escape(id))
+      .text(prefLabel);
 }
 
 function generateNoteDeleteBox(id, note) {

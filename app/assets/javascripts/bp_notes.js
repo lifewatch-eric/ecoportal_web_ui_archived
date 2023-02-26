@@ -427,7 +427,7 @@ function generateNoteDeleteBox(id, note) {
 
 function getNoteType(note) {
   if (typeof note["proposal"] !== "undefined") {
-    return NOTES_PROPOSAL_TYPES[note["proposal"][0]];
+    return NOTES_PROPOSAL_TYPES[note["proposal"]["table"]["type"]];
   } else {
     return "Comment";
   }
